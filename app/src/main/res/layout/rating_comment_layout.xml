@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <com.google.android.material.card.MaterialCardView
+        android:background="@color/card_background"
+        android:backgroundTint="@color/card_background"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        app:cardElevation="0dp"
+        app:cardCornerRadius="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_marginBottom="20dp"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/comment_avatar"
+                android:layout_width="76dp"
+                android:layout_height="76dp"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:src="@drawable/avrang_product_sample"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/comment_author_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Илхом Рахимов"
+                android:textColor="@color/textcolor"
+                android:layout_marginStart="33dp"
+                android:textSize="20dp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toEndOf="@+id/comment_avatar"
+                app:layout_constraintTop_toTopOf="@+id/comment_avatar" />
+            <TextView
+                android:id="@+id/comment_date"
+                android:text="31.01.2021 23:30"
+                android:textColor="@color/textcolor"
+                android:textSize="17dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/comment_author_name"
+                app:layout_constraintLeft_toLeftOf="@id/comment_author_name"/>
+
+            <RatingBar
+                style="@style/Base.Widget.AppCompat.RatingBar.Small"
+                android:id="@+id/comment_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:isIndicator="true"
+                android:numStars="5"
+                android:rating="4"
+                android:stepSize="0.5"
+                android:scaleY="1.5"
+                android:scaleX="1.5"
+                android:transformPivotX="0dp"
+                android:transformPivotY="0dp"
+                android:progressTint="@color/rating_progress"
+                app:layout_constraintLeft_toLeftOf="@id/comment_date"
+                app:layout_constraintTop_toBottomOf="@id/comment_date" />
+            <TextView
+                android:id="@+id/comment_rating_count"
+                android:text="5.0"
+                android:textStyle="bold"
+                android:textColor="@color/textcolor"
+                android:textSize="17dp"
+                android:layout_marginStart="45dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/comment_rating"
+                app:layout_constraintLeft_toRightOf="@id/comment_rating"/>
+
+            <TextView
+                android:id="@+id/comment_opinion"
+                android:text="@string/product_opinion"
+                android:textColor="@color/textcolor"
+                android:layout_width="match_parent"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="15dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/comment_rating_count"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:textSize="16dp"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</FrameLayout>

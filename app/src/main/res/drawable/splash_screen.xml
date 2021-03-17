@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/red_dark" />
+    <item
+        android:drawable="@mipmap/splash_screen_logo"
+        android:width="200dp"
+        android:height="45dp"
+        android:gravity="center" />
+</layer-list>

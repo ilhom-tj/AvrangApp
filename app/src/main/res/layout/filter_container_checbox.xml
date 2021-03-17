@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#fff"
+    android:layout_width="match_parent"
+    android:padding="16dp"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/filter_checkbox_group"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Характеристика"
+            android:textColor="@color/textcolor"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            tools:ignore="MissingConstraints" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/filter_checkbox_recyclerview"
+            android:layout_width="match_parent"
+            tools:itemCount="3"
+            tools:listitem="@layout/filter_checkbox_item"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

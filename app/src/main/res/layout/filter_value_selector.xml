@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#fff"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/price_rate"
+        android:textColor="@color/textcolor"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        tools:ignore="MissingConstraints" />
+    <com.google.android.material.slider.RangeSlider
+        android:id="@+id/filter_price_slider"
+        android:valueFrom="0.0"
+        android:valueTo="100.0"
+        style="@style/ThemeOverlay.App.Slider"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        app:values="@array/initial_slider_values"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints" />
+    <GridLayout
+        android:rowCount="1"
+        android:columnCount="3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_columnWeight="1">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="00"
+                android:padding="14dp"
+                android:background="@drawable/edittext_corner_filter" />
+            <TextView
+                android:text="@string/min"
+                android:textSize="18dp"
+                android:textColor="@color/textcolor"
+                android:layout_marginTop="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <ImageView
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_gravity="center"
+            android:layout_height="3dp"
+            android:layout_marginBottom="20dp"
+            android:padding="10dp"
+            android:layout_width="20dp"
+            android:background="#E5E5EA"/>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_columnWeight="1">
+            <EditText
+                android:id="@+id/edit_minVal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="00"
+                android:padding="14dp"
+                android:background="@drawable/edittext_corner_filter" />
+            <TextView
+                android:id="@+id/edit_maxVal"
+                android:text="@string/max"
+                android:textSize="18dp"
+                android:textColor="@color/textcolor"
+                android:layout_marginTop="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+    </GridLayout>
+</LinearLayout>

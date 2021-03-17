@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="tj.colibri.avrang.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_productInfoFragment"
+            app:destination="@id/productInfoFragment"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_navigation_home_to_infoContainerFragment"
+            app:destination="@id/infoContainerFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:popUpTo="@id/navigation_home"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_catalog"
+        android:name="tj.colibri.avrang.ui.catalog.CatalogFragment"
+        android:label="@string/title_catalog"
+        tools:layout="@layout/fragment_catalog" >
+        <action
+            android:id="@+id/action_navigation_catalog_to_categoriesFragment"
+            app:destination="@id/categoriesFragment"
+            app:enterAnim="@anim/fragment_fade_enter" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_favorite"
+        android:name="tj.colibri.avrang.ui.favorites.FavoritesFragment"
+        android:label="@string/title_favorite"
+        tools:layout="@layout/fragment_favorites" />
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="tj.colibri.avrang.ui.profile.ProfileFragment"
+        android:label="@string/title_profile"
+        tools:layout="@layout/profile_fragment" >
+        <action
+            android:id="@+id/action_navigation_profile_to_profile_myinfo"
+            app:destination="@id/profile_myinfo"
+            app:enterAnim="@anim/fragment_fade_enter" />
+        <action
+            android:id="@+id/action_navigation_profile_to_deliveryAdres"
+            app:destination="@id/deliveryAdres"
+            app:enterAnim="@anim/fragment_fade_enter" />
+        <action
+            android:id="@+id/action_navigation_profile_to_myOrders"
+            app:destination="@id/myOrders"
+            app:enterAnim="@anim/fragment_fade_enter" />
+        <action
+            android:id="@+id/action_navigation_profile_to_FAQFragment"
+            app:destination="@id/FAQFragment"
+            app:enterAnim="@anim/fragment_fade_enter" />
+        <action
+            android:id="@+id/action_navigation_profile_to_aboutFragment"
+            app:destination="@id/aboutFragment"
+            app:enterAnim="@anim/fragment_fade_enter" />
+        <action
+            android:id="@+id/action_navigation_profile_to_contactsFragment"
+            app:destination="@id/contactsFragment"
+            app:enterAnim="@anim/fragment_fade_enter" />
+        <action
+            android:id="@+id/action_navigation_profile_to_productInfoFragment"
+            app:destination="@id/productInfoFragment" />
+        <action
+            android:id="@+id/action_navigation_profile_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/navigation_profile"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/productInfoFragment"
+        android:name="tj.colibri.avrang.ui.product.ProductInfoFragment"
+        android:label="product_info_fragment"
+        tools:layout="@layout/product_info_fragment" >
+        <action
+            android:id="@+id/action_productInfoFragment_to_ratingWithCommentFragment"
+            app:destination="@id/ratingWithCommentFragment"
+            app:enterAnim="@anim/fragment_fade_enter" />
+        <argument
+            android:name="slug"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_productInfoFragment_self"
+            app:destination="@id/productInfoFragment" />
+        <argument
+            android:name="name"
+            app:argType="string" />
+        <argument android:name="price"
+            app:argType="float" />
+        <argument android:name="discounted_price"
+            app:argType="float" />
+        <argument
+            android:name="rating"
+            app:argType="tj.colibri.avrang.data.ApiData.product.Rating" />
+        <argument
+            android:name="is_favorite"
+            app:argType="boolean"
+            android:defaultValue="false" />
+        <argument
+            android:name="images"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/categoriesFragment"
+        android:name="tj.colibri.avrang.ui.categories.CategoriesFragment"
+        android:label="categories_fragment"
+        tools:layout="@layout/categories_fragment" >
+        <action
+            android:id="@+id/action_categoriesFragment_to_productsInCategoriesFragment"
+            app:destination="@id/productsInCategoriesFragment"
+            app:enterAnim="@anim/fragment_fade_enter" />
+        <argument
+            android:name="slug"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/productsInCategoriesFragment"
+        android:name="tj.colibri.avrang.ui.product.categories.ProductsInCategoriesFragment"
+        android:label="products_in_categories_fragment"
+        tools:layout="@layout/products_in_categories_fragment" >
+        <argument
+            android:name="subCategory"
+            app:argType="tj.colibri.avrang.data.categories.SubCategory" />
+        <action
+            android:id="@+id/action_productsInCategoriesFragment_to_productInfoFragment"
+            app:destination="@id/productInfoFragment"
+            app:enterAnim="@anim/fragment_fade_enter" />
+        <action
+            android:id="@+id/action_productsInCategoriesFragment_to_filterFragment"
+            app:destination="@id/filterFragment"
+            app:enterAnim="@anim/fragment_fade_enter" />
+    </fragment>
+    <fragment
+        android:id="@+id/profile_myinfo"
+        android:name="tj.colibri.avrang.ui.profile.myinfo.ProfileInfoFragment"
+        android:label="Личная информация"
+        tools:layout="@layout/fragment_profile_myinfo" />
+    <fragment
+        android:id="@+id/deliveryAdres"
+        android:name="tj.colibri.avrang.ui.profile.delivery.DeliveryAdresFragment"
+        android:label="Адреса доставки"
+        tools:layout="@layout/fragment_delivery_adres" />
+    <fragment
+        android:id="@+id/myOrders"
+        android:name="tj.colibri.avrang.ui.profile.order.OrdersFragment"
+        android:label="Мои заказы"
+        tools:layout="@layout/fragment_orders" />
+    <fragment
+        android:id="@+id/checkOutFragment"
+        android:name="tj.colibri.avrang.ui.checkout.CheckOutFragment"
+        android:label="Оформление заказа"
+        tools:layout="@layout/check_out_fragment" >
+        <action
+            android:id="@+id/action_checkOutFragment_to_checkOutReadyFragment"
+            app:destination="@id/checkOutReadyFragment"
+            app:enterAnim="@anim/fragment_fade_enter" />
+    </fragment>
+    <fragment
+        android:id="@+id/checkOutReadyFragment"
+        android:name="tj.colibri.avrang.ui.checkout.chekoutprepare.CheckOutPrepareFragment"
+        android:label="Оформление заказа"
+        tools:layout="@layout/check_out_prepare_fragment" />
+    <fragment
+        android:id="@+id/filterFragment"
+        android:name="tj.colibri.avrang.ui.filter.FilterFragment"
+        android:label="Фильтры"
+        tools:layout="@layout/filter_fragment" />
+    <fragment
+        android:id="@+id/FAQFragment"
+        android:name="tj.colibri.avrang.ui.FAQ.FAQFragment"
+        android:label="Часто задаваемые вопросы"
+        tools:layout="@layout/faq_fragment" >
+        <action
+            android:id="@+id/action_FAQFragment_to_infoContainerFragment"
+            app:destination="@id/infoContainerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/infoContainerFragment"
+        android:name="tj.colibri.avrang.ui.FAQ.infoContainer.InfoContainerFragment"
+        android:label="Новости и анонсы"
+        tools:layout="@layout/faq_container_fragment">
+        <argument
+            android:name="bannerURL"
+            app:argType="string" />
+        <argument
+            android:name="description"
+            app:argType="string" />
+        <argument
+            android:name="created_at"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="tj.colibri.avrang.ui.about.AboutFragment"
+        android:label="О приложении"
+        tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/contactsFragment"
+        android:name="tj.colibri.avrang.ui.contacts.ContactsFragment"
+        android:label="Контакты"
+        tools:layout="@layout/contacts_fragment" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="tj.colibri.avrang.ui.login.LoginFragment"
+        android:label="Профиль"
+        tools:layout="@layout/login_fragment">
+        <action
+            android:id="@+id/action_loginFragment_to_signIn"
+            app:destination="@id/signIn" />
+    </fragment>
+    <fragment
+        android:id="@+id/phoneInputFragment"
+        android:name="tj.colibri.avrang.ui.login.phone.PhoneInputFragment"
+        android:label="Регистрация"
+        tools:layout="@layout/login_phone_input_fragment">
+        <action
+            android:id="@+id/action_phoneInputFragment_to_verifyPhoneFragment"
+            app:destination="@id/verifyPhoneFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/verifyPhoneFragment"
+        android:name="tj.colibri.avrang.ui.login.verify.VerifyPhoneFragment"
+        android:label="Регистрация"
+        tools:layout="@layout/login_verify_phone_fragment">
+        <action
+            android:id="@+id/action_verifyPhoneFragment_to_passwordFragment"
+            app:destination="@id/passwordFragment" />
+        <argument
+            android:name="phone"
+            app:argType="string" />
+        <argument
+            android:name="confirmCode"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/ratingWithCommentFragment"
+        android:name="tj.colibri.avrang.ui.product.comments.RatingWithCommentFragment"
+        android:label="Рейтинг и отзывы"
+        tools:layout="@layout/rating_with_comment_fragment" >
+        <argument
+            android:name="ratings"
+            app:argType="tj.colibri.avrang.data.ApiData.product.Rating" />
+        <argument
+            android:name="reviews"
+            app:argType="tj.colibri.avrang.data.ApiData.product.Reviews[]" />
+    </fragment>
+    <activity
+        android:id="@+id/splashScreen"
+        android:name="tj.colibri.avrang.SplashScreen"
+        android:label="activity_splash_screen"
+        tools:layout="@layout/activity_splash_screen" />
+    <fragment
+        android:id="@+id/navigation_cart"
+        android:name="tj.colibri.avrang.ui.cart.CartFragment"
+        android:label="Корзина"
+        tools:layout="@layout/cart_fragment">
+        <action
+            android:id="@+id/action_cartFragment_to_checkOutFragment"
+            app:destination="@id/checkOutFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signIn"
+        android:name="tj.colibri.avrang.ui.login.signIn.SignIn"
+        android:label="Вход"
+        tools:layout="@layout/sign_in_fragment">
+        <action
+            android:id="@+id/action_signIn_to_phoneInputFragment"
+            app:destination="@id/phoneInputFragment" />
+        <action
+            android:id="@+id/action_signIn_to_navigation_profile"
+            app:destination="@id/navigation_profile"
+            app:popUpTo="@id/signIn"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/passwordFragment"
+        android:name="tj.colibri.avrang.ui.login.password.PasswordFragment"
+        android:label="Регистрация"
+        tools:layout="@layout/login_password_fragment">
+        <argument
+            android:name="phone"
+            app:argType="string" />
+        <argument
+            android:name="confirm_code"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_passwordFragment_to_navigation_profile"
+            app:destination="@id/navigation_profile"
+            app:popUpTo="@id/passwordFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+</navigation>

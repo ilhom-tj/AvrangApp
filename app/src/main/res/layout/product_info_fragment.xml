@@ -1,0 +1,771 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.product.ProductInfoFragment">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.smarteist.autoimageslider.SliderView
+                android:id="@+id/product_slider"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:sliderAutoCycleEnabled="true"
+                app:sliderIndicatorEnabled="true"
+                app:sliderIndicatorGravity="center_horizontal|bottom"
+                app:sliderIndicatorOrientation="horizontal"
+                app:sliderIndicatorPadding="2dp"
+                app:sliderIndicatorRadius="1dp"
+                app:sliderIndicatorSelectedColor="#FFFFFF"
+                app:sliderIndicatorUnselectedColor="#A6FFFFFF" />
+
+            <TextView
+                android:id="@+id/product_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:textColor="@color/grey"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/product_slider" />
+
+            <TextView
+                android:id="@+id/product_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="@string/sample_product_name"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/product_title" />
+
+            <TextView
+                android:id="@+id/product_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="8dp"
+                android:text="0"
+                android:textColor="@color/red_rating"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/product_title" />
+
+            <ImageView
+                android:id="@+id/product_rating_star"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginStart="4dp"
+                android:src="@drawable/ic_rating_star"
+                app:layout_constraintBottom_toBottomOf="@+id/product_rating"
+                app:layout_constraintStart_toEndOf="@+id/product_rating"
+                app:layout_constraintTop_toTopOf="@+id/product_rating" />
+
+            <TextView
+                android:id="@+id/ratings_qty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="0 отзывов"
+                android:textColor="@color/product_secondary"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/product_rating"
+                app:layout_constraintStart_toEndOf="@+id/product_rating_star"
+                app:layout_constraintTop_toTopOf="@+id/product_rating" />
+
+            <TextView
+                android:id="@+id/product_old_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/product_secondary"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/product_rating" />
+
+            <TextView
+                android:id="@+id/product_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:text="19 995.49 TJS"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/product_old_price" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/product_price" />
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/buy_one_click"
+                android:layout_marginTop="24dp"
+                android:text="@string/buy_one_click"
+                android:textColor="@color/red_primary"
+                app:backgroundTint="@color/card_background"
+                android:elevation="0dp"
+                android:stateListAnimator="@null"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                app:layout_constraintTop_toBottomOf="@+id/rv_parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/installment_label"
+                android:text="@string/installment_available"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintTop_toBottomOf="@+id/buy_one_click"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="18dp"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:textStyle="bold"
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/installment_recycler_view"
+                app:layout_constraintTop_toBottomOf="@+id/installment_label"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/product_about_label"
+                android:text="@string/product_about"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintTop_toBottomOf="@+id/installment_recycler_view"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="18dp"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/product_about"
+                android:text="@string/sample_product_about"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@+id/product_about_label"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="18dp"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/more_about_product"
+                android:text="@string/more_about_product"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/red_primary"
+                app:layout_constraintTop_toBottomOf="@+id/product_about"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/trade_marks_recycler_view"
+                app:layout_constraintTop_toBottomOf="@+id/more_about_product"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/product_specifications"
+                android:text="@string/specifications"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/trade_marks_recycler_view"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="50dp"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/specifications_recycler_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/product_specifications"
+                tools:listitem="@layout/specifications_item" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/show_all_specs"
+                android:text="@string/show_all_specs"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/red_primary"
+                app:layout_constraintTop_toBottomOf="@+id/specifications_recycler_view"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/features"
+                android:layout_marginTop="24dp"
+                app:layout_constraintTop_toBottomOf="@+id/show_all_specs"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:background="@color/card_background">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/free_install"
+                    android:id="@+id/free_delivery">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:id="@+id/free_delivery_image"
+                        android:src="@drawable/ic_free_delivery"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginTop="@dimen/activity_vertical_margin"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/free_delivery_text"
+                        android:text="@string/free_delivery"
+                        android:textSize="12sp"
+                        android:textColor="@color/black"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="4dp"
+                        app:layout_constraintTop_toBottomOf="@+id/free_delivery_image"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="15dp"
+                        />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/free_delivery"
+                    app:layout_constraintEnd_toStartOf="@+id/guarantee"
+                    android:id="@+id/free_install">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:id="@+id/free_install_image"
+                        android:src="@drawable/ic_free_installing"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginTop="@dimen/activity_vertical_margin"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/free_install_install"
+                        android:text="@string/free_install"
+                        android:textSize="12sp"
+                        android:textColor="@color/black"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="4dp"
+                        app:layout_constraintTop_toBottomOf="@+id/free_install_image"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="15dp"
+                        />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/free_install"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:id="@+id/guarantee">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:id="@+id/guarantee_image"
+                        android:src="@drawable/ic_guarantee"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginTop="@dimen/activity_vertical_margin"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/guarantee_text"
+                        android:text="@string/guarantee"
+                        android:textSize="12sp"
+                        android:textColor="@color/black"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="4dp"
+                        app:layout_constraintTop_toBottomOf="@+id/guarantee_image"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="15dp"
+                        />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/rating_label"
+                android:text="@string/rating"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/features"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="40dp"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                />
+
+            <RatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/rating_bar"
+                style="?android:attr/ratingBarStyleSmall"
+                android:progressTint="@color/red_rating"
+                android:numStars="5"
+                android:stepSize="0.5"
+                android:rating="3.5"
+                android:layout_marginTop="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rating_label"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/product_rating_2nd"
+                android:text="5.0"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/rating_label"
+                app:layout_constraintStart_toEndOf="@+id/rating_bar"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/product_rating_qty"
+                android:text="92 отзыва"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@+id/rating_label"
+                app:layout_constraintStart_toEndOf="@+id/product_rating_2nd"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/product_rating_five_layout"
+                app:layout_constraintTop_toBottomOf="@+id/rating_bar">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/product_rating_five_label"
+                    android:text="5"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/product_rating_five_progress"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                    />
+
+                <ProgressBar
+                    android:layout_width="0dp"
+                    android:layout_height="10dp"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:id="@+id/product_rating_five_progress"
+                    app:layout_constraintTop_toTopOf="@+id/product_rating_five_label"
+                    app:layout_constraintStart_toEndOf="@+id/product_rating_five_label"
+                    app:layout_constraintEnd_toStartOf="@+id/product_rating_five_count"
+                    app:layout_constraintBottom_toBottomOf="@+id/product_rating_five_label"
+                    android:progressDrawable="@drawable/rating_progress_background"
+                    android:max="92"
+                    android:progress="66"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:layout_marginEnd="@dimen/activity_horizontal_margin"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/product_rating_five_count"
+                    android:text="66"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/product_rating_five_progress"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:layout_marginEnd="32dp"
+                    />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/product_rating_four_layout"
+                app:layout_constraintTop_toBottomOf="@+id/product_rating_five_layout">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/product_rating_four_label"
+                    android:text="4"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/product_rating_four_progress"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                    />
+
+                <ProgressBar
+                    android:layout_width="0dp"
+                    android:layout_height="10dp"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:id="@+id/product_rating_four_progress"
+                    app:layout_constraintTop_toTopOf="@+id/product_rating_four_label"
+                    app:layout_constraintStart_toEndOf="@+id/product_rating_four_label"
+                    app:layout_constraintEnd_toStartOf="@+id/product_rating_four_count"
+                    app:layout_constraintBottom_toBottomOf="@+id/product_rating_four_label"
+                    android:progressDrawable="@drawable/rating_progress_background"
+                    android:max="92"
+                    android:progress="15"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:layout_marginEnd="@dimen/activity_horizontal_margin"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/product_rating_four_count"
+                    android:text="15"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/product_rating_four_progress"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:layout_marginEnd="32dp"
+                    />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/product_rating_three_layout"
+                app:layout_constraintTop_toBottomOf="@+id/product_rating_four_layout">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/product_rating_three_label"
+                    android:text="3"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/product_rating_three_progress"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                    />
+
+                <ProgressBar
+                    android:layout_width="0dp"
+                    android:layout_height="10dp"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:id="@+id/product_rating_three_progress"
+                    app:layout_constraintTop_toTopOf="@+id/product_rating_three_label"
+                    app:layout_constraintStart_toEndOf="@+id/product_rating_three_label"
+                    app:layout_constraintEnd_toStartOf="@+id/product_rating_three_count"
+                    app:layout_constraintBottom_toBottomOf="@+id/product_rating_three_label"
+                    android:progressDrawable="@drawable/rating_progress_background"
+                    android:max="92"
+                    android:progress="3"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:layout_marginEnd="@dimen/activity_horizontal_margin"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/product_rating_three_count"
+                    android:text="3"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/product_rating_three_progress"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:layout_marginEnd="32dp"
+                    />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/product_rating_two_layout"
+                app:layout_constraintTop_toBottomOf="@+id/product_rating_three_layout">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/product_rating_two_label"
+                    android:text="2"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/product_rating_two_progress"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                    />
+
+                <ProgressBar
+                    android:layout_width="0dp"
+                    android:layout_height="10dp"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:id="@+id/product_rating_two_progress"
+                    app:layout_constraintTop_toTopOf="@+id/product_rating_two_label"
+                    app:layout_constraintStart_toEndOf="@+id/product_rating_two_label"
+                    app:layout_constraintEnd_toStartOf="@+id/product_rating_two_count"
+                    app:layout_constraintBottom_toBottomOf="@+id/product_rating_two_label"
+                    android:progressDrawable="@drawable/rating_progress_background"
+                    android:max="92"
+                    android:progress="6"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:layout_marginEnd="@dimen/activity_horizontal_margin"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/product_rating_two_count"
+                    android:text="3"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/product_rating_two_progress"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:layout_marginEnd="32dp"
+                    />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/product_rating_one_layout"
+                app:layout_constraintTop_toBottomOf="@+id/product_rating_two_layout">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/product_rating_one_label"
+                    android:text="1"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/product_rating_one_progress"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                    />
+
+                <ProgressBar
+                    android:layout_width="0dp"
+                    android:layout_height="10dp"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:id="@+id/product_rating_one_progress"
+                    app:layout_constraintTop_toTopOf="@+id/product_rating_one_label"
+                    app:layout_constraintStart_toEndOf="@+id/product_rating_one_label"
+                    app:layout_constraintEnd_toStartOf="@+id/product_rating_one_count"
+                    app:layout_constraintBottom_toBottomOf="@+id/product_rating_one_label"
+                    android:progressDrawable="@drawable/rating_progress_background"
+                    android:max="92"
+                    android:progress="2"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:layout_marginEnd="@dimen/activity_horizontal_margin"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/product_rating_one_count"
+                    android:text="2"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/product_rating_one_progress"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:layout_marginEnd="32dp"
+                    />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/show_all_ratings"
+                android:text="@string/show_all_ratings"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/red_primary"
+                app:layout_constraintTop_toBottomOf="@+id/product_rating_one_layout"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/users_also_buy_label"
+                android:text="@string/users_also_buy"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/show_all_ratings"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="30dp"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/users_also_buy_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/users_also_buy_label"
+                tools:itemCount="1"
+                tools:listitem="@layout/product_layout" />
+
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,195 @@
+<resources>
+    <string name="app_name">Авранг</string>
+    <string name="title_home">Главная</string>
+    <string name="title_catalog">Каталог</string>
+    <string name="title_favorite">Избранное</string>
+    <string name="title_profile">Профиль</string>
+    <string name="title_cart">Корзина</string>
+    <string name="new_products">Новинки</string>
+    <string name="product_sale">Акция</string>
+    <string name="product_bestseller">Хит</string>
+
+    <string name="sample_product_name">Ультрабук LENOVOThinkPad AD12ZSMIX Ультрабук LENOVOThinkPad AD12ZSMIX Ультрабук LENOVOThinkPad AD12ZSMIX Ультрабук LENOVOThinkPad AD12ZSMIX</string>
+    <string name="bestsellers">Хиты продаж</string>
+    <string name="recommended_to_you">Рекомендуется вам</string>
+    <string name="megasale">Распродажа</string>
+    <string name="news_and_announcements">Новости и анонсы</string>
+    <string name="add_to_favorite">Добавиь в избранное</string>
+    <string name="buy_one_click">Купить в 1 клик</string>
+    <string name="installment_available">Доступна рассрочка:</string>
+    <string name="product_about">О товаре</string>
+    <string name="sample_product_about">Телевизор TCL 52” G2C4FF23PQBIG займёт достойное место в маленькой гостиной, на кухне, в спальне или детской комнате. Его можно использовать в качестве компьютерного монитора. Он устанавливается на подставку либо размещается на стене с помощью крепления VESA, которое нужно приобретать отдельно.</string>
+    <string name="more_about_product">Подробнее о товаре</string>
+    <string name="specifications">Характеристики</string>
+    <string name="show_all_specs">Смотреть все характеристики</string>
+    <string name="free_delivery">Бесплатная доставка</string>
+    <string name="free_install">Бесплатная установка</string>
+    <string name="guarantee">Гарантия 24 месяца</string>
+    <string name="rating">Рейтинг</string>
+    <string name="show_all_ratings">Смотреть все отзывы</string>
+    <string name="users_also_buy">С этим товаром также покупают</string>
+    <string name="sorting_popularity">По популярности</string>
+    <string name="filters">Фильтры</string>
+    <string name="sample_products_qty">10 товаров</string>
+    <string name="sample_favorites_qty">3 товара</string>
+    <string name="sample_product_code">Код товара: SML03ZZ</string>
+    <string name="sample_product_price">19 995.49 TJS</string>
+    <string name="cart_total">Итого товаров на сумму</string>
+    <string name="continue_checkout">Продолжить оформление</string>
+    <string name="unit_price">Цена за единицу</string>
+    <string name="total">Итого</string>
+    <string name="bonuses">Бонусы</string>
+    <string name="personal_information">Личная информация</string>
+    <string name="delivery_addresses">Адреса доставки</string>
+    <string name="my_orders">Мои заказы</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="OrderNumber">Номер заказа</string>
+    <string name="OrderDate">Дата заказа</string>
+    <string name="AllOrders">Всего товаров</string>
+    <string name="contact_info">1. Контактные данные получателя</string>
+    <string name="delivery_detail">Детали доставки</string>
+    <string name="name">Имя*</string>
+    <string name="phone">Номер телефона*</string>
+    <string name="email">Электронная почта</string>
+    <string name="extra_phone">Телефон, если не дозвонимся</string>
+    <string name="take_method">2. Способ получения</string>
+    <string name="self_take">Самовызов</string>
+    <string name="delivery">Доставка</string>
+    <string name="city">Город*</string>
+    <string name="confortable_time">Удобное время доставки</string>
+    <string name="delivery_adres">Адрес доставки*</string>
+    <string name="main_adres">Магазин на ул. Дж. Расулова</string>
+    <string name="store_adres">734043, Таджикистан, г.Душанбе, ул. Дж. Расулова, 9 (ориентир: фабрика «Ширин»)</string>
+    <string name="cash">Наличными</string>
+    <string name="bank_tansaction">Банковским переводом</string>
+    <string name="payment_installment">В кредит или в рассрочку</string>
+    <string name="choose_card_type">Выберите тип карты*</string>
+    <string name="work_time">Режим работы:</string>
+    <string name="work_time_clocks">Пн–Вс: с 9:00 до 21:00;</string>
+    <string name="bonuses_and_promo">Бонусы и промокоды</string>
+    <string name="dontuse">Не использовать</string>
+    <string name="Bonuses">Бонусы</string>
+    <string name="promocode">Промокод</string>
+    <string name="bonuses_and_promocodes">2.Бонусы и промокоды</string>
+    <string name="demo_bonus">138</string>
+    <string name="collected_bonus">Накопленных бонусных баллов</string>
+    <string name="avaliable_bonus_lable">Доступных к оплате бонусных баллов</string>
+    <string name="available_bonus_demo">84</string>
+    <string name="bonus_warning_info">1 балл равен 1.00 TJS. На каждую покупку Вы можете потратить только 50% от накопленных бонусных баллов. С более подробной информацией касательно бонусной программы вы можете ознакомиться перейдя по следующей ссылке - Бонусная программа.</string>
+    <string name="check_out_accept_order">Подтвердить заказ</string>
+    <string name="promocode_lable">Введите промокод</string>
+    <string name="activate_promo">Активировать промокод</string>
+    <string name="choose_the_bank">Выберите банк*</string>
+    <string name="installation_warning">При покупке товаров в рассрочку возможность использования бонусов и промокодов не доступна. За покупку товаров в рассрочку бонусы также не начисляются. С более подробной информацией касательно условий рассрочки вы можете ознакомиться перейдя по следующей ссылке - Кредит и рассрочка.</string>
+    <string name="accept_order">Подтверждение заказа</string>
+    <string name="order_number_01">Заказ №00001</string>
+    <string name="goods_sum">Итого товаров на сумму: 19 995.49 TJS</string>
+    <string name="delivery_sum">Стоимость доставки: 20.00 TJS</string>
+    <string name="discount_from_bonus">Скидка по бонусам: -88.00 TJS</string>
+    <string name="pay_method_national_card">Cпособ оплаты: Корти милли</string>
+    <string name="bonus_for_purchase">Бонусы с покупки: +25 баллов</string>
+    <string name="total_sum">Всего к оплате: 19 927.49 TJS</string>
+    <string name="price_rate">Ценовой диапазон</string>
+    <string name="max">Макс</string>
+    <string name="min">Мин</string>
+    <string name="show_31_goods">Показать 31 товар</string>
+    <string name="exit">Выйти</string>
+    <string name="contacts">Контакты</string>
+    <string name="faq">Часто задаваемые вопросы</string>
+    <string name="about">О приложении</string>
+    <string name="how_work_bonus">Как работает бонусная программа?</string>
+    <string name="payment_delivery">Оплата и доставка</string>
+    <string name="return_good">Обмен и возврат товаров</string>
+    <string name="installation">Кредит и рассрочка</string>
+    <string name="discount_mix">Сочетания скидок</string>
+    <string name="where_you_can_find_us">Где нас найти?</string>
+
+    <string-array name="sex">
+        <item>Мужской</item>
+        <item>Женский</item>
+    </string-array>
+
+    <string name="demo">
+        <P><b>Оплата</b></P>
+
+Наличный расчет
+
+Оплата производится только в национальной валюте (сомони).
+
+Безналичный расчет для юридических лиц
+
+После оформления заказа, специалист магазина вышлет Вам электронной почтой счет на оплату, который Вы сможете оплатить с расчетного счета организации.
+
+Для получения заказа необходима доверенность от организации-плательщика и документ удостоверяющий личность.
+Оплата в рассрочку
+
+Вы можете не выходя из дома оформить покупку в кредит. Для этого, достаточно определиться с товаром и в пункте “способ оплаты” выбрать “в кредит”. Далее с Вами свяжется оператор банка и после одобрения, Вам необходимо прийти в банк с документами на подписание договора.
+
+
+Оплата платежной картой
+
+Оплата принимается только от владельца карты. Необходимо иметь документ, удостоверяющий личность. Данные на карте и на документе должны совпадать.
+Если плательщиком является одно лицо, а получатель заказа – иное лицо, то плательщик должен выслать на электронную почту info@avrang.tj лицевую сторону своей платежной карты, где необходимы показать только первые и последние четыре цифры номера карты, а также скан копию паспорта и ФИО получателя.
+
+
+Доставка и Самовывоз
+
+Для получения товара, необходимо предъявить номер заказа кассиру или продавцу-консультанту и произвести оплату в кассу. Пожалуйста, проверьте комплектность и отсутствие дефектов на товаре при его получении.
+
+
+Условия доставки
+
+– Доставка при оформлении заказа до 18:00 в Душанбе осуществляется в течении 2 дней после заявки.
+– Заказы, согласованные в субботу  после 16:00, доставляются в понедельник в течение дня.
+– Доставка за пределы города Душанбе осушествляется по следующим расценкам:
+
+Варзоб – 100 сомони
+Гиссар – 100 сомони
+Район Рудаки – 100 сомони
+
+При доставке курьер продемонстрирует товар, после чего необходимо подписать акт приемки продукции.
+
+Установка в перечень услуг, оказываемых курьером, не входит.
+    </string>
+    <string name="hole_goods">Более 100 000 товаров</string>
+    <string name="internet_store">Интернет-магазин Avrang.tj</string>
+    <string name="version">Версия 1.0</string>
+    <string name="license">Лицензионное соглашение</string>
+    <string name="copyright">© 2021, ТТЦ Авранг. Все права защищены.</string>
+    <string name="phone1"><b>Телефон:</b> \n +992 44-600-00-00 \n +992 44-620-00-00</string>
+    <string name="contact_center">Контакт центр:</string>
+    <string name="service_center">Сервисный центр:</string>
+    <string name="contact_email"><p><b>Электронная почта:</b></p>\ninfo@avrang.tj</string>
+    <string name="contanct_timework"><p><b>Режим работы:</b></p>\nПн–Вс: с 9:00 до 21:00;</string>
+
+
+    <string name="service_phone"><p><b>Телефон:</b></p><p>\n+992 44-600-00-00</p>\n+992 44-620-00-00</string>
+    <string name="service_email"><p><b>Электронная почта:</b></p>\nsupport@avrang.tj</string>
+    <string name="service_timework"><p><b>Режим работы:</b></p>\nн–Пт: с 9:00 до Сб</string>
+    <string name="weinsoc">Мы в соц. медиа</string>
+    <string name="please_enter">Войдите или зарегистрируйтесь, чтобы совершать покупки</string>
+    <string name="enter">Войти</string>
+    <string name="our_store">Наши магазины</string>
+    <string name="input_phone">Номер телефона</string>
+    <string name="agreement">Нажимая кнопку «Продолжить» Вы соглашаетесь с условиями обработки персональных данных, продажи ТТЦ “Авранг” и соглашения с правилами</string>
+    <string name="verify_phone">Подтвердите свой телефонный номер</string>
+
+    <string name="continue_login">Продолжить</string>
+    <string name="verify">Подтвердить</string>
+    <string name="product_comment_goodSide">Звук — звук их родных колонок настолько отвратительный, что подключенная через bluetooth малышка JBL GO звучит заметно лучше. Однако конкретно у моей модели проблемы с подключением по bluetooth (после вкл/выкл автоматически не подключается), поэтому я ткнул в mini jack пассивные компьютерные колонки.</string>
+    <string name="product_good_side2">Как говорится — за свои деньги топ. Android TV, с его огромными возможностями. Двухдиапазонный Wi-Fi. Через USB легко крутит фильмы по 90Гб. Внешне вполне симпатичный и достаточно легкий.)</string>
+    <string name="product_opinion">В общем, по прогам что хотела, то написала. После покупки советую найти ветку на 4pda, 4S, там найдёте всё, что надо. По дизайну: Рамки у тел-ра металлические, магнитятся. Задняя часть тоже металл, но не полностью, та часть где разъёмы из пластика. Конструктивная жесткость хорошая. Рамки тонкие.</string>
+    <string name="rating_founders">Рейтинг основан на оценках покупателейсайта avrang.tj</string>
+    <string name="comment_new">Новые</string>
+    <string name="worst_comments">Худшие оценки</string>
+    <string name="best_comments">Лучшие оценки</string>
+    <string name="input_phone_number">Введите телефонный номер</string>
+    <string name="password">Пароль</string>
+    <string name="forgot_password">Забыли пароль?</string>
+    <string name="registration">Зарегистрироваься</string>
+    <string name="imagine_password">Придумайте пароль</string>
+    <string name="input_password">Введите пароль</string>
+    <string name="confirm_password">Повторите пароль</string>
+    <string name="save_changes">Сохранить изменения</string>
+</resources>
