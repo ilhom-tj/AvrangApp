@@ -13,5 +13,6 @@ data class Categories (
 	@SerializedName("icon") val icon : String,
 	@SerializedName("parent_id") val parent_id : Int,
 	@SerializedName("parent") val parent : String,
+	@SerializedName("slug") val slug : String,
 	@SerializedName("children") val children : List<Children>
 ) : Parcelable

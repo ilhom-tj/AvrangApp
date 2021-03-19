@@ -135,6 +135,7 @@ class ProfileInfoFragment : Fragment() {
             val dm = 34.toChar()
             val adress = dm+edit_adres.text.toString()+dm
 
+            Log.e("additional1",additional_phone)
             viewModel.updateUserPersonalInfo(
                 name,
                 birthdate,

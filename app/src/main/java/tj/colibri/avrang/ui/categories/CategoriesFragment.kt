@@ -45,12 +45,11 @@ class CategoriesFragment : Fragment(), SubCategoriesAdapter.ItemClicked, Categor
         val actionBarView = actionBar?.customView
         val title : TextView = actionBarView!!.findViewById(R.id.action_bar_title)
         val icon : ImageView = actionBarView.findViewById(R.id.category_icon)
-
-        title.text = args.category.name
-        val imageId = context?.resources?.getIdentifier(args.category.icon, "drawable", activity?.packageName)
-        if (imageId != null) {
-            icon.setImageResource(imageId)
-        }
+         title.text = args.catalog.name
+      //  val imageId = context?.resources?.getIdentifier(args.category.icon, "drawable", activity?.packageName)
+//        if (imageId != null) {
+//            icon.setImageResource(imageId)
+//        }
 
         categories_recycler_view.adapter = categoriesAdapter
         categories_recycler_view.layoutManager = GridLayoutManager(
@@ -63,8 +62,8 @@ class CategoriesFragment : Fragment(), SubCategoriesAdapter.ItemClicked, Categor
     }
 
     override fun onSubCategoryClicked(item: SubCategory) {
-        val directions = CategoriesFragmentDirections.actionCategoriesFragmentToProductsInCategoriesFragment(item)
-        findNavController().navigate(directions)
+//        val directions = CategoriesFragmentDirections.actionCategoriesFragmentToProductsInCategoriesFragment(item)
+//        findNavController().navigate(directions)
     }
 
 }

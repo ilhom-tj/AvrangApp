@@ -3,6 +3,7 @@ package tj.colibri.avrang.adapters
 import android.annotation.SuppressLint
 import android.content.res.ColorStateList
 import android.graphics.Color
+import android.graphics.Paint
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -55,13 +56,13 @@ class ProductCardAdapter(val context : Fragment,
         if (product.isFavorite){
             holder.product_favorite.setImageResource(R.drawable.ic_baseline_favorite_24)
         }else{
-            holder.product_favorite.setImageResource(R.drawable.ic_avrang_favorite)
+            holder.product_favorite.setImageResource(R.drawable.ic_baseline_favorite_border_24)
         }
 
-        Glide
+         Glide
             .with(context)
-            .load(Features().cleanURL(product.images.split(",")))
-            .centerCrop()
+            .load(Const.image_url + product.images.get(0))
+            .fitCenter()
             .into(holder.product_image)
 //        holder.bestseller.isVisible = product.labels.is_hit
         holder.product_rating.text = "${product.rating.rating}"
@@ -77,6 +78,7 @@ class ProductCardAdapter(val context : Fragment,
             holder.product_old_price.visibility = View.VISIBLE
             holder.product_old_price.text = "${product.productPrice}"
             holder.product_price.text = "${product.newPrice}  TJS"
+            holder.product_old_price.setPaintFlags(holder.product_old_price.getPaintFlags() or Paint.STRIKE_THRU_TEXT_FLAG)
         }
 
 
@@ -86,7 +88,7 @@ class ProductCardAdapter(val context : Fragment,
         }
         holder.product_favorite.setOnClickListener {
             if (product.isFavorite){
-                holder.product_favorite.setImageResource(R.drawable.ic_avrang_favorite)
+                holder.product_favorite.setImageResource(R.drawable.ic_baseline_favorite_border_24)
                 products.get(position).isFavorite = false
                 notifyDataSetChanged()
                 itemClickListener.onRemoveClickListener( Favorite(product.id,product.name,product.sKU.toString(),product.newPrice,product.productPrice))

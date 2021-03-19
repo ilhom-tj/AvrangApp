@@ -17,4 +17,5 @@ interface CartDao {
 
     @Delete
     fun removeFromCart(cartItem: CartItem )
+    
 }

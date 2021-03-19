@@ -35,7 +35,7 @@ class OrdersFragment : Fragment() {
         // TODO: Use the ViewModel
 
         orderContainerAdapter = OrderContainerAdapter(this)
-        orderContainerAdapter.setData(MockData.listofOrderContainer)
+        //orderContainerAdapter.setData(MockData.listofOrderContainer)
 
 
         fragment_order_recyclerview.apply {

@@ -14,15 +14,23 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.gson.JsonArray
+import com.google.gson.JsonObject
+import org.json.JSONArray
+import org.json.JSONObject
+import tj.colibri.avrang.data.ApiData.Cart.CartIndexResponse
+import tj.colibri.avrang.data.cart.CartItemResponse
+import tj.colibri.avrang.network.repositories.cartRepo.CartRepository
 import tj.colibri.avrang.network.repositories.registrationRepo.RegistrationRepo
 import tj.colibri.avrang.network.repositories.userRepo.UserRepository
 import tj.colibri.avrang.utils.RefresToken
 import tj.colibri.avrang.utils.SessionManager
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var navController : NavController
-    private lateinit var actionBarView : View
+    private lateinit var navController: NavController
+    private lateinit var actionBarView: View
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,11 +41,12 @@ class MainActivity : AppCompatActivity() {
         initializeCustomActionBar()
         navController = findNavController(R.id.nav_host_fragment)
         var signInInstance = R.id.loginFragment
-        val sessionManager  = SessionManager(this)
-        if (sessionManager.getToken() != "error"){
-                signInInstance = R.id.navigation_profile
-                RefresToken()
 
+        val sessionManager = SessionManager(this)
+        if (sessionManager.getToken() != "error") {
+            signInInstance = R.id.navigation_profile
+
+            RefresToken()
         }
 
         navView.setOnNavigationItemReselectedListener {
@@ -58,10 +67,10 @@ class MainActivity : AppCompatActivity() {
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             actionBar?.title = navController.currentDestination?.label
-            val logo : ImageView = actionBarView.findViewById(R.id.logo)
-            val title : TextView = actionBarView.findViewById(R.id.action_bar_title)
-            val icon : ImageView = actionBarView.findViewById(R.id.category_icon)
-            when(destination.id) {
+            val logo: ImageView = actionBarView.findViewById(R.id.logo)
+            val title: TextView = actionBarView.findViewById(R.id.action_bar_title)
+            val icon: ImageView = actionBarView.findViewById(R.id.category_icon)
+            when (destination.id) {
                 R.id.navigation_home -> {
                     supportActionBar?.elevation = 0f
                     logo.isVisible = true
@@ -86,7 +95,7 @@ class MainActivity : AppCompatActivity() {
                     title.isVisible = true
                     icon.isVisible = false
                 }
-                else ->  {
+                else -> {
                     supportActionBar?.elevation = 0f
                     logo.isVisible = false
                     title.isVisible = true
@@ -97,6 +106,12 @@ class MainActivity : AppCompatActivity() {
 
             }
         }
+        CartRepository(this).cartIndexes.observe(this, Observer {
+            it.let {
+                Log.e("mass", Arrays.toString(it.toIntArray()))
+                CartRepository(this).updateCart(it)
+            }
+        })
     }
 
     private fun initializeCustomActionBar() {
@@ -110,18 +125,23 @@ class MainActivity : AppCompatActivity() {
         return super.onSupportNavigateUp()
     }
 
-    fun RefresToken(){
+    fun RefresToken() {
         val oldToken = SessionManager(this).getToken()
         val phone = SessionManager(this).getPhone()
         val password = SessionManager(this).getPassword()
         RegistrationRepo(this).login(phone!!, password!!).observe(this, Observer {
             it.let {
-                Log.e("oldToken" , oldToken.toString())
-                Log.e("newToken",it.access_token)
-                if (oldToken != it.access_token){
+                Log.e("oldToken", oldToken.toString())
+                Log.e("newToken", it.access_token)
+                if (oldToken != it.access_token) {
                     SessionManager(this).setToken(it.access_token)
                 }
             }
         })
+    }
+
+    fun UpdateCart() {
+
+
     }
 }

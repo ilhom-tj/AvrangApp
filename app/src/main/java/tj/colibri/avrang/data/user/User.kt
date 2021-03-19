@@ -3,6 +3,7 @@ package tj.colibri.avrang.data.user
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = "table_users")
 data class User(
@@ -28,6 +29,7 @@ data class User(
     var phone : String?,
 
     @ColumnInfo(name = "user_additional_phone")
+    @SerializedName("additional_phone")
     var additional_phone : String?,
 
     @ColumnInfo(name = "user_slug")

@@ -19,8 +19,7 @@
             android:id="@+id/action_navigation_home_to_infoContainerFragment"
             app:destination="@id/infoContainerFragment"
             app:enterAnim="@anim/fragment_open_enter"
-            app:popUpTo="@id/navigation_home"
-            app:popUpToInclusive="true" />
+            app:popUpToInclusive="false" />
     </fragment>
 
     <fragment
@@ -86,29 +85,12 @@
             android:id="@+id/action_productInfoFragment_to_ratingWithCommentFragment"
             app:destination="@id/ratingWithCommentFragment"
             app:enterAnim="@anim/fragment_fade_enter" />
-        <argument
-            android:name="slug"
-            app:argType="string" />
         <action
             android:id="@+id/action_productInfoFragment_self"
             app:destination="@id/productInfoFragment" />
         <argument
-            android:name="name"
-            app:argType="string" />
-        <argument android:name="price"
-            app:argType="float" />
-        <argument android:name="discounted_price"
-            app:argType="float" />
-        <argument
-            android:name="rating"
-            app:argType="tj.colibri.avrang.data.ApiData.product.Rating" />
-        <argument
-            android:name="is_favorite"
-            app:argType="boolean"
-            android:defaultValue="false" />
-        <argument
-            android:name="images"
-            app:argType="string" />
+            android:name="product"
+            app:argType="tj.colibri.avrang.data.mock.ProductCard2" />
     </fragment>
     <fragment
         android:id="@+id/categoriesFragment"
@@ -120,8 +102,8 @@
             app:destination="@id/productsInCategoriesFragment"
             app:enterAnim="@anim/fragment_fade_enter" />
         <argument
-            android:name="slug"
-            app:argType="string" />
+            android:name="catalog"
+            app:argType="tj.colibri.avrang.data.ApiData.Category.Categories" />
     </fragment>
     <fragment
         android:id="@+id/productsInCategoriesFragment"
@@ -164,6 +146,9 @@
             android:id="@+id/action_checkOutFragment_to_checkOutReadyFragment"
             app:destination="@id/checkOutReadyFragment"
             app:enterAnim="@anim/fragment_fade_enter" />
+        <argument
+            android:name="orderItem"
+            app:argType="tj.colibri.avrang.data.order.OrderItem[]" />
     </fragment>
     <fragment
         android:id="@+id/checkOutReadyFragment"

@@ -1,15 +1,21 @@
 package tj.colibri.avrang.network
 
+import com.google.gson.JsonObject
+import okhttp3.RequestBody
+import org.json.JSONObject
 import org.w3c.dom.Comment
 import retrofit2.Call
 import retrofit2.http.*
 import tj.colibri.avrang.data.ApiData.Cart.Cart
+import tj.colibri.avrang.data.ApiData.Cart.CartIndexResponse
+import tj.colibri.avrang.data.ApiData.Cart.UpdateCart
 import tj.colibri.avrang.data.ApiData.Category.CategoryResponse
 import tj.colibri.avrang.data.ApiData.cities.CitiesResponse
 import tj.colibri.avrang.data.ApiData.registration.ConfirmCode
 import tj.colibri.avrang.data.ApiData.registration.RegistrationCallBack
 import tj.colibri.avrang.data.ApiData.home.HomeResponse
-import tj.colibri.avrang.data.ApiData.product.ProductInformation
+import tj.colibri.avrang.data.ApiData.orderDetails.OrderDetails
+import tj.colibri.avrang.data.ApiData.product.ProductInfo.ProductInfortmation2
 import tj.colibri.avrang.data.ApiData.profile.ProfileResponse
 import tj.colibri.avrang.data.cart.CartItem
 import tj.colibri.avrang.data.feedBack.FeedBack
@@ -61,13 +67,13 @@ interface Api {
         @Query("password") password: String
     ): Call<RegistrationCallBack>
 
-    @POST("auth/number-сheck")
+    @POST("auth/number-check")
     fun firstStepRegister(
         @Query("phone") phone: String
     ): Call<ConfirmCode>
 
 
-    @POST("auth/number-сheck")
+    @POST("auth/number-check")
     fun secondtStepRegister(
         @Query("phone") phone: String,
         @Query("confirm_code") confirm_code: String
@@ -86,14 +92,14 @@ interface Api {
     fun homeProducts(): Call<HomeResponse>
 
 
-    //User settings
+    //tj.colibri.avrang.data.ApiData.orderDetails.User settings
     @POST("updatePersonalInfo")
     fun updatePersonalInfo(
         @Query("name") name: String,
         @Query("birthdate") date: String,
         @Query("phone") phone: String,
-        @Query("email") email: String?,
-        @Query("additional_phone") additional_phone: String?,
+        @Query("email") email: String,
+        @Query("additional_phone") additional_phone: String,
         @Query("city_id") city_id: Int,
         @Query("gender") gender: Int,
         @Query("addresses") addresses: String?
@@ -113,25 +119,23 @@ interface Api {
 
     //GetProduct
     @GET("single/{slug}")
-    fun getProduct(@Path("slug") slug: String): Call<ProductInformation>
+    fun getProduct(@Path("slug") slug: String): Call<ProductInfortmation2>
 
 
-    //Cart
 
-    @GET("cart")
-    fun getCart(): Call<Cart>
-
-    @POST("add-to-cart/{id}")
-    fun addToCart(
-        @Path("id") id: Int,
-        @Query("quantity") quantity: Int
-    ): Call<Cart>
-
-    //Category
+    //tj.colibri.avrang.data.ApiData.product.ProductInfo.Category
+    //Catalog
     @GET("catalog")
     fun getCategories() : Call<CategoryResponse>
 
     @GET("catalog")
     fun getSubCategory(@Path("slug") slug: String) : Call<CategoryResponse>
 
+    @POST("cart")
+    fun updateCart(
+        @Body json : CartIndexResponse
+    ) : Call<UpdateCart>
+
+    @GET("order-details")
+    fun orderDetails() : Call<OrderDetails>
 }

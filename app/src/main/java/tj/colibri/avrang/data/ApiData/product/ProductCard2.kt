@@ -1,11 +1,14 @@
 package tj.colibri.avrang.data.mock
 
+import android.os.Parcelable
 import androidx.room.*
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 import tj.colibri.avrang.data.ApiData.home.Labels
 import tj.colibri.avrang.data.ApiData.home.Rating
 import java.util.*
 
+@Parcelize
 data class ProductCard2(
     @PrimaryKey(autoGenerate = false)
     @SerializedName("id") val id: Int,
@@ -21,6 +24,9 @@ data class ProductCard2(
 
     @ColumnInfo(name = "product_favorite")
     @SerializedName("is_favorite")  var isFavorite: Boolean,
+
+    @ColumnInfo(name = "product_exerpt")
+    @SerializedName("excerpt")  var excerpt: String,
 
     @SerializedName("rating")
     @Embedded
@@ -38,7 +44,7 @@ data class ProductCard2(
     @SerializedName("discounted_price")  val newPrice: Double,
 
     @ColumnInfo(name = "product_images")
-    @SerializedName("images")  val images: String,
+    @SerializedName("images")  val images: List<String>,
 
     @ColumnInfo(name = "product_quantity")
     @SerializedName("quantity") var quantity : Int,
@@ -50,4 +56,4 @@ data class ProductCard2(
     @ColumnInfo(name="product_category")
     var type : Int
 
-)
+):Parcelable

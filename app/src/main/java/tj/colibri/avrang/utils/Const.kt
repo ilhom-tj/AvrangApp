@@ -5,6 +5,6 @@ import tj.colibri.avrang.network.RetrofitInstance
 
 object Const {
     const val base_url = "http://api.avrang.tj/api/"
-    const val image_url = "http://api.avrang.tj/public"
+    const val image_url = "http://api.avrang.tj/"
     const val TAG = "debug"
 }

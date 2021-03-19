@@ -40,12 +40,12 @@ class OrderContainerAdapter(val context : Fragment) : RecyclerView.Adapter<Order
         var quantity : Int = 0;
         var totalPrice : Double = 0.0;
         var bonus : Int = 0;
-
-        for (order in product.oreders){
-            quantity += order.quantity
-            totalPrice += order.quantity * order.unit_price
-            bonus += order.bonus
-        }
+//
+//        for (order in product.oreders){
+//            quantity += order.quantity
+//            totalPrice += order.quantity * order.unit_price
+//            bonus += order.bonus
+//        }
 
         holder.orderQuantity.text = quantity.toString()
         holder.allBonuses.text = "$bonus балов"

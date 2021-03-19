@@ -13,7 +13,7 @@ import tj.colibri.avrang.network.repositories.products.ProductRepo
 
 class CartViewModel(application: Application) : AndroidViewModel(application) {
 
-    val productRepo = ProductRepo(application)
+
     val cartRepo = CartRepository(application.applicationContext)
 
     val getCartItems = cartRepo.getCart()

@@ -8,12 +8,13 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import tj.colibri.avrang.R
+import tj.colibri.avrang.data.ApiData.product.ProductInfo.Attributes
 import tj.colibri.avrang.data.product.options.ProductOptions
 import tj.colibri.avrang.data.product.specifications.Specification
 
 class SpecificationsAdapter(val fragment: Fragment) : RecyclerView.Adapter<SpecificationsAdapter.SpecificationHolder>() {
 
-    private var items = emptyList<Specification>()
+    private var items = emptyList<Attributes>()
 
     override fun getItemCount()=items.size
 
@@ -26,7 +27,7 @@ class SpecificationsAdapter(val fragment: Fragment) : RecyclerView.Adapter<Speci
         return SpecificationHolder(view)
     }
 
-    fun setData(items: List<Specification>) {
+    fun setData(items: List<Attributes>) {
         this.items = items
         notifyDataSetChanged()
     }

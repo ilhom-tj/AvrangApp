@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView
 import androidx.navigation.Navigation
@@ -18,18 +17,17 @@ import kotlinx.android.synthetic.main.products_in_categories_fragment.*
 import kotlinx.android.synthetic.main.profile_fragment.*
 import tj.colibri.avrang.MainActivity
 import tj.colibri.avrang.R
-import tj.colibri.avrang.adapters.ProductAlsoBoughtAdapter
 import tj.colibri.avrang.adapters.ProductCardAdapter
 import tj.colibri.avrang.data.favorite.Favorite
 import tj.colibri.avrang.data.mock.MockData
 import tj.colibri.avrang.data.mock.ProductCard2
 import tj.colibri.avrang.utils.SubtitleRadioButton
-import kotlinx.android.synthetic.main.profile_fragment.bottomsheet as bottomsheet1
+import kotlinx.android.synthetic.main.products_in_categories_fragment.bottomsheet as bottomsheet1
 
-class ProductsInCategoriesFragment : Fragment(), ProductAlsoBoughtAdapter.ItemClicked {
+class ProductsInCategoriesFragment : Fragment(), ProductCardAdapter.ItemClicked {
 
     private lateinit var viewModel: ProductsInCategoriesViewModel
-    private lateinit var productCardAdapter: ProductAlsoBoughtAdapter
+    private lateinit var productCardAdapter: ProductCardAdapter
 
     private val args: ProductsInCategoriesFragmentArgs by navArgs()
 
@@ -44,7 +42,7 @@ class ProductsInCategoriesFragment : Fragment(), ProductAlsoBoughtAdapter.ItemCl
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(ProductsInCategoriesViewModel::class.java)
 
-        productCardAdapter = ProductAlsoBoughtAdapter(this, this)
+        productCardAdapter = ProductCardAdapter(this, this)
 
         val actionBar = (activity as MainActivity).supportActionBar
         val actionBarView = actionBar?.customView
@@ -59,7 +57,6 @@ class ProductsInCategoriesFragment : Fragment(), ProductAlsoBoughtAdapter.ItemCl
         filters_label.setOnClickListener {
             Navigation.findNavController(requireView())
                 .navigate(R.id.action_productsInCategoriesFragment_to_filterFragment)
-
         }
 
 

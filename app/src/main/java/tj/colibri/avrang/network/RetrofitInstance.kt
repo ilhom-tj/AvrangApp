@@ -7,6 +7,7 @@ import okhttp3.JavaNetCookieJar
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.scalars.ScalarsConverterFactory
 import tj.colibri.avrang.utils.Const
 import tj.colibri.avrang.utils.SessionManager
 import java.net.CookieHandler
@@ -46,6 +47,7 @@ class RetrofitInstance(context: Context) {
             .baseUrl(Const.base_url)
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(ScalarsConverterFactory.create())
             .build()
     }
 

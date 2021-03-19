@@ -41,6 +41,7 @@ class UserRepository(context: Context ) {
         addresses : String) : LiveData<User>{
         var liveData = MutableLiveData<User>()
 
+        Log.e("additional1",addional_phone)
         api.updatePersonalInfo(name,birthdate,phone,email,addional_phone,city_id,gender,addresses).enqueue(
             object : retrofit2.Callback<User>{
                 override fun onResponse(call: Call<User>, response: Response<User>) {

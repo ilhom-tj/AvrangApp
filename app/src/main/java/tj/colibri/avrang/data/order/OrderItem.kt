@@ -1,10 +1,10 @@
 package tj.colibri.avrang.data.order
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class OrderItem(
     val id : Int,
-    val title : String,
-    val code: String,
-    val unit_price: Double,
-    val quantity : Int,
-    val bonus : Int
-)
+    val quantity : Int
+) : Parcelable

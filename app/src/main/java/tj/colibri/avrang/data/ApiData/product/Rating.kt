@@ -19,7 +19,7 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 
 //class Converter(){
 //	@TypeConverter
-//	fun convertRating(rating: Rating) : String{
+//	fun convertRating(rating: tj.colibri.avrang.data.ApiData.product.ProductInfo.Rating) : String{
 //		val str = rating.is_rated.toString() +"&"+ rating.quantity.toString()+"&"+rating.rating.toString()
 //		return str
 //	}

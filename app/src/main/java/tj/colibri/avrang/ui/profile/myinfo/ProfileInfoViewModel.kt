@@ -1,6 +1,7 @@
 package tj.colibri.avrang.ui.profile.myinfo
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -26,7 +27,7 @@ class ProfileInfoViewModel(application: Application) : AndroidViewModel(applicat
         city_id : Int,
         gender : Int,
         addresses : String) : LiveData<User>{
-
+        Log.e("additional1",addional_phone)
         return userRepository.updatePersonalInfo(name,birthdate,phone,email,addional_phone,city_id,gender,addresses)
     }
 

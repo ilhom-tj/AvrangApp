@@ -1,9 +1,6 @@
-package tj.colibri.avrang.data.ApiData.product
+package tj.colibri.avrang.data.ApiData.product.ProductInfo
 
-import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import kotlinx.android.parcel.Parcelize
-import tj.colibri.avrang.data.mock.ProductCard2
 
 /*
 Copyright (c) 2021 Kotlin Data Classes Generated from JSON powered by http://www.json2kotlin.com
@@ -16,11 +13,16 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 For support, please feel free to contact me at https://www.linkedin.com/in/syedabsar */
 
-data class 	ProductInformation (
-	@SerializedName("product") val product : Product,
-	@SerializedName("attributes") val attributes : String,
-	@SerializedName("reviews") val reviews : List<Reviews>,
-	@SerializedName("related") val related : List<String>,
-	@SerializedName("alsoBought") val alsoBought : List<ProductCard2>,
-	@SerializedName("banks") val banks : List<Banks>
+
+data class Parent (
+
+	@SerializedName("id") val id : Int,
+	@SerializedName("name") val name : String,
+	@SerializedName("parent_id") val parent_id : Int,
+	@SerializedName("icon") val icon : String,
+	@SerializedName("slug") val slug : String,
+	@SerializedName("deleted_at") val deleted_at : String,
+	@SerializedName("created_at") val created_at : String,
+	@SerializedName("updated_at") val updated_at : String,
+	@SerializedName("parent") val parent : Parent
 )

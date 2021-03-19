@@ -31,18 +31,18 @@ class OrderItemAdapter(val context : Fragment) : RecyclerView.Adapter<OrderItemA
 
     override fun onBindViewHolder(holder: ProductHolder, position: Int) {
         val product = products[position]
-        holder.title.text = product.title
-        holder.code.text = "Код продукта: ${product.code}"
-        holder.unit_price.text = product.unit_price.toString() + " TJS"
-        holder.quantity.text = product.quantity.toString()
-
-        if (product.bonus < 2){
-            holder.bonus.text = product.bonus.toString() + " бал"
-        }else{
-            holder.bonus.text = product.bonus.toString() + " балов"
-        }
-
-        holder.total_price.text = (product.quantity * product.unit_price).toString() + " TJS"
+//        holder.title.text = product.title
+//        holder.code.text = "Код продукта: ${product.code}"
+//        holder.unit_price.text = product.unit_price.toString() + " TJS"
+//        holder.quantity.text = product.quantity.toString()
+//
+//        if (product.bonus < 2){
+//            holder.bonus.text = product.bonus.toString() + " бал"
+//        }else{
+//            holder.bonus.text = product.bonus.toString() + " балов"
+//        }
+//
+//        holder.total_price.text = (product.quantity * product.unit_price).toString() + " TJS"
 
     }
 

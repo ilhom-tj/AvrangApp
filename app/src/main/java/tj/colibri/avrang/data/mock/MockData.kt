@@ -52,7 +52,7 @@ object MockData {
 
    // var listOfSliderImages: MutableList<SliderItem> = arrayListOf(sliderImage1, sliderImage2, sliderImage3, sliderImage4)
 
-//    //tj.colibri.avrang.data.ApiData.productinfo.tj.colibri.avrang.data.ApiData.product.Product
+//    //tj.colibri.avrang.data.ApiData.productinfo.tj.colibri.avrang.data.ApiData.product.tj.colibri.avrang.data.ApiData.product.ProductInfo.Product
 //    @SuppressLint("SimpleDateFormat")
 //    private val product1 = ProductCard(
 //        1,
@@ -162,7 +162,7 @@ object MockData {
 
     val listOfCatalogItems = listOf(catalogItem1, catalogItem2, catalogItem3, catalogItem4, catalogItem5, catalogItem6, catalogItem7, catalogItem8, catalogItem9)
 
-    //tj.colibri.avrang.data.ApiData.home.tj.colibri.avrang.data.ApiData.Category.Categories and subcategories
+    //tj.colibri.avrang.data.ApiData.home.tj.colibri.avrang.data.ApiData.tj.colibri.avrang.data.ApiData.product.ProductInfo.Category.Categories and subcategories
     private val subCat1 = SubCategory(1, "Все телевизоры")
     private val subCat2 = SubCategory(2, "OLED телевизоры")
     private val subCat3 = SubCategory(3, "OLED 4K телевизоры")
@@ -193,16 +193,6 @@ object MockData {
 //
 //    val listOfCartItems = mutableListOf(cartItem1, cartItem2, cartItem3, cartItem4)
 
-    private val mcartItem1 = OrderItem(1, "Стиральная машина Haier Z1L5QBCD008", "SML03ZZ", 60000.23, 2,5)
-    private val mcartItem2 = OrderItem(2, "Стиральная машина Haier Z1L5QBCD008", "SML03ZZ", 60000.43, 3,6)
-    private val mcartItem3 = OrderItem(3, "Стиральная машина Haier Z1L5QBCD008", "SML03ZZ", 60000.32, 6,1)
-    private val mcartItem4 = OrderItem(4, "Стиральная машина Haier Z1L5QBCD008", "SML03ZZ", 60000.54, 4,2)
-    val listofMyCartItems = listOf(mcartItem1, mcartItem2, mcartItem3, mcartItem4)
-
-    private val orderContainer1 = OrderContainer(42931,"23/12/22","Good", listofMyCartItems)
-    private val orderContainer2 = OrderContainer(55313,"1/11/21","Good", listofMyCartItems)
-
-    val listofOrderContainer = listOf(orderContainer1, orderContainer2)
 
     private val bank_selector1 = BankSelect("Алиф Банк","https://i.pinimg.com/originals/ac/8d/42/ac8d42645c777541244e7ba10e375083.png")
     private val bank_selector2 = BankSelect("Эсхата Банк", "https://teams.by/img/club/2014_06/Eskhata-Khujand.gif")

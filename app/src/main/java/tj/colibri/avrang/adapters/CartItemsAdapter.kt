@@ -14,6 +14,7 @@ import com.google.android.material.card.MaterialCardView
 import tj.colibri.avrang.R
 import tj.colibri.avrang.data.cart.CartItem
 import tj.colibri.avrang.data.mock.ProductCard2
+import tj.colibri.avrang.utils.Const
 import tj.colibri.avrang.utils.Features
 import java.util.*
 
@@ -51,7 +52,7 @@ class CartItemsAdapter(
         val product = products[position]
 
         holder.title.text = product.name
-        holder.code.text = "Код продукта:"
+        holder.code.text = "Код продукта: " + product.sku
         holder.quantity.text = product.quantity.toString()
 
         holder.unit_price.text = product.price.toString()
@@ -76,17 +77,19 @@ class CartItemsAdapter(
 
         }
         holder.plusBtn.setOnClickListener {
+            if (holder.quantity.text.toString().toInt() < product.in_stock){
             holder.quantity.text = (holder.quantity.text.toString().toInt() + 1).toString()
             var qty = Integer.parseInt(holder.quantity.text.toString())
 
             holder.total_price.text =
                 (product.price * holder.quantity.text.toString().toInt()).toString() + " TJS"
             itemClick.onPlusQuantityClick(product,qty)
+            }
         }
         holder.bonus.setText(product.bonus.toString() + " Баллов")
 
 
-        Glide.with(context).load(Features().cleanURL(product.images.split(","))).into(holder.image)
+        Glide.with(context).load(Const.image_url + product.images).into(holder.image)
 
     }
 

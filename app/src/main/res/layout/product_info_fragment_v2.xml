@@ -13,6 +13,7 @@
         <androidx.core.widget.NestedScrollView
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_marginBottom="60dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/frameCard"
@@ -27,6 +28,7 @@
                     android:id="@+id/product_slider"
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
+
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -131,15 +133,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/product_old_price" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_parent"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/product_price" />
-
-                <Button
+                  <Button
                     android:id="@+id/buy_one_click"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
@@ -239,11 +233,12 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/specifications_recycler_view"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/activity_horizontal_margin"
                     android:layout_marginTop="@dimen/activity_vertical_margin"
                     android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                    tools:listitem="@layout/specifications_item"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/product_specifications"

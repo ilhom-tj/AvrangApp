@@ -48,7 +48,7 @@ class CatalogFragment : Fragment(), CatalogAdapter.ItemClicked {
     }
 
     override fun onItemClicked(catalog: Categories) {
-        val direction = CatalogFragmentDirections.actionNavigationCatalogToCategoriesFragment()
+        val direction = CatalogFragmentDirections.actionNavigationCatalogToCategoriesFragment(catalog)
         findNavController().navigate(direction)
     }
 }

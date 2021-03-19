@@ -1,43 +1,64 @@
 package tj.colibri.avrang.ui.checkout
 
+import android.app.DatePickerDialog
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.navArgs
 import kotlinx.android.synthetic.main.check_out_bank_transaction.*
 import kotlinx.android.synthetic.main.check_out_fragment.*
 import kotlinx.android.synthetic.main.check_out_installation.*
+import kotlinx.android.synthetic.main.fragment_profile_myinfo.*
 import tj.colibri.avrang.R
 import tj.colibri.avrang.adapters.BankSelectorAdapter
 import tj.colibri.avrang.adapters.DeadlineSelectorAdapter
 import tj.colibri.avrang.data.mock.MockData
+import tj.colibri.avrang.databinding.CheckOutFragmentBinding
+import java.text.SimpleDateFormat
+import java.util.*
 
 class CheckOutFragment : Fragment() {
 
-
+    var myCalendar = Calendar.getInstance();
     private lateinit var viewModel: CheckOutViewModel
     private lateinit var bankSelectAdapter: BankSelectorAdapter
     private lateinit var dedlineSelectorAdapter: DeadlineSelectorAdapter
+
+    private val args : CheckOutFragmentArgs by navArgs()
+
+    private lateinit var binding: CheckOutFragmentBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.check_out_fragment, container, false)
+        binding = DataBindingUtil.inflate(inflater,R.layout.check_out_fragment,container,false)
+        binding.lifecycleOwner = requireActivity()
+        return binding.getRoot()
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(CheckOutViewModel::class.java)
+
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         SetUpUI()
-
+        viewModel = ViewModelProvider(this).get(CheckOutViewModel::class.java)
+        binding.viewmodel = viewModel
+        args.orderItem.forEach { item ->
+            Log.e(item.id.toString(),item.quantity.toString())
+        }
 
         bankSelectAdapter = BankSelectorAdapter(
             requireActivity(),
@@ -59,8 +80,40 @@ class CheckOutFragment : Fragment() {
         checkout_card_push.setOnClickListener {
             Navigation.findNavController(requireView()).navigate(R.id.action_checkOutFragment_to_checkOutReadyFragment)
         }
+        viewModel.data.observe(viewLifecycleOwner, Observer {
+            it.let {
+                it.user.city_id?.let { it1 -> SetCity(it1) }
+            }
+        })
+
+        val Bdate =
+            DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+                myCalendar[Calendar.YEAR] = year
+                myCalendar[Calendar.MONTH] = monthOfYear
+                myCalendar[Calendar.DAY_OF_MONTH] = dayOfMonth
+                updateLabel()
+            }
+
+        checkout_time.setOnClickListener{
+            DatePickerDialog(
+                requireContext(), R.style.MyTimePickerDialogTheme, Bdate, myCalendar[Calendar.YEAR],
+                myCalendar[Calendar.MONTH],
+                myCalendar[Calendar.DAY_OF_MONTH]
+            ).show()
+        }
     }
 
+    private fun SetCity(id : Int){
+        viewModel.cities.observe(viewLifecycleOwner, Observer {
+            it.let {
+                it.forEach { city ->
+                    if (city.id == id){
+                        checkout_city.setText(city.name)
+                    }
+                }
+            }
+        })
+    }
     private fun SetUpUI() {
         self_method.setOnClickListener {
             onRadioButtonClicked(self_method)
@@ -108,7 +161,11 @@ class CheckOutFragment : Fragment() {
         }
 
     }
-
+    private fun updateLabel() {
+        val myFormat = "dd-MM-yy" //In which you need put here
+        val sdf = SimpleDateFormat(myFormat, Locale.US)
+        checkout_time.setText(sdf.format(myCalendar.getTime()))
+    }
     private fun onPayMethodRadioButtonClick(view: RadioButton) {
         val checked = view.isChecked
 

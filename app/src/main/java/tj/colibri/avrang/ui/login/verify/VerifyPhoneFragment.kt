@@ -38,7 +38,7 @@ class VerifyPhoneFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(VerifyPhoneViewModel::class.java)
         // TODO: Use the ViewModel
-        confirmCodePin.setText(args.confirmCode.toString())
+      //  confirmCodePin.setText(args.confirmCode.toString())
 //        var counter = object : CountDownTimer(60000,1000){
 //            @SuppressLint("SetTextI18n")
 //            override fun onTick(millisUntilFinished: Long) {
@@ -55,7 +55,7 @@ class VerifyPhoneFragment : Fragment() {
                 Observer {
                     it.let {
                         if (it.confirmed){
-                            val params = VerifyPhoneFragmentDirections.actionVerifyPhoneFragmentToPasswordFragment(args.phone,args.confirmCode)
+                            val params = VerifyPhoneFragmentDirections.actionVerifyPhoneFragmentToPasswordFragment(args.phone,confirmCodePin.text.toString().toInt())
                             findNavController().navigate(params)
                         }
                     }

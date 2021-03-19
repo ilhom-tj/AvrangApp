@@ -14,19 +14,16 @@ import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.profile_fragment.*
 import kotlinx.android.synthetic.main.profile_fragment.users_also_buy_recycler_view
 import tj.colibri.avrang.R
-import tj.colibri.avrang.adapters.ProductAlsoBoughtAdapter
 import tj.colibri.avrang.adapters.ProductCardAdapter
 import tj.colibri.avrang.data.favorite.Favorite
-import tj.colibri.avrang.data.mock.MockData
 import tj.colibri.avrang.data.mock.ProductCard2
 import tj.colibri.avrang.databinding.ProfileFragmentBinding
-import tj.colibri.avrang.network.repositories.userRepo.UserRepository
 import tj.colibri.avrang.utils.SessionManager
 
-class ProfileFragment : Fragment(), ProductAlsoBoughtAdapter.ItemClicked {
+class ProfileFragment : Fragment(), ProductCardAdapter.ItemClicked {
 
     private lateinit var viewModel: ProfileViewModel
-    private var productCardAdapter = ProductAlsoBoughtAdapter(this, this)
+    private var productCardAdapter = ProductCardAdapter(this, this)
 
     private lateinit var binding : ProfileFragmentBinding
 

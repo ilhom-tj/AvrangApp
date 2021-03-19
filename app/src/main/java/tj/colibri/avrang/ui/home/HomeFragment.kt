@@ -22,6 +22,7 @@ import tj.colibri.avrang.data.ApiData.product.Rating
 import tj.colibri.avrang.data.ApiData.product.Sliders
 import tj.colibri.avrang.data.favorite.Favorite
 import tj.colibri.avrang.data.mock.ProductCard2
+import tj.colibri.avrang.data.slider.SliderItem
 import tj.colibri.avrang.utils.ConnectionLive
 import tj.colibri.avrang.utils.Const
 import tj.colibri.avrang.utils.Features
@@ -55,8 +56,6 @@ class HomeFragment : Fragment(), SliderAdapter.ItemClicked, ProductCardAdapter.I
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-
         sliderAdapter = SliderAdapter(this, this)
 
         homeViewModel =  ViewModelProvider(this).get(HomeViewModel::class.java)
@@ -66,7 +65,7 @@ class HomeFragment : Fragment(), SliderAdapter.ItemClicked, ProductCardAdapter.I
       //  sliderAdapter.setData(MockData.listOfSliderImages)
 
         imageSlider.setSliderAdapter(sliderAdapter)
-        imageSlider.setSliderTransformAnimation(SliderAnimations.FADETRANSFORMATION);
+        imageSlider.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
         imageSlider.setIndicatorAnimation(IndicatorAnimationType.WORM)
         imageSlider.indicatorSelectedColor = Color.WHITE
         imageSlider.indicatorUnselectedColor = Color.GRAY
@@ -156,12 +155,14 @@ class HomeFragment : Fragment(), SliderAdapter.ItemClicked, ProductCardAdapter.I
 
     }
 
+
+
     override fun onSliderItemClicked(item: Sliders) {
 
     }
 
     override fun onProductItemClicked(product: ProductCard2) {
-        val arg = HomeFragmentDirections.actionNavigationHomeToProductInfoFragment(product.slug,product.name,product.newPrice.toFloat(),product.productPrice.toFloat(),product.rating,product.isFavorite,product.images)
+        val arg = HomeFragmentDirections.actionNavigationHomeToProductInfoFragment(product)
         findNavController().navigate(arg)
     }
 
