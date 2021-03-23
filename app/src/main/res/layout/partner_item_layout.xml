@@ -3,12 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="80dp">
+    android:layout_marginStart="@dimen/activity_horizontal_margin"
+    android:layout_height="60dp">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/slider_card"
         android:layout_width="0dp"
-        android:layout_height="80dp"
+        android:layout_height="70dp"
         app:cardBackgroundColor="@color/card_background"
         app:cardCornerRadius="12dp"
         app:cardElevation="0dp"
@@ -18,12 +19,16 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
             android:id="@+id/partner_image"
-            android:layout_width="80dp"
-            android:layout_height="60dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             app:layout_constraintDimensionRatio="16:9"
             android:layout_gravity="center"
-            android:scaleType="centerCrop"
+            android:scaleType="fitCenter"
             tools:srcCompat="@tools:sample/avatars" />
 
     </androidx.cardview.widget.CardView>

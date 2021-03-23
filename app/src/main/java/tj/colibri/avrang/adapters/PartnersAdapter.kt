@@ -1,23 +1,32 @@
 package tj.colibri.avrang.adapters
 
+import android.annotation.SuppressLint
+import android.graphics.drawable.PictureDrawable
+import android.net.Uri
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import coil.Coil
+import coil.ImageLoader
+import coil.decode.SvgDecoder
+import coil.load
 import com.bumptech.glide.Glide
 import tj.colibri.avrang.R
 import tj.colibri.avrang.data.ApiData.home.Partners
-import tj.colibri.avrang.data.slider.SliderItem
 import tj.colibri.avrang.utils.Const
+import java.net.URL
 
-class PartnersAdapter(val context: Fragment) : RecyclerView.Adapter<PartnersAdapter.SliderHolder>() {
+
+class PartnersAdapter(val context: Fragment) :
+    RecyclerView.Adapter<PartnersAdapter.SliderHolder>() {
 
     private var items = emptyList<Partners>()
 
-    override fun getItemCount()=items.size
+    override fun getItemCount() = items.size
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -41,10 +50,24 @@ class PartnersAdapter(val context: Fragment) : RecyclerView.Adapter<PartnersAdap
     inner class SliderHolder(view: View) :
         RecyclerView.ViewHolder(view) {
         var image: ImageView = view.findViewById(R.id.partner_image)
+
+        @SuppressLint("CheckResult")
         fun bind(item: Partners) {
-            // Временно
-            Glide.with(context).load("https://www.apple.com/newsroom/images/values/corporate/Apple_google-partner-on-covid-19-contact-tracing-technology_04102020_LP_hero.jpg.og.jpg").into(image)
+            val url = Uri.parse(Const.image_url + item.image)
+
+            val imageLoader = ImageLoader.Builder(context.requireContext())
+                .componentRegistry {
+                    add(SvgDecoder(context.requireContext()))
+                }
+                .build()
+            Coil.setImageLoader(imageLoader)
+
+            image.load(url)
+            image.scaleType = ImageView.ScaleType.FIT_CENTER
+            //      GlideToVectorYou.init().with(context.requireActivity()).load(url , image)
+            //     Glide.with(context).load(Const.image_url + item.image).into(image)
         }
     }
 
 }
+

@@ -64,7 +64,6 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-
         navController.addOnDestinationChangedListener { _, destination, _ ->
             actionBar?.title = navController.currentDestination?.label
             val logo: ImageView = actionBarView.findViewById(R.id.logo)
@@ -106,12 +105,19 @@ class MainActivity : AppCompatActivity() {
 
             }
         }
-        CartRepository(this).cartIndexes.observe(this, Observer {
-            it.let {
-                Log.e("mass", Arrays.toString(it.toIntArray()))
-                CartRepository(this).updateCart(it)
-            }
+
+        val cartRepository = CartRepository(this)
+
+
+        cartRepository.checkOutList.observe(this, Observer { items ->
+            cartRepository.cartIndexes.observe(this, Observer {
+                it.let {
+                    Log.e("mass", Arrays.toString(it.toIntArray()))
+                    cartRepository.updateCart(it,items)
+                }
+            })
         })
+
     }
 
     private fun initializeCustomActionBar() {
@@ -140,8 +146,7 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    fun UpdateCart() {
-
+    fun UpdateCart(){
 
     }
 }

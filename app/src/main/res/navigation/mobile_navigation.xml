@@ -147,14 +147,24 @@
             app:destination="@id/checkOutReadyFragment"
             app:enterAnim="@anim/fragment_fade_enter" />
         <argument
-            android:name="orderItem"
-            app:argType="tj.colibri.avrang.data.order.OrderItem[]" />
+            android:name="totalPrice"
+            app:argType="string" />
+        <argument
+            android:name="totalBonuses"
+            app:argType="integer" />
+        <argument
+            android:name="chekOutItemList"
+            app:argType="tj.colibri.avrang.data.ApiData.chekout.CheckOutItem[]" />
     </fragment>
     <fragment
         android:id="@+id/checkOutReadyFragment"
         android:name="tj.colibri.avrang.ui.checkout.chekoutprepare.CheckOutPrepareFragment"
         android:label="Оформление заказа"
-        tools:layout="@layout/check_out_prepare_fragment" />
+        tools:layout="@layout/check_out_prepare_fragment" >
+        <argument
+            android:name="chekOutRequest"
+            app:argType="tj.colibri.avrang.data.ApiData.chekout.forRequest.CheckOutResquest" />
+    </fragment>
     <fragment
         android:id="@+id/filterFragment"
         android:name="tj.colibri.avrang.ui.filter.FilterFragment"

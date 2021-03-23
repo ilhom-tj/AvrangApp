@@ -15,7 +15,16 @@ interface CartDao {
     @Query("SELECT SUM(cart_unit_price * cart_quantity) FROM cart_table ")
     fun getTotalPrice() : LiveData<Double>
 
+    @Query("SELECT SUM(cart_bonus) FROM cart_table")
+    fun getTotalBonus() : LiveData<Int>
+
+    @Query("UPDATE cart_table SET cart_quantity=:quantity WHERE id=:id")
+    fun updateQuantity(id : Int,quantity : Int)
+
     @Delete
     fun removeFromCart(cartItem: CartItem )
+
+    @Query("DELETE FROM cart_table")
+    fun removeFromCartAll()
     
 }

@@ -1,5 +1,6 @@
 package tj.colibri.avrang.ui.checkout
 
+import tj.colibri.avrang.data.ApiData.chekout.forRequest.CheckOutResquest
 import android.app.DatePickerDialog
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -12,14 +13,15 @@ import android.widget.RadioButton
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import kotlinx.android.synthetic.main.check_out_bank_transaction.*
 import kotlinx.android.synthetic.main.check_out_fragment.*
 import kotlinx.android.synthetic.main.check_out_installation.*
-import kotlinx.android.synthetic.main.fragment_profile_myinfo.*
 import tj.colibri.avrang.R
 import tj.colibri.avrang.adapters.BankSelectorAdapter
 import tj.colibri.avrang.adapters.DeadlineSelectorAdapter
+import tj.colibri.avrang.data.ApiData.chekout.CheckOutItem
 import tj.colibri.avrang.data.mock.MockData
 import tj.colibri.avrang.databinding.CheckOutFragmentBinding
 import java.text.SimpleDateFormat
@@ -31,6 +33,7 @@ class CheckOutFragment : Fragment() {
     private lateinit var viewModel: CheckOutViewModel
     private lateinit var bankSelectAdapter: BankSelectorAdapter
     private lateinit var dedlineSelectorAdapter: DeadlineSelectorAdapter
+    private lateinit var checkOutItemList : List<CheckOutItem>
 
     private val args : CheckOutFragmentArgs by navArgs()
 
@@ -46,8 +49,6 @@ class CheckOutFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -56,10 +57,8 @@ class CheckOutFragment : Fragment() {
         SetUpUI()
         viewModel = ViewModelProvider(this).get(CheckOutViewModel::class.java)
         binding.viewmodel = viewModel
-        args.orderItem.forEach { item ->
-            Log.e(item.id.toString(),item.quantity.toString())
-        }
 
+        Log.e("ITEMS",Arrays.toString(args.chekOutItemList))
         bankSelectAdapter = BankSelectorAdapter(
             requireActivity(),
             R.layout.bank_select_spinner_layout,
@@ -75,7 +74,6 @@ class CheckOutFragment : Fragment() {
         )
         check_out_bank_select_spiner.adapter = bankSelectAdapter
         check_out_deadline_select_spiner.adapter = dedlineSelectorAdapter
-
 
         checkout_card_push.setOnClickListener {
             Navigation.findNavController(requireView()).navigate(R.id.action_checkOutFragment_to_checkOutReadyFragment)
@@ -101,6 +99,11 @@ class CheckOutFragment : Fragment() {
                 myCalendar[Calendar.DAY_OF_MONTH]
             ).show()
         }
+
+        checkout_card_push.setOnClickListener {
+            PushCheckOut()
+        }
+
     }
 
     private fun SetCity(id : Int){
@@ -189,7 +192,6 @@ class CheckOutFragment : Fragment() {
                 }
         }
     }
-
     private fun onBonusAndPromoButtonClick(view: RadioButton) {
         val checked = view.isChecked
         // Check which radio button was clicked
@@ -213,6 +215,20 @@ class CheckOutFragment : Fragment() {
     }
 
     private fun PushCheckOut(){
-
+        var checkOutResquest = CheckOutResquest(
+            args.chekOutItemList,
+            args.totalPrice.toDouble(),
+            "Test comment",
+            1,
+            1,
+            checkout_city.text.toString(),
+            checkout_adres.text.toString(),
+            checkout_time.text.toString(),
+            checkout_directions.text.toString(),
+            0
+        )
+        val action = CheckOutFragmentDirections
+            .actionCheckOutFragmentToCheckOutReadyFragment(checkOutResquest)
+        findNavController().navigate(action)
     }
 }

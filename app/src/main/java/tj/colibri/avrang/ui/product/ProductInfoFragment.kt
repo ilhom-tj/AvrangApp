@@ -63,7 +63,7 @@ class ProductInfoFragment : Fragment(), SliderAdapter.ItemClicked,
     private var rThreeQ = 0;
     private var rTwoQ = 0;
     private var rOneQ = 0;
-    private var currentPrice : Double = 0.0
+    private var currentPrice: Double = 0.0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
@@ -174,20 +174,30 @@ class ProductInfoFragment : Fragment(), SliderAdapter.ItemClicked,
         binding.installmentRecyclerView.adapter = banksAdapter
 
         add_cart.setOnClickListener {
-//            var cartItem = CartItem(
-//                productInfo.product.id,
-//                productInfo.product.slug,
-//                productInfo.product.sKU.toString(),
-//                productInfo.product.name,
-//                1,productInfo.product.images[0],currentPrice,30
-//            )
+            var cartItem = CartItem(
+                productInfo.product.id,
+                productInfo.product.slug,
+                productInfo.product.sKU.toString(),
+                productInfo.product.name,
+                1,
+                productInfo.product.images[0],
+                currentPrice,
+                0,50
+            )
+            viewModel.addToLocalCart(cartItem)
             viewModel.addToCart(productInfo.product.id)
+            viewModel.addCheckOut(productInfo.product.id, 1)
             viewModel.cartIndexs.observe(viewLifecycleOwner, Observer {
                 it.let {
-                    viewModel.updateCart(it.toMutableList())
+                    viewModel.checkOut.value?.let { it1 ->
+                        viewModel.updateCart(
+                            it.toMutableList(),
+                            it1
+                        )
+                    }
                 }
             })
-            Toast.makeText(requireContext(),"Товар добавлен в корзину",Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Товар добавлен в корзину", Toast.LENGTH_SHORT).show()
         }
     }
 

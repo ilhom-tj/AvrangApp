@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/product_layout"
-    android:paddingTop="16dp">
+    >
 
     <androidx.cardview.widget.CardView
         android:layout_width="185dp"
@@ -38,7 +38,7 @@
                     android:id="@+id/product_sale"
                     android:text="@string/product_sale"
                     android:textColor="@color/white"
-                    android:textSize="14sp"
+                    android:textSize="12sp"
                     android:paddingStart="10dp"
                     android:paddingEnd="10dp"
                     android:paddingTop="2dp"
@@ -55,7 +55,7 @@
                     android:id="@+id/product_bestseller"
                     android:text="@string/product_bestseller"
                     android:textColor="@color/white"
-                    android:textSize="14sp"
+                    android:textSize="12sp"
                     android:paddingStart="10dp"
                     android:paddingEnd="10dp"
                     android:paddingTop="2dp"
@@ -100,6 +100,7 @@
                 android:textSize="12sp"
                 android:text="@string/sample_product_name"
                 android:textColor="@color/black"
+                android:minLines="2"
                 android:maxLines="2"
                 android:ellipsize="end"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -112,8 +113,7 @@
                 android:id="@+id/product_rating"
                 android:textColor="@color/red_rating"
                 app:layout_constraintTop_toBottomOf="@+id/product_title"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                app:layout_constraintStart_toStartOf="@+id/product_title"
                 android:layout_marginTop="8dp"
                 android:textSize="12sp"
                 android:text="0" />
@@ -142,14 +142,14 @@
                 app:layout_constraintBottom_toBottomOf="@+id/product_rating"/>
 
             <TextView
+                android:visibility="visible"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/product_old_price"
                 android:textSize="12sp"
                 android:textColor="@color/product_secondary"
                 app:layout_constraintTop_toBottomOf="@+id/product_rating"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                app:layout_constraintStart_toStartOf="@+id/product_rating"
                 android:layout_marginTop="8dp"/>
 
             <TextView
@@ -157,11 +157,12 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/product_price"
                 android:text="@string/sample_product_price"
+                android:textStyle="bold"
                 android:textColor="@color/black"
-                android:textSize="14sp"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/product_old_price"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"/>
+                app:layout_constraintStart_toStartOf="@+id/product_old_price"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

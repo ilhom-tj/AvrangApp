@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.card.MaterialCardView
 import tj.colibri.avrang.R
+import tj.colibri.avrang.data.ApiData.chekout.CheckOutItem
 import tj.colibri.avrang.data.cart.CartItem
 import tj.colibri.avrang.data.mock.ProductCard2
 import tj.colibri.avrang.utils.Const
@@ -50,7 +51,6 @@ class CartItemsAdapter(
     @SuppressLint("SetTextI18n", "CheckResult")
     override fun onBindViewHolder(holder: ProductHolder, position: Int) {
         val product = products[position]
-
         holder.title.text = product.name
         holder.code.text = "Код продукта: " + product.sku
         holder.quantity.text = product.quantity.toString()

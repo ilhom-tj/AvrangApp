@@ -5,7 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import tj.colibri.avrang.data.ApiData.Cart.Cart
+import tj.colibri.avrang.data.ApiData.chekout.CheckOutItem
 import tj.colibri.avrang.data.ApiData.product.ProductInfo.ProductInfortmation2
 import tj.colibri.avrang.data.cart.CartItem
 import tj.colibri.avrang.data.favorite.Favorite
@@ -17,6 +17,7 @@ class ProductInfoViewModel(application: Application) : AndroidViewModel(applicat
     private val repo = FavoriteRepository(application)
     private val productRepo = ProductRepo(application.applicationContext)
     private val cartRepository = CartRepository(application.applicationContext)
+    val checkOut = cartRepository.checkOutList
 
     val cartIndexs = cartRepository.cartIndexes
 
@@ -38,7 +39,10 @@ class ProductInfoViewModel(application: Application) : AndroidViewModel(applicat
     fun addToLocalCart(cartItem: CartItem){
         cartRepository.addToCart(cartItem)
     }
-    fun updateCart(list: MutableList<Int>){
-        cartRepository.updateCart(list)
+    fun updateCart(list: MutableList<Int>,checkOut : List<CheckOutItem>){
+        cartRepository.updateCart(list,checkOut)
+    }
+    fun addCheckOut(index : Int , quantity : Int){
+        cartRepository.addToCheckOut(index,quantity)
     }
 }

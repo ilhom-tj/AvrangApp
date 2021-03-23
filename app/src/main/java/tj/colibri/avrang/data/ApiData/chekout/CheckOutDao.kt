@@ -16,4 +16,7 @@ interface CheckOutDao {
 
     @Query("DELETE FROM checkout_table WHERE id=:id")
     fun deleteById(id:Int)
+
+    @Query("DELETE FROM checkout_table")
+    fun deleteAllIndexes()
 }

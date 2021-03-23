@@ -7,6 +7,7 @@ import android.view.*
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -46,10 +47,14 @@ class ProfileFragment : Fragment(), ProductCardAdapter.ItemClicked {
        // UserRepository(requireActivity().application).updateUser(user)
         viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
 
+
+
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
       //  Log.e("USER",viewModel.user.value!!.name.toString())
 
+
+        
 
         //CheckIf user signed
         Log.e("token" , SessionManager(requireContext()).getToken().toString())

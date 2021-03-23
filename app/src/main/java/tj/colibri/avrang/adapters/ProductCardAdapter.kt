@@ -72,7 +72,7 @@ class ProductCardAdapter(val context : Fragment,
         Log.e("price", product.productPrice.toString())
         Log.e("newPrice",product.newPrice.toString())
         if(product.newPrice.equals(0.0)){
-            holder.product_old_price.visibility = View.GONE
+            holder.product_old_price.visibility = View.INVISIBLE
             holder.product_price.text = "${product.productPrice}  TJS"
         }else{
             holder.product_old_price.visibility = View.VISIBLE

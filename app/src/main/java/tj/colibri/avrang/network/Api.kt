@@ -1,15 +1,13 @@
 package tj.colibri.avrang.network
 
-import com.google.gson.JsonObject
-import okhttp3.RequestBody
-import org.json.JSONObject
+import tj.colibri.avrang.data.ApiData.chekout.forRequest.CheckOutResquest
 import org.w3c.dom.Comment
 import retrofit2.Call
 import retrofit2.http.*
-import tj.colibri.avrang.data.ApiData.Cart.Cart
 import tj.colibri.avrang.data.ApiData.Cart.CartIndexResponse
 import tj.colibri.avrang.data.ApiData.Cart.UpdateCart
 import tj.colibri.avrang.data.ApiData.Category.CategoryResponse
+import tj.colibri.avrang.data.ApiData.chekout.forRequest.CheckOutResponse
 import tj.colibri.avrang.data.ApiData.cities.CitiesResponse
 import tj.colibri.avrang.data.ApiData.registration.ConfirmCode
 import tj.colibri.avrang.data.ApiData.registration.RegistrationCallBack
@@ -17,7 +15,6 @@ import tj.colibri.avrang.data.ApiData.home.HomeResponse
 import tj.colibri.avrang.data.ApiData.orderDetails.OrderDetails
 import tj.colibri.avrang.data.ApiData.product.ProductInfo.ProductInfortmation2
 import tj.colibri.avrang.data.ApiData.profile.ProfileResponse
-import tj.colibri.avrang.data.cart.CartItem
 import tj.colibri.avrang.data.feedBack.FeedBack
 import tj.colibri.avrang.data.ragistration.PhoneRegParams
 import tj.colibri.avrang.data.user.User
@@ -138,4 +135,7 @@ interface Api {
 
     @GET("order-details")
     fun orderDetails() : Call<OrderDetails>
+
+    @POST("checkout")
+    fun checkOut(@Body checkOut : CheckOutResquest) : Call<CheckOutResponse>
 }

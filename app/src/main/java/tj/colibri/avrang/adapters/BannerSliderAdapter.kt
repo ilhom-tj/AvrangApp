@@ -43,7 +43,7 @@ class BannerSliderAdapter(val context: Fragment) : RecyclerView.Adapter<BannerSl
         var image: ImageView = view.findViewById(R.id.promo_slider_image)
         fun bind(item: Banners) {
             if (image != null) {
-                Glide.with(context).load(Const.image_url + item.image).into(image)
+                Glide.with(context).load(Const.image_url + item.mob_image).into(image)
             }
         }
     }

@@ -95,6 +95,7 @@ class HomeFragment : Fragment(), SliderAdapter.ItemClicked, ProductCardAdapter.I
                         Glide.with(this).load(Const.image_url + it.news.get(0).image).into(home_news_1)
                         Glide.with(this).load(Const.image_url + it.news.get(1).image).into(home_news_2)
                         Glide.with(this).load(Const.image_url + it.news.get(2).image).into(home_news_3)
+
                         home_news_1.setOnClickListener{openNews(productInformation.news.get(0))}
                         home_news_2.setOnClickListener{openNews(productInformation.news.get(1))}
                         home_news_1.setOnClickListener{openNews(productInformation.news.get(2))}

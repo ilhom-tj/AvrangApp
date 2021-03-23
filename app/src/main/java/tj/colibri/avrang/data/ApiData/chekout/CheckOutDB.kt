@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import tj.colibri.avrang.data.favorite.Favorite
 import tj.colibri.avrang.data.favorite.FavoriteDao
 
-@Database(entities = [CheckOutItem::class], version = 3)
+@Database(entities = [CheckOutItem::class], version = 4)
 abstract class CheckOutDB : RoomDatabase() {
     abstract val checkOutDaoDao : CheckOutDao
     companion object {

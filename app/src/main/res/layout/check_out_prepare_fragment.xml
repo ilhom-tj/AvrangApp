@@ -1,180 +1,178 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:backgroundTint="@color/card_background"
-    android:background="@color/card_background"
+<layout>
+    <data>
+        <variable
+            name="viewmodel"
+            type="tj.colibri.avrang.ui.checkout.chekoutprepare.CheckOutPrepareViewModel" />
+    </data>
 
-    tools:context=".ui.checkout.chekoutprepare.CheckOutPrepareFragment">
-
-    <androidx.core.widget.NestedScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_marginBottom="60dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginTop="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="match_parent"
+        android:backgroundTint="@color/card_background"
+        android:background="@color/card_background"
 
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_height="match_parent">
-        <com.google.android.material.card.MaterialCardView
+        tools:context=".ui.checkout.chekoutprepare.CheckOutPrepareFragment">
+
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="10dp"
-            >
-            <LinearLayout
-                android:padding="10dp"
-                android:orientation="vertical"
+            android:layout_marginBottom="60dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_height="match_parent">
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="10dp"
+                >
                 <LinearLayout
-                    android:orientation="horizontal"
-                    android:gravity="center"
+                    android:padding="10dp"
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginBottom="12dp"
                     android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginBottom="12dp"
+                        android:layout_height="wrap_content">
+                        <FrameLayout
+                            android:background="@drawable/button_with_red_corners"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp">
+                            <ImageView
+                                android:padding="10dp"
+                                android:src="@mipmap/ok"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"/>
+                        </FrameLayout>
+                        <TextView
+                            android:text="@string/accept_order"
+                            android:textSize="18dp"
+                            android:textStyle="bold"
+                            android:textColor="@color/textcolor"
+                            android:layout_width="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                    <ImageView
+                        android:src="#E9E9E9"
+                        android:layout_width="match_parent"
+                        android:layout_height="1.5dp"/>
                     <FrameLayout
-                        android:background="@drawable/button_with_red_corners"
-                        android:layout_width="35dp"
-                        android:layout_height="35dp">
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
                         <ImageView
-                            android:padding="10dp"
-                            android:src="@mipmap/ok"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"/>
+                            android:layout_height="220dp"
+                            android:layout_marginTop="27dp"
+                            android:src="@mipmap/elipsewithcart" />
                     </FrameLayout>
+
                     <TextView
-                        android:text="@string/accept_order"
-                        android:textSize="18dp"
+                        android:id="@+id/check_out_prepare_goods_sum"
+                        android:text="Итого товаров на сумму : "
+                        android:textSize="16dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_gravity="center"
                         android:textStyle="bold"
                         android:textColor="@color/textcolor"
                         android:layout_width="wrap_content"
                         android:layout_marginStart="12dp"
                         android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/check_out_prepare_delivery_sum"
+                        android:text="@string/delivery_sum"
+                        android:textSize="16dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_gravity="center"
+                        android:textStyle="normal"
+                        android:textColor="@color/textcolor"
+                        android:layout_width="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/check_out_prepare_discount_from_bonus"
+                        android:text="@string/discount_from_bonus"
+                        android:textSize="16dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_gravity="center"
+                        android:textStyle="normal"
+                        android:textColor="@color/textcolor"
+                        android:layout_width="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/check_out_prepare_pay_method"
+                        android:text="@string/pay_method_national_card"
+                        android:textSize="16dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_gravity="center"
+                        android:textStyle="normal"
+                        android:textColor="@color/textcolor"
+                        android:layout_width="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/check_out_prepare_bonus_for_purchase"
+                        android:text="@string/bonus_for_purchase"
+                        android:textSize="16dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_gravity="center"
+                        android:textStyle="normal"
+                        android:textColor="@color/red_primary"
+                        android:layout_width="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/check_out_prepare_total_sum"
+                        android:text="@string/total_sum"
+                        android:textSize="22dp"
+                        android:layout_marginTop="10dp"
+
+                        android:layout_gravity="center"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="20dp"
+                        android:textColor="@color/red_primary"
+                        android:layout_width="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_height="wrap_content" />
                 </LinearLayout>
-                <ImageView
-                    android:src="#E9E9E9"
-                    android:layout_width="match_parent"
-                    android:layout_height="1.5dp"/>
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+            </com.google.android.material.card.MaterialCardView>
+        </androidx.core.widget.NestedScrollView>
 
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="220dp"
-                        android:layout_marginTop="27dp"
-                        android:src="@mipmap/elipsewithcart" />
-                </FrameLayout>
-                <TextView
-                    android:id="@+id/check_out_prepare_order_number"
-                    android:text="@string/order_number_01"
-                    android:textSize="18dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_gravity="center"
-                    android:textStyle="bold"
-                    android:textColor="@color/textcolor"
-                    android:layout_width="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:id="@+id/check_out_prepare_goods_sum"
-                    android:text="@string/goods_sum"
-                    android:textSize="16dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_gravity="center"
-                    android:textStyle="normal"
-                    android:textColor="@color/textcolor"
-                    android:layout_width="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:id="@+id/check_out_prepare_delivery_sum"
-                    android:text="@string/delivery_sum"
-                    android:textSize="16dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_gravity="center"
-                    android:textStyle="normal"
-                    android:textColor="@color/textcolor"
-                    android:layout_width="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:id="@+id/check_out_prepare_discount_from_bonus"
-                    android:text="@string/discount_from_bonus"
-                    android:textSize="16dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_gravity="center"
-                    android:textStyle="normal"
-                    android:textColor="@color/textcolor"
-                    android:layout_width="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:id="@+id/check_out_prepare_pay_method"
-                    android:text="@string/pay_method_national_card"
-                    android:textSize="16dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_gravity="center"
-                    android:textStyle="normal"
-                    android:textColor="@color/textcolor"
-                    android:layout_width="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:id="@+id/check_out_prepare_bonus_for_purchase"
-                    android:text="@string/bonus_for_purchase"
-                    android:textSize="16dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_gravity="center"
-                    android:textStyle="normal"
-                    android:textColor="@color/red_primary"
-                    android:layout_width="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:id="@+id/check_out_prepare_total_sum"
-                    android:text="@string/total_sum"
-                    android:textSize="22dp"
-                    android:layout_marginTop="10dp"
-
-                    android:layout_gravity="center"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="20dp"
-                    android:textColor="@color/red_primary"
-                    android:layout_width="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-    </androidx.core.widget.NestedScrollView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/checkout_card_push"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:elevation="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <Button
-            android:id="@+id/cart_check_out"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/checkout_card_push"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="12dp"
-            android:layout_marginBottom="8dp"
-            android:backgroundTint="@color/red_primary"
-            android:text="@string/check_out_accept_order"
-            android:textAllCaps="false" />
+            android:elevation="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <Button
+                android:id="@+id/cart_check_out"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginBottom="8dp"
+                android:backgroundTint="@color/red_primary"
+                android:text="@string/check_out_accept_order"
+                android:textAllCaps="false" />
 
 
-    </androidx.cardview.widget.CardView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

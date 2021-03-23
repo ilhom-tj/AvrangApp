@@ -44,7 +44,7 @@ class SliderAdapter(val context: Fragment, private val itemClickListener: ItemCl
 
         fun bind(item: Sliders) {
             if (image != null) {
-                Glide.with(context).load(Const.image_url+item.image).into(image)
+                Glide.with(context).load(Const.image_url+item.mob_image).into(image)
             }
         }
     }

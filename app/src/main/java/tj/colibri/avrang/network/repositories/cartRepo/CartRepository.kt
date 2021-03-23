@@ -29,18 +29,25 @@ class CartRepository(context: Context) {
     var cartIndexes = cartIndexDao.getCartIndexes()
     val api = RetrofitInstance(context).api()
     val totalPrice = cartDao.getTotalPrice()
+    val totalBonuses = cartDao.getTotalBonus()
 
     val checkOutList = checkOutDao.getAllItems()
     fun getCart() = cartDao.getCartItems()
 
 
-    fun updateCart(list: List<Int>) {
+    fun updateCart(list: List<Int>,listCheckOutItem: List<CheckOutItem>) {
         val cartResponse = CartIndexResponse(list)
+
         api.updateCart(cartResponse).enqueue(object : Callback<UpdateCart> {
             override fun onResponse(call: Call<UpdateCart>, response: Response<UpdateCart>) {
                 if (response.isSuccessful) {
-                    response.body()?.cartData?.forEach { items ->
-                        addToCart(items)
+                    if (listCheckOutItem.isNotEmpty()){
+                        var indexs = 0
+                        response.body()?.cartData?.forEach { items ->
+                            items.quantity = listCheckOutItem.get(indexs).quantity
+                            addToCart(items)
+                            indexs++
+                        }
                     }
                 }
             }
@@ -52,9 +59,12 @@ class CartRepository(context: Context) {
         })
     }
 
+    fun updateItemQuantity(checkOutItem: CheckOutItem){
+        cartDao.updateQuantity(checkOutItem.id,checkOutItem.quantity)
+    }
 
-    fun addToCheckOut(cartItem: CartItem){
-        val checkOutItem = CheckOutItem(cartItem.id,cartItem.quantity)
+    fun addToCheckOut(index : Int , quantity : Int) = GlobalScope.launch{
+        val checkOutItem = CheckOutItem(index,quantity)
         checkOutDao.addCheckOutItem(checkOutItem)
     }
 
@@ -65,9 +75,17 @@ class CartRepository(context: Context) {
     fun addToCart(cartItem: CartItem) = GlobalScope.launch {
         cartDao.addCartItem(cartItem)
     }
+
     fun remoeFromCart(cartItem: CartItem) {
         cartDao.removeFromCart(cartItem)
         cartIndexDao.deleteIndex(cartItem.id)
+        checkOutDao.deleteById(cartItem.id)
+    }
+
+    fun remoeFromAll() {
+        cartDao.removeFromCartAll()
+        cartIndexDao.deleteAllIndexes()
+        checkOutDao.deleteAllIndexes()
     }
 
     fun addToCart(id: Int) = GlobalScope.launch {
