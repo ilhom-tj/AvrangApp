@@ -18,9 +18,9 @@ import kotlinx.android.synthetic.main.profile_fragment.*
 import tj.colibri.avrang.MainActivity
 import tj.colibri.avrang.R
 import tj.colibri.avrang.adapters.ProductCardAdapter
-import tj.colibri.avrang.data.favorite.Favorite
 import tj.colibri.avrang.data.mock.MockData
 import tj.colibri.avrang.data.mock.ProductCard2
+import tj.colibri.avrang.utils.Features
 import tj.colibri.avrang.utils.SubtitleRadioButton
 import kotlinx.android.synthetic.main.products_in_categories_fragment.bottomsheet as bottomsheet1
 
@@ -107,11 +107,11 @@ override fun onProductItemClicked(product: ProductCard2) {
     findNavController().navigate(R.id.action_productsInCategoriesFragment_to_productInfoFragment)
 }
 
-override fun onAddProductToFavorite(favorite: Favorite) {
+override fun onAddProductToFavorite(favorite: ProductCard2) {
     viewModel.addFavorite(favorite)
 }
 
-override fun onRemoveClickListener(favorite: Favorite) {
+override fun onRemoveClickListener(favorite: ProductCard2) {
     viewModel.deleteFavorite(favorite)
 }
 

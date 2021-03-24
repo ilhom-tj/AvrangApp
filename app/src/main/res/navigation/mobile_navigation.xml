@@ -102,8 +102,11 @@
             app:destination="@id/productsInCategoriesFragment"
             app:enterAnim="@anim/fragment_fade_enter" />
         <argument
-            android:name="catalog"
-            app:argType="tj.colibri.avrang.data.ApiData.Category.Categories" />
+            android:name="children"
+            app:argType="tj.colibri.avrang.data.ApiData.Category.Children[]" />
+        <argument
+            android:name="parentTitle"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/productsInCategoriesFragment"

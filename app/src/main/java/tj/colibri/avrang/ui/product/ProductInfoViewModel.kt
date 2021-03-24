@@ -8,7 +8,7 @@ import kotlinx.coroutines.launch
 import tj.colibri.avrang.data.ApiData.chekout.CheckOutItem
 import tj.colibri.avrang.data.ApiData.product.ProductInfo.ProductInfortmation2
 import tj.colibri.avrang.data.cart.CartItem
-import tj.colibri.avrang.data.favorite.Favorite
+import tj.colibri.avrang.data.mock.ProductCard2
 import tj.colibri.avrang.network.repositories.cartRepo.CartRepository
 import tj.colibri.avrang.network.repositories.favoriteRepo.FavoriteRepository
 import tj.colibri.avrang.network.repositories.products.ProductRepo
@@ -21,10 +21,10 @@ class ProductInfoViewModel(application: Application) : AndroidViewModel(applicat
 
     val cartIndexs = cartRepository.cartIndexes
 
-    fun addFavorite(favorite: Favorite) = GlobalScope.launch{
-        repo.addItemToFavorite(favorite)
+    fun addFavorite(favorite: ProductCard2) = GlobalScope.launch{
+        repo.addFavorite(favorite.id)
     }
-    fun deleteFavorite(favorite: Favorite) = GlobalScope.launch {
+    fun deleteFavorite(favorite: ProductCard2) = GlobalScope.launch {
         repo.deleteFavorite(favorite)
     }
 

@@ -1,15 +1,10 @@
 package tj.colibri.avrang.utils
 
-import android.transition.Slide
 import android.util.Log
-import tj.colibri.avrang.data.ApiData.home.Labels
-import tj.colibri.avrang.data.ApiData.product.Product
-import tj.colibri.avrang.data.ApiData.product.Rating
 import tj.colibri.avrang.data.ApiData.product.Sliders
 import tj.colibri.avrang.data.cart.CartItem
 import tj.colibri.avrang.data.cart.CartItemResponse
 import tj.colibri.avrang.data.mock.ProductCard2
-import tj.colibri.avrang.data.slider.SliderItem
 
 class Features {
 
@@ -43,6 +38,12 @@ class Features {
         }
         return sliderList.toList()
     }
+
+//    fun toFavoriteCache(item : ProductCard2) : FavoriteCard{
+//        Log.e("PRODUCT",item.id.toString())
+//        return FavoriteCard(
+//            item.id,item.name,item.sKU,item.productPrice,item.isFavorite,item.excerpt,item.rating,item.labels,item.slug,item.newPrice,item.images.get(0),item.quantity,item.bonus,item.type)
+//    }
 //    fun cleanURL(imglist : List<String>) : String{
 //        val spl = 34.toChar();
 //        val readyimg = imglist[0].replace("\\","")

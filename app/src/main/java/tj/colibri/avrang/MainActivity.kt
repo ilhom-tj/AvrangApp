@@ -21,8 +21,10 @@ import org.json.JSONObject
 import tj.colibri.avrang.data.ApiData.Cart.CartIndexResponse
 import tj.colibri.avrang.data.cart.CartItemResponse
 import tj.colibri.avrang.network.repositories.cartRepo.CartRepository
+import tj.colibri.avrang.network.repositories.favoriteRepo.FavoriteRepository
 import tj.colibri.avrang.network.repositories.registrationRepo.RegistrationRepo
 import tj.colibri.avrang.network.repositories.userRepo.UserRepository
+import tj.colibri.avrang.utils.Features
 import tj.colibri.avrang.utils.RefresToken
 import tj.colibri.avrang.utils.SessionManager
 import java.util.*
@@ -86,7 +88,7 @@ class MainActivity : AppCompatActivity() {
                     supportActionBar?.elevation = 10f
                     logo.isVisible = false
                     title.isVisible = true
-                    icon.isVisible = true
+                    icon.isVisible = false
                 }
                 R.id.productsInCategoriesFragment -> {
                     supportActionBar?.elevation = 0f
@@ -108,7 +110,16 @@ class MainActivity : AppCompatActivity() {
 
         val cartRepository = CartRepository(this)
 
-
+//        val favRepository = FavoriteRepository(this.application)
+//        favRepository.getFavorite().observe(this, Observer {
+//            it.let {
+//                if (it.favorites.isNotEmpty()){
+//                    it.favorites.forEach { fav ->
+//                        favRepository.addItemToFavorite(Features().toFavoriteCache(fav))
+//                    }
+//                }
+//            }
+//        })
         cartRepository.checkOutList.observe(this, Observer { items ->
             cartRepository.cartIndexes.observe(this, Observer {
                 it.let {
@@ -144,9 +155,5 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
-    }
-
-    fun UpdateCart(){
-
     }
 }

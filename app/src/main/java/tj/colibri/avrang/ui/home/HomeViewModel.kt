@@ -6,7 +6,7 @@ import androidx.lifecycle.LiveData
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import tj.colibri.avrang.data.ApiData.home.HomeResponse
-import tj.colibri.avrang.data.favorite.Favorite
+import tj.colibri.avrang.data.mock.ProductCard2
 import tj.colibri.avrang.network.repositories.favoriteRepo.FavoriteRepository
 import tj.colibri.avrang.network.repositories.homeRepo.HomeRepo
 
@@ -21,10 +21,10 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
 //    val recommendedProducts = homeRepo.getRecommendedProducts
 //    val maxDisProducts = homeRepo.getMaxDiscountProducts
 
-    fun addFavorite(favorite: Favorite) = GlobalScope.launch{
+    fun addFavorite(favorite: ProductCard2) = GlobalScope.launch{
         repo.addItemToFavorite(favorite)
     }
-    fun deleteFavorite(favorite: Favorite) = GlobalScope.launch {
+    fun deleteFavorite(favorite: ProductCard2) = GlobalScope.launch {
         repo.deleteFavorite(favorite)
     }
 

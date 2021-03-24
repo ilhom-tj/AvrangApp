@@ -1,24 +1,85 @@
 package tj.colibri.avrang.network.repositories.favoriteRepo
 
 import android.app.Application
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import tj.colibri.avrang.data.favorite.Favorite
-import tj.colibri.avrang.data.favorite.FavoriteDB
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import tj.colibri.avrang.data.ApiData.Favorite.FavoriteRequest
+import tj.colibri.avrang.data.mock.ProductCard2
+import tj.colibri.avrang.network.RetrofitInstance
 
 class FavoriteRepository(application: Application) {
 
-    private val favoriteDao = FavoriteDB.getInstance(application.applicationContext).favorite
+    private val api = RetrofitInstance(application.applicationContext).api()
 
-    //Favorite Live Data
-    var favList = favoriteDao.getAllFavorites()
+//    private val favoriteDao = FavoriteDB.getInstance(application.applicationContext).favorite
+//    //Favorite Live Data
+   // var favList = favoriteDao.getAllFavorites()
 
 
+    fun getFavorite() : LiveData<FavoriteRequest>{
+        var liveData = MutableLiveData<FavoriteRequest>()
+        api.getFavorites().enqueue(object : Callback<FavoriteRequest>{
+            override fun onResponse(
+                call: Call<FavoriteRequest>,
+                response: Response<FavoriteRequest>
+            ) {
+                if (response.isSuccessful){
+                    liveData.value = response.body()
+                }
+            }
 
-    fun addItemToFavorite(favorite: Favorite) = GlobalScope.launch{
-        favoriteDao.insert(favorite)
+            override fun onFailure(call: Call<FavoriteRequest>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+        })
+        return liveData
     }
-    fun deleteFavorite(favorite: Favorite) = GlobalScope.launch {
-        favoriteDao.deleteFavorite(favorite)
+    fun addFavorite(id : Int) : LiveData<Boolean>{
+        var isCreated = MutableLiveData<Boolean>()
+        api.addToFavorite(id).enqueue(object : Callback<String>{
+            override fun onResponse(call: Call<String>, response: Response<String>) {
+                isCreated.value = response.code() == 201
+            }
+
+            override fun onFailure(call: Call<String>, t: Throwable) {
+
+            }
+
+        })
+        return isCreated
+    }
+
+    fun addItemToFavorite(favorite: ProductCard2) : LiveData<Boolean>{
+        var isCreated = MutableLiveData<Boolean>()
+        api.addToFavorite(favorite.id).enqueue(object : Callback<String>{
+            override fun onResponse(call: Call<String>, response: Response<String>) {
+                isCreated.value = response.code() == 201
+            }
+
+            override fun onFailure(call: Call<String>, t: Throwable) {
+
+            }
+
+        })
+        return isCreated
+    }
+    fun deleteFavorite(favorite: ProductCard2) : LiveData<Boolean>{
+        var isDeleted = MutableLiveData<Boolean>()
+        api.deleteFavorite(favorite.id).enqueue(object : Callback<String>{
+            override fun onResponse(call: Call<String>, response: Response<String>) {
+                isDeleted.value = response.code() == 204
+            }
+            override fun onFailure(call: Call<String>, t: Throwable) {
+
+            }
+
+        })
+        return isDeleted
     }
 }

@@ -12,12 +12,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_catalog.*
 import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.fragment_home.home_new_products_recycler_view
 import tj.colibri.avrang.R
 import tj.colibri.avrang.adapters.CatalogAdapter
-import tj.colibri.avrang.data.ApiData.Category.Categories
-import tj.colibri.avrang.data.catalog.CatalogItem
-import tj.colibri.avrang.data.mock.MockData
+import tj.colibri.avrang.data.ApiData.Category.Children
 
 class CatalogFragment : Fragment(), CatalogAdapter.ItemClicked {
 
@@ -47,8 +44,8 @@ class CatalogFragment : Fragment(), CatalogAdapter.ItemClicked {
         })
     }
 
-    override fun onItemClicked(catalog: Categories) {
-        val direction = CatalogFragmentDirections.actionNavigationCatalogToCategoriesFragment(catalog)
+    override fun onItemClicked(catalog: Children) {
+        val direction = CatalogFragmentDirections.actionNavigationCatalogToCategoriesFragment(catalog.children.toTypedArray(),catalog.name)
         findNavController().navigate(direction)
     }
 }

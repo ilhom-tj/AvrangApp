@@ -37,13 +37,14 @@ data class ProductCard2(
     val labels : Labels,
 
     @ColumnInfo(name = "product_slug")
-
     @SerializedName("slug")          val slug : String,
 
     @ColumnInfo(name = "product_dis_price")
     @SerializedName("discounted_price")  val newPrice: Double,
 
+
     @ColumnInfo(name = "product_images")
+    @Embedded
     @SerializedName("images")  val images: List<String>,
 
     @ColumnInfo(name = "product_quantity")

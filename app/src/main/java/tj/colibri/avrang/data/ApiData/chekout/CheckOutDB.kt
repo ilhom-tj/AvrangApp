@@ -4,8 +4,6 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import tj.colibri.avrang.data.favorite.Favorite
-import tj.colibri.avrang.data.favorite.FavoriteDao
 
 @Database(entities = [CheckOutItem::class], version = 4)
 abstract class CheckOutDB : RoomDatabase() {

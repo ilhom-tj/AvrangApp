@@ -29,7 +29,6 @@ import tj.colibri.avrang.adapters.*
 import tj.colibri.avrang.data.ApiData.product.ProductInfo.ProductInfortmation2
 import tj.colibri.avrang.data.ApiData.product.Sliders
 import tj.colibri.avrang.data.cart.CartItem
-import tj.colibri.avrang.data.favorite.Favorite
 import tj.colibri.avrang.data.mock.ProductCard2
 import tj.colibri.avrang.databinding.ProductInfoFragmentV2Binding
 import tj.colibri.avrang.network.repositories.cartRepo.CartRepository
@@ -45,9 +44,6 @@ class ProductInfoFragment : Fragment(), SliderAdapter.ItemClicked,
     private lateinit var sliderAdapter: SliderAdapter
     private lateinit var optionsAdapter: OptionsAdapter
     private lateinit var specificationsAdapter: SpecificationsAdapter
-
-
-    private lateinit var favorite: Favorite
 
     private var productCardAdapter = ProductCardAdapter(this, this)
     private lateinit var productInfo: ProductInfortmation2
@@ -273,6 +269,11 @@ class ProductInfoFragment : Fragment(), SliderAdapter.ItemClicked,
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.product_menu, menu)
+//        if (productInfo.product.){
+//     //       holder.product_favorite.setImageResource(R.drawable.ic_baseline_favorite_24)
+//        }else{
+//   //         holder.product_favorite.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+//        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -292,11 +293,11 @@ class ProductInfoFragment : Fragment(), SliderAdapter.ItemClicked,
     }
 
 
-    override fun onAddProductToFavorite(favorite: Favorite) {
+    override fun onAddProductToFavorite(favorite: ProductCard2) {
         viewModel.addFavorite(favorite)
     }
 
-    override fun onRemoveClickListener(favorite: Favorite) {
+    override fun onRemoveClickListener(favorite: ProductCard2) {
         viewModel.deleteFavorite(favorite)
     }
 

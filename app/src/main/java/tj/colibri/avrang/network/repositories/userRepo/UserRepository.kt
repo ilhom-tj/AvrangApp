@@ -11,7 +11,6 @@ import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Response
 import tj.colibri.avrang.data.ApiData.profile.ProfileResponse
-import tj.colibri.avrang.data.favorite.FavoriteDB
 import tj.colibri.avrang.data.user.User
 import tj.colibri.avrang.data.user.UserDao
 import tj.colibri.avrang.data.user.UserDataBase

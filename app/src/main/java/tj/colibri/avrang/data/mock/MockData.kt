@@ -7,7 +7,6 @@ import tj.colibri.avrang.data.order.OrderItem
 import tj.colibri.avrang.data.catalog.CatalogItem
 import tj.colibri.avrang.data.categories.Category
 import tj.colibri.avrang.data.categories.SubCategory
-import tj.colibri.avrang.data.favorite.Favorite
 import tj.colibri.avrang.data.order.OrderContainer
 import tj.colibri.avrang.data.product.options.Option
 import tj.colibri.avrang.data.product.options.ProductOptions
@@ -162,7 +161,7 @@ object MockData {
 
     val listOfCatalogItems = listOf(catalogItem1, catalogItem2, catalogItem3, catalogItem4, catalogItem5, catalogItem6, catalogItem7, catalogItem8, catalogItem9)
 
-    //tj.colibri.avrang.data.ApiData.home.tj.colibri.avrang.data.ApiData.tj.colibri.avrang.data.ApiData.product.ProductInfo.Category.Categories and subcategories
+    //tj.colibri.avrang.data.ApiData.home.tj.colibri.avrang.data.ApiData.tj.colibri.avrang.data.ApiData.product.ProductInfo.Category.tj.colibri.avrang.data.ApiData.Category.Categories and subcategories
     private val subCat1 = SubCategory(1, "Все телевизоры")
     private val subCat2 = SubCategory(2, "OLED телевизоры")
     private val subCat3 = SubCategory(3, "OLED 4K телевизоры")
@@ -177,13 +176,13 @@ object MockData {
 
     val listOfCategories = listOf(cat1, cat2, cat3, cat4)
 
-    //Favorite
-    private val favorite1 = Favorite(1, "Стиральная машина Haier Z1L5QBCD008", "SML03ZZ", 19995.49, 39990.99)
-    private val favorite2 = Favorite(2, "Стиральная машина Haier Z1L5QBCD008", "SML03ZZ", 19995.49, 39990.99)
-    private val favorite3 = Favorite(3, "Стиральная машина Haier Z1L5QBCD008", "SML03ZZ", 19995.49, 39990.99)
-    private val favorite4 = Favorite(4, "Стиральная машина Haier Z1L5QBCD008", "SML03ZZ", 19995.49, 39990.99)
-
-    val listOfFavorites : ArrayList<Favorite> = arrayListOf(favorite1, favorite2, favorite3,favorite4)
+//    //Favorite
+//    private val favorite1 = Favorite(1, "Стиральная машина Haier Z1L5QBCD008", "SML03ZZ", 19995.49, 39990.99)
+//    private val favorite2 = Favorite(2, "Стиральная машина Haier Z1L5QBCD008", "SML03ZZ", 19995.49, 39990.99)
+//    private val favorite3 = Favorite(3, "Стиральная машина Haier Z1L5QBCD008", "SML03ZZ", 19995.49, 39990.99)
+//    private val favorite4 = Favorite(4, "Стиральная машина Haier Z1L5QBCD008", "SML03ZZ", 19995.49, 39990.99)
+//
+//    val listOfFavorites : ArrayList<Favorite> = arrayListOf(favorite1, favorite2, favorite3,favorite4)
 
 //    //Cart Items
 //    private val cartItem1 = CartItem(1, "Стиральная машина Haier Z1L5QBCD008", "SML03ZZ", 60000.00, 120000.00,1)

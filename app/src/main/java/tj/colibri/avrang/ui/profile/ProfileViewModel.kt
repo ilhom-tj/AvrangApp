@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import tj.colibri.avrang.data.favorite.Favorite
+import tj.colibri.avrang.data.mock.ProductCard2
 import tj.colibri.avrang.network.repositories.userRepo.UserRepository
 import tj.colibri.avrang.network.repositories.favoriteRepo.FavoriteRepository
 
@@ -16,11 +16,11 @@ class ProfileViewModel(application: Application) : AndroidViewModel(application)
 
     val user = userRepo.getUser
 
-    fun addFavorite(favorite: Favorite) = GlobalScope.launch{
+    fun addFavorite(favorite: ProductCard2) = GlobalScope.launch{
 
         repo.addItemToFavorite(favorite)
     }
-    fun deleteFavorite(favorite: Favorite) = GlobalScope.launch {
+    fun deleteFavorite(favorite: ProductCard2) = GlobalScope.launch {
         repo.deleteFavorite(favorite)
     }
 

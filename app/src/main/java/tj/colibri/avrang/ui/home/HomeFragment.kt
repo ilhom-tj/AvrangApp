@@ -20,7 +20,6 @@ import tj.colibri.avrang.adapters.*
 import tj.colibri.avrang.data.ApiData.home.News
 import tj.colibri.avrang.data.ApiData.product.Rating
 import tj.colibri.avrang.data.ApiData.product.Sliders
-import tj.colibri.avrang.data.favorite.Favorite
 import tj.colibri.avrang.data.mock.ProductCard2
 import tj.colibri.avrang.data.slider.SliderItem
 import tj.colibri.avrang.utils.ConnectionLive
@@ -43,7 +42,6 @@ class HomeFragment : Fragment(), SliderAdapter.ItemClicked, ProductCardAdapter.I
     private var promoSliderAdapter = BannerSliderAdapter(this)
     private var partnersAdapter = PartnersAdapter(this)
 
-    private lateinit var favorite : Favorite
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -167,11 +165,11 @@ class HomeFragment : Fragment(), SliderAdapter.ItemClicked, ProductCardAdapter.I
         findNavController().navigate(arg)
     }
 
-    override fun onAddProductToFavorite(favorite: Favorite) {
+    override fun onAddProductToFavorite(favorite: ProductCard2) {
         homeViewModel.addFavorite(favorite)
     }
 
-    override fun onRemoveClickListener(favorite: Favorite) {
+    override fun onRemoveClickListener(favorite: ProductCard2) {
         homeViewModel.deleteFavorite(favorite)
     }
 

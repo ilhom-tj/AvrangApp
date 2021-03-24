@@ -125,9 +125,8 @@ interface Api {
     @GET("catalog")
     fun getCategories() : Call<CategoryResponse>
 
-    @GET("catalog")
-    fun getSubCategory(@Path("slug") slug: String) : Call<CategoryResponse>
 
+    //Корзина
     @POST("cart")
     fun updateCart(
         @Body json : CartIndexResponse
@@ -138,4 +137,15 @@ interface Api {
 
     @POST("checkout")
     fun checkOut(@Body checkOut : CheckOutResquest) : Call<CheckOutResponse>
+
+
+    //Favorites
+    @POST("add-to-favorite/{id}")
+    fun addToFavorite(@Path("id")id : Int) : Call<String>
+
+    @POST("delete-from-favorite/{id}")
+    fun deleteFavorite(@Path("id") id:Int) : Call<String>
+
+    @GET("profile/favorites")
+    fun getFavorites()  : Call<tj.colibri.avrang.data.ApiData.Favorite.FavoriteRequest>
 }

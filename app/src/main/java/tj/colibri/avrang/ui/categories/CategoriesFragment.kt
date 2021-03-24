@@ -20,6 +20,7 @@ import tj.colibri.avrang.MainActivity
 import tj.colibri.avrang.R
 import tj.colibri.avrang.adapters.CategoriesAdapter
 import tj.colibri.avrang.adapters.SubCategoriesAdapter
+import tj.colibri.avrang.data.ApiData.Category.Children
 import tj.colibri.avrang.data.categories.SubCategory
 import tj.colibri.avrang.data.mock.MockData
 
@@ -43,14 +44,13 @@ class CategoriesFragment : Fragment(), SubCategoriesAdapter.ItemClicked, Categor
 
         val actionBar = (activity as MainActivity).supportActionBar
         val actionBarView = actionBar?.customView
-        val title : TextView = actionBarView!!.findViewById(R.id.action_bar_title)
-        val icon : ImageView = actionBarView.findViewById(R.id.category_icon)
-         title.text = args.catalog.name
-      //  val imageId = context?.resources?.getIdentifier(args.category.icon, "drawable", activity?.packageName)
-//        if (imageId != null) {
-//            icon.setImageResource(imageId)
-//        }
 
+        val title : TextView = actionBarView!!.findViewById(R.id.action_bar_title)
+
+        title.text = args.parentTitle
+
+
+        categoriesAdapter.setData(args.children.toList())
         categories_recycler_view.adapter = categoriesAdapter
         categories_recycler_view.layoutManager = GridLayoutManager(
             context,
@@ -58,10 +58,13 @@ class CategoriesFragment : Fragment(), SubCategoriesAdapter.ItemClicked, Categor
             LinearLayoutManager.VERTICAL,
             false
         )
-        categoriesAdapter.setData(MockData.listOfCategories)
     }
 
-    override fun onSubCategoryClicked(item: SubCategory) {
+    override fun onParentClicked(item: Children) {
+
+    }
+
+    override fun onSubCategoryClicked(item: Children) {
 //        val directions = CategoriesFragmentDirections.actionCategoriesFragmentToProductsInCategoriesFragment(item)
 //        findNavController().navigate(directions)
     }

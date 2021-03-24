@@ -8,13 +8,14 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import tj.colibri.avrang.R
+import tj.colibri.avrang.data.ApiData.Category.Children
 import tj.colibri.avrang.data.categories.SubCategory
 import tj.colibri.avrang.data.product.options.Option
 import tj.colibri.avrang.data.slider.SliderItem
 
 class SubCategoriesAdapter(val fragment: Fragment, private val itemClickListener: ItemClicked) : RecyclerView.Adapter<SubCategoriesAdapter.SubCategoryHolder>() {
 
-    private var items = emptyList<SubCategory>()
+    private var items = emptyList<Children>()
 
     override fun getItemCount()=items.size
 
@@ -27,7 +28,7 @@ class SubCategoriesAdapter(val fragment: Fragment, private val itemClickListener
         return SubCategoryHolder(view)
     }
 
-    fun setData(items: List<SubCategory>) {
+    fun setData(items: List<Children>) {
         this.items = items
         notifyDataSetChanged()
     }
@@ -41,8 +42,8 @@ class SubCategoriesAdapter(val fragment: Fragment, private val itemClickListener
         RecyclerView.ViewHolder(view) {
         var title: TextView = view.findViewById(R.id.subcategory_title)
         var layout : ConstraintLayout = view.findViewById(R.id.subcategory_layout)
-        fun bind(item: SubCategory) {
-            title.text = item.title
+        fun bind(item: Children) {
+            title.text = item.name
             layout.setOnClickListener {
                 itemClickListener.onSubCategoryClicked(item)
             }
@@ -50,7 +51,7 @@ class SubCategoriesAdapter(val fragment: Fragment, private val itemClickListener
     }
 
     interface ItemClicked {
-        fun onSubCategoryClicked(item: SubCategory)
+        fun onSubCategoryClicked(item: Children)
     }
 
 }

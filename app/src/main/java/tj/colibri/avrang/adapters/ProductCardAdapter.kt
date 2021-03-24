@@ -19,7 +19,6 @@ import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.product_info_fragment_v2.*
 import tj.colibri.avrang.R
 import tj.colibri.avrang.data.comments.Comment
-import tj.colibri.avrang.data.favorite.Favorite
 import tj.colibri.avrang.data.mock.ProductCard2
 import tj.colibri.avrang.utils.Const
 import tj.colibri.avrang.utils.Features
@@ -91,12 +90,12 @@ class ProductCardAdapter(val context : Fragment,
                 holder.product_favorite.setImageResource(R.drawable.ic_baseline_favorite_border_24)
                 products.get(position).isFavorite = false
                 notifyDataSetChanged()
-                itemClickListener.onRemoveClickListener( Favorite(product.id,product.name,product.sKU.toString(),product.newPrice,product.productPrice))
+                itemClickListener.onRemoveClickListener(product)
             }else{
                 holder.product_favorite.setImageResource(R.drawable.ic_baseline_favorite_24)
                 products.get(position).isFavorite = true
                 notifyDataSetChanged()
-                itemClickListener.onAddProductToFavorite( Favorite(product.id,product.name,product.sKU.toString(),product.newPrice,product.productPrice))
+                itemClickListener.onAddProductToFavorite(product)
             }
 
         }
@@ -119,8 +118,8 @@ class ProductCardAdapter(val context : Fragment,
 
     interface ItemClicked {
         fun onProductItemClicked(product: ProductCard2)
-        fun onAddProductToFavorite(favorite: Favorite)
-        fun onRemoveClickListener(favorite: Favorite)
+        fun onAddProductToFavorite(favorite: ProductCard2)
+        fun onRemoveClickListener(favorite: ProductCard2)
     }
 
 

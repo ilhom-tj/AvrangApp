@@ -16,9 +16,9 @@ import kotlinx.android.synthetic.main.profile_fragment.*
 import kotlinx.android.synthetic.main.profile_fragment.users_also_buy_recycler_view
 import tj.colibri.avrang.R
 import tj.colibri.avrang.adapters.ProductCardAdapter
-import tj.colibri.avrang.data.favorite.Favorite
 import tj.colibri.avrang.data.mock.ProductCard2
 import tj.colibri.avrang.databinding.ProfileFragmentBinding
+import tj.colibri.avrang.utils.Features
 import tj.colibri.avrang.utils.SessionManager
 
 class ProfileFragment : Fragment(), ProductCardAdapter.ItemClicked {
@@ -128,11 +128,11 @@ class ProfileFragment : Fragment(), ProductCardAdapter.ItemClicked {
         NavigateTo(R.id.action_navigation_home_to_productInfoFragment)
     }
 
-    override fun onAddProductToFavorite(favorite: Favorite) {
+    override fun onAddProductToFavorite(favorite: ProductCard2) {
         viewModel.addFavorite(favorite)
     }
 
-    override fun onRemoveClickListener(favorite: Favorite) {
+    override fun onRemoveClickListener(favorite: ProductCard2) {
         viewModel.deleteFavorite(favorite)
     }
 

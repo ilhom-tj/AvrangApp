@@ -12,13 +12,14 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import tj.colibri.avrang.R
+import tj.colibri.avrang.data.ApiData.Category.Children
 import tj.colibri.avrang.data.categories.Category
 import tj.colibri.avrang.data.categories.SubCategory
 import tj.colibri.avrang.data.product.options.ProductOptions
 
 class CategoriesAdapter(val fragment: Fragment, private val itemClickListener : ItemClicked) : RecyclerView.Adapter<CategoriesAdapter.CategoryHolder>(), SubCategoriesAdapter.ItemClicked {
 
-    private var items = emptyList<Category>()
+    private var items = emptyList<Children>()
     private lateinit var subCategoriesAdapter: SubCategoriesAdapter
 
     override fun getItemCount()=items.size
@@ -33,14 +34,14 @@ class CategoriesAdapter(val fragment: Fragment, private val itemClickListener : 
         return CategoryHolder(view)
     }
 
-    fun setData(items: List<Category>) {
+    fun setData(items: List<Children>) {
         this.items = items
         notifyDataSetChanged()
     }
 
     override fun onBindViewHolder(holder: CategoriesAdapter.CategoryHolder, position: Int) {
         val item = items[position]
-        holder.title.text = item.title
+        holder.title.text = item.name
 
         holder.layout.setOnClickListener {
             println(holder.expandable.isVisible)
@@ -58,7 +59,10 @@ class CategoriesAdapter(val fragment: Fragment, private val itemClickListener : 
             layoutManager = linearLayoutManager
             adapter = subCategoriesAdapter
         }
-        subCategoriesAdapter.setData(item.subcategories)
+        if (item.children.isEmpty()){
+            itemClickListener.onParentClicked(item)
+        }
+        subCategoriesAdapter.setData(item.children)
     }
 
     inner class CategoryHolder(view: View) :
@@ -72,12 +76,13 @@ class CategoriesAdapter(val fragment: Fragment, private val itemClickListener : 
 
 
 
-    override fun onSubCategoryClicked(item: SubCategory) {
+    override fun onSubCategoryClicked(item: Children) {
         itemClickListener.onSubCategoryClicked(item)
     }
 
     interface ItemClicked {
-        fun onSubCategoryClicked(item: SubCategory)
+        fun  onParentClicked(item : Children)
+        fun onSubCategoryClicked(item: Children)
     }
 
 }

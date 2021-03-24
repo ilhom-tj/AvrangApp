@@ -33,25 +33,5 @@ class CatalogRepo(context : Context) {
         return liveData
     }
 
-    fun getCatalogs(slug : String) : LiveData<CategoryResponse>{
-        var liveData = MutableLiveData<CategoryResponse>()
 
-        api.getSubCategory(slug).enqueue(object : Callback<CategoryResponse>{
-            override fun onResponse(
-                call: Call<CategoryResponse>,
-                response: Response<CategoryResponse>
-            ) {
-                if (response.isSuccessful){
-                    liveData.value = response.body()
-                }
-            }
-
-            override fun onFailure(call: Call<CategoryResponse>, t: Throwable) {
-
-            }
-
-        })
-
-        return liveData
-    }
 }

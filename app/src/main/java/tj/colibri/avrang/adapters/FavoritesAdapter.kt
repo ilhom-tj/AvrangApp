@@ -1,5 +1,6 @@
 package tj.colibri.avrang.adapters
 
+import android.annotation.SuppressLint
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -8,12 +9,14 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import tj.colibri.avrang.R
-import tj.colibri.avrang.data.favorite.Favorite
+import tj.colibri.avrang.data.mock.ProductCard2
+import tj.colibri.avrang.utils.Const
 
 class FavoritesAdapter(val context : Fragment,private val removeClick : RemoveClickListener) : RecyclerView.Adapter<FavoritesAdapter.ProductHolder>() {
 
-    private var products = ArrayList<Favorite>()
+    private var products = ArrayList<ProductCard2>()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -24,29 +27,35 @@ class FavoritesAdapter(val context : Fragment,private val removeClick : RemoveCl
         return ProductHolder(view)
     }
 
-    fun setData(items: ArrayList<Favorite>) {
+    fun setData(items: ArrayList<ProductCard2>) {
         this.products = items
         notifyDataSetChanged()
     }
 
-    fun removeItem(position: Int){
-        Log.e("position",position.toString())
-        this.products.removeAt(position)
-        notifyItemChanged(position)
-    }
 
     override fun getItemCount()=products.size
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ProductHolder, position: Int) {
         val product = products[position]
         Log.e("Position",position.toString())
-        holder.title.text = product.title
-        holder.code.text = "Код продукта: ${product.code}"
-        holder.price.text = product.price.toString()
-        holder.oldPrice.text = product.oldPrice.toString()
+        holder.title.text = product.name
+        holder.code.text = "Код продукта: ${product.sKU}"
+
+        if (product.newPrice.equals(0.0)){
+            holder.price.text = product.productPrice.toString() + " TJS"
+            holder.oldPrice.visibility = View.INVISIBLE
+        }else{
+            holder.price.text = product.newPrice.toString() + " TJS"
+            holder.oldPrice.text = product.productPrice.toString() + " TJS"
+        }
+
         holder.removeBtn.setOnClickListener {
             removeClick.removeClickListener(product)
+            products.removeAt(position)
+            notifyDataSetChanged()
         }
+        Glide.with(context).load(Const.image_url + product.images.get(0)).into(holder.image)
     }
 
     inner class ProductHolder(view: View) :
@@ -56,10 +65,11 @@ class FavoritesAdapter(val context : Fragment,private val removeClick : RemoveCl
         var price : TextView = view.findViewById(R.id.product_price)
         var oldPrice : TextView = view.findViewById(R.id.product_old_price)
         var removeBtn : ImageView = view.findViewById(R.id.remove_from_favorite)
+        var image : ImageView = view.findViewById(R.id.product_background)
     }
 
     interface RemoveClickListener {
-        fun removeClickListener(favorite: Favorite)
+        fun removeClickListener(favorite: ProductCard2)
     }
 
 }

@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.fragment_favorites.*
 import tj.colibri.avrang.R
 import tj.colibri.avrang.data.mock.MockData
 import tj.colibri.avrang.adapters.FavoritesAdapter
-import tj.colibri.avrang.data.favorite.Favorite
+import tj.colibri.avrang.data.mock.ProductCard2
 
 class FavoritesFragment : Fragment(), FavoritesAdapter.RemoveClickListener {
 
@@ -39,23 +39,31 @@ class FavoritesFragment : Fragment(), FavoritesAdapter.RemoveClickListener {
         favoritesAdapter = FavoritesAdapter(this,this)
 
         favorites_recycler_view.adapter = favoritesAdapter
-        favorites_recycler_view.layoutManager = GridLayoutManager(context, 1,  LinearLayoutManager.VERTICAL, false)
-        viewModel.favList.observe(requireActivity(), Observer {
+        favorites_recycler_view.layoutManager = GridLayoutManager(context, 1,  LinearLayoutManager.VERTICAL, true)
+
+        ObserveFavorite()
+
+    }
+
+    override fun removeClickListener(favorite: ProductCard2) {
+        viewModel.deleteFavorite(favorite).observe(viewLifecycleOwner, Observer {
             it.let {
-                val list = ArrayList(it)
-                favoritesAdapter.setData(list)
-                favorites_qty.text = favoritesAdapter.itemCount.toString() + " товара"
+                if (it){
+                    ObserveFavorite()
+                }
             }
         })
 
 
-
-
     }
 
-    override fun removeClickListener(favorite: Favorite) {
-        viewModel.deleteFavorite(favorite)
+    fun ObserveFavorite(){
+        viewModel.getFavorites().observe(requireActivity(), Observer {
+            it.let {
+                val list = ArrayList(it.favorites)
+                favoritesAdapter.setData(list)
+                favorites_qty.text = favoritesAdapter.itemCount.toString() + " товара"
+            }
+        })
     }
-
-
 }

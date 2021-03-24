@@ -1,26 +1,26 @@
 package tj.colibri.avrang.adapters
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import coil.Coil
+import coil.ImageLoader
+import coil.decode.SvgDecoder
+import coil.load
 import com.bumptech.glide.Glide
 import tj.colibri.avrang.R
-import tj.colibri.avrang.data.ApiData.Category.Categories
-import tj.colibri.avrang.data.catalog.CatalogItem
+import tj.colibri.avrang.data.ApiData.Category.Children
 import tj.colibri.avrang.utils.Const
 
 class CatalogAdapter(val context : Fragment, private val itemClickListener: ItemClicked) : RecyclerView.Adapter<CatalogAdapter.CatalogHolder>() {
 
-    private var items = emptyList<Categories>()
+    private var items = emptyList<Children>()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -31,7 +31,7 @@ class CatalogAdapter(val context : Fragment, private val itemClickListener: Item
         return CatalogHolder(view)
     }
 
-    fun setData(items: List<Categories>) {
+    fun setData(items: List<Children>) {
         this.items = items
         notifyDataSetChanged()
     }
@@ -41,13 +41,17 @@ class CatalogAdapter(val context : Fragment, private val itemClickListener: Item
     @SuppressLint("CheckResult")
     override fun onBindViewHolder(holder: CatalogAdapter.CatalogHolder, position: Int) {
         val item = items[position]
-        Glide
-            .with(context)
-            .load(Const.image_url + item.icon)
-            .centerCrop()
-            .into(holder.image)
-//            .into(holder.image)
+
         holder.title.text = item.name
+
+        val imageLoader = ImageLoader.Builder(context.requireContext())
+            .componentRegistry {
+                add(SvgDecoder(context.requireContext()))
+            }
+            .build()
+        Coil.setImageLoader(imageLoader)
+        holder.image.load(Const.image_url + item.icon)
+
         holder.layout.setOnClickListener {
             itemClickListener.onItemClicked(item)
         }
@@ -63,7 +67,7 @@ class CatalogAdapter(val context : Fragment, private val itemClickListener: Item
     }
 
     interface ItemClicked {
-        fun onItemClicked(product: Categories)
+        fun onItemClicked(product: Children)
     }
 
 }
