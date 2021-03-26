@@ -68,8 +68,6 @@ class ProductCardAdapter(val context : Fragment,
         holder.ratings_qty.text = "${product.rating.quantity} отзывов"
 
 
-        Log.e("price", product.productPrice.toString())
-        Log.e("newPrice",product.newPrice.toString())
         if(product.newPrice.equals(0.0)){
             holder.product_old_price.visibility = View.INVISIBLE
             holder.product_price.text = "${product.productPrice}  TJS"
@@ -88,11 +86,13 @@ class ProductCardAdapter(val context : Fragment,
         holder.product_favorite.setOnClickListener {
             if (product.isFavorite){
                 holder.product_favorite.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+                holder.product_favorite.setColorFilter(ContextCompat.getColor(context.requireContext(),R.color.red_primary))
                 products.get(position).isFavorite = false
                 notifyDataSetChanged()
                 itemClickListener.onRemoveClickListener(product)
             }else{
                 holder.product_favorite.setImageResource(R.drawable.ic_baseline_favorite_24)
+                holder.product_favorite.setColorFilter(ContextCompat.getColor(context.requireContext(),R.color.red_primary))
                 products.get(position).isFavorite = true
                 notifyDataSetChanged()
                 itemClickListener.onAddProductToFavorite(product)

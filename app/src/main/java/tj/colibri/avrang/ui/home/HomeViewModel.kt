@@ -9,6 +9,7 @@ import tj.colibri.avrang.data.ApiData.home.HomeResponse
 import tj.colibri.avrang.data.mock.ProductCard2
 import tj.colibri.avrang.network.repositories.favoriteRepo.FavoriteRepository
 import tj.colibri.avrang.network.repositories.homeRepo.HomeRepo
+import tj.colibri.avrang.utils.Features
 
 class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -22,10 +23,10 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
 //    val maxDisProducts = homeRepo.getMaxDiscountProducts
 
     fun addFavorite(favorite: ProductCard2) = GlobalScope.launch{
-        repo.addItemToFavorite(favorite)
+        repo.addItemToFavorite(Features().toFavoriteCache(favorite))
     }
     fun deleteFavorite(favorite: ProductCard2) = GlobalScope.launch {
-        repo.deleteFavorite(favorite)
+        repo.deleteFavorite(Features().toFavoriteCache(favorite))
     }
 
     fun getHome() : LiveData<HomeResponse>{

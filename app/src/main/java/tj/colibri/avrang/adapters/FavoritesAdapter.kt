@@ -11,12 +11,13 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import tj.colibri.avrang.R
+import tj.colibri.avrang.data.favorite.FavoriteCard
 import tj.colibri.avrang.data.mock.ProductCard2
 import tj.colibri.avrang.utils.Const
 
 class FavoritesAdapter(val context : Fragment,private val removeClick : RemoveClickListener) : RecyclerView.Adapter<FavoritesAdapter.ProductHolder>() {
 
-    private var products = ArrayList<ProductCard2>()
+    private var products = ArrayList<FavoriteCard>()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -27,7 +28,7 @@ class FavoritesAdapter(val context : Fragment,private val removeClick : RemoveCl
         return ProductHolder(view)
     }
 
-    fun setData(items: ArrayList<ProductCard2>) {
+    fun setData(items: ArrayList<FavoriteCard>) {
         this.products = items
         notifyDataSetChanged()
     }
@@ -40,14 +41,14 @@ class FavoritesAdapter(val context : Fragment,private val removeClick : RemoveCl
         val product = products[position]
         Log.e("Position",position.toString())
         holder.title.text = product.name
-        holder.code.text = "Код продукта: ${product.sKU}"
+        holder.code.text = "Код продукта: ${product.sku}"
 
-        if (product.newPrice.equals(0.0)){
-            holder.price.text = product.productPrice.toString() + " TJS"
+        if (product.discounted.equals(0.0)){
+            holder.price.text = product.price.toString() + " TJS"
             holder.oldPrice.visibility = View.INVISIBLE
         }else{
-            holder.price.text = product.newPrice.toString() + " TJS"
-            holder.oldPrice.text = product.productPrice.toString() + " TJS"
+            holder.price.text = product.discounted.toString() + " TJS"
+            holder.oldPrice.text = product.price.toString() + " TJS"
         }
 
         holder.removeBtn.setOnClickListener {
@@ -55,7 +56,7 @@ class FavoritesAdapter(val context : Fragment,private val removeClick : RemoveCl
             products.removeAt(position)
             notifyDataSetChanged()
         }
-        Glide.with(context).load(Const.image_url + product.images.get(0)).into(holder.image)
+        Glide.with(context).load(Const.image_url + product.image).into(holder.image)
     }
 
     inner class ProductHolder(view: View) :
@@ -69,7 +70,7 @@ class FavoritesAdapter(val context : Fragment,private val removeClick : RemoveCl
     }
 
     interface RemoveClickListener {
-        fun removeClickListener(favorite: ProductCard2)
+        fun removeClickListener(favorite: FavoriteCard)
     }
 
 }

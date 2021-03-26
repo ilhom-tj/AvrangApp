@@ -105,16 +105,16 @@ class ProfileFragment : Fragment(), ProductCardAdapter.ItemClicked {
             }
             //CONTACTS
             bottomsheet.findViewById<ConstraintLayout>(R.id.profile_more_contacts).setOnClickListener {
-                NavigateTo(R.id.action_navigation_profile_to_contactsFragment)
+                findNavController().navigate(R.id.action_navigation_profile_to_contactsFragment)
             }
             //FAQ
             bottomsheet.findViewById<ConstraintLayout>(R.id.profile_more_faq).setOnClickListener {
-                NavigateTo(R.id.action_navigation_profile_to_FAQFragment)
+                findNavController().navigate(R.id.action_navigation_profile_to_FAQFragment)
 
             }
             //ABOUT
             bottomsheet.findViewById<ConstraintLayout>(R.id.profile_more_about).setOnClickListener {
-                NavigateTo(R.id.action_navigation_profile_to_aboutFragment)
+                findNavController().navigate(R.id.action_navigation_profile_to_aboutFragment)
             }
         }
         return super.onOptionsItemSelected(item)

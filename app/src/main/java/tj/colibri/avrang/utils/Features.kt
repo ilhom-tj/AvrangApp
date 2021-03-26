@@ -1,10 +1,15 @@
 package tj.colibri.avrang.utils
 
+import android.annotation.SuppressLint
 import android.util.Log
 import tj.colibri.avrang.data.ApiData.product.Sliders
 import tj.colibri.avrang.data.cart.CartItem
 import tj.colibri.avrang.data.cart.CartItemResponse
+import tj.colibri.avrang.data.favorite.FavoriteCard
 import tj.colibri.avrang.data.mock.ProductCard2
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class Features {
 
@@ -39,49 +44,20 @@ class Features {
         return sliderList.toList()
     }
 
-//    fun toFavoriteCache(item : ProductCard2) : FavoriteCard{
-//        Log.e("PRODUCT",item.id.toString())
-//        return FavoriteCard(
-//            item.id,item.name,item.sKU,item.productPrice,item.isFavorite,item.excerpt,item.rating,item.labels,item.slug,item.newPrice,item.images.get(0),item.quantity,item.bonus,item.type)
-//    }
-//    fun cleanURL(imglist : List<String>) : String{
-//        val spl = 34.toChar();
-//        val readyimg = imglist[0].replace("\\","")
-//            .replace("[","")
-//            .replace("]","")
-//            .replace(spl.toString(),"")
-//        return Const.image_url + readyimg;
-//    }
-//    fun ProductApiToCacheType(product : ProductCard2) : ProductCache{
-//        val productChache = ProductCache(
-//            product.id,
-//            product.name,
-//            product.sKU,
-//            product.productPrice,
-//            product.isFavorite,
-//            product.rating.rating,
-//            product.rating.quantity,
-//            product.rating.is_rated,
-//            product.labels.is_hit,
-//            product.labels.is_promotion,
-//            product.labels.has_gift,
-//            product.slug,
-//            product.newPrice,
-//            product.images,
-//            product.quantity,
-//            product.bonus,
-//            product.type
-//        )
-//        return productChache
-//    }
+    fun toFavoriteCache(item: ProductCard2): FavoriteCard {
+        return FavoriteCard(
+            item.id,
+            item.name,
+            item.slug,
+            item.sKU,
+            item.productPrice,
+            item.newPrice,
+            item.images[0]
+        )
+    }
 
-//    fun ProductCacheToRating(productCache: ProductCache) : tj.colibri.avrang.data.ApiData.product.ProductInfo.Rating{
-//        val rating = tj.colibri.avrang.data.ApiData.product.ProductInfo.Rating(productCache.rating,productCache.rating_quantity,productCache.is_rated)
-//        return rating
-//    }
-//
-//    fun ProductCacheToLabels(productCache: ProductCache) : Labels{
-//        val labels = Labels(productCache.is_hit,productCache.is_promotion,productCache.has_gift)
-//        return labels
-//    }
+    @SuppressLint("SimpleDateFormat")
+    fun getNormalDate(date : Date) : String{
+        return SimpleDateFormat("dd-MM-yyyy").format(date).toString().replace("-",".")
+    }
 }

@@ -52,6 +52,7 @@ data class CartItemResponse(
     @SerializedName("price") val price : Double,
 
     @SerializedName("bonus") val bonus : Int,
+
     @SerializedName("in_stock") val in_stock : Int
 
 )

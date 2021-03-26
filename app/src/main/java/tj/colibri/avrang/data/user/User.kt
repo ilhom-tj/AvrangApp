@@ -19,8 +19,11 @@ data class User(
     @ColumnInfo(name = "user_gender")
     var gender : Int?,
 
-    @ColumnInfo(name = "user_adresses")
-    var addresses : String?,
+    @ColumnInfo(name = "user_main_address")
+    var main_address : String?,
+
+    @ColumnInfo(name = "user_additional_address")
+    var additional_address : String?,
 
     @ColumnInfo(name = "user_city_id")
     var city_id : Int?,
@@ -29,6 +32,7 @@ data class User(
     var phone : String?,
 
     @ColumnInfo(name = "user_additional_phone")
+
     @SerializedName("additional_phone")
     var additional_phone : String?,
 

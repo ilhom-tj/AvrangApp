@@ -12,20 +12,23 @@ import tj.colibri.avrang.data.mock.ProductCard2
 import tj.colibri.avrang.network.repositories.cartRepo.CartRepository
 import tj.colibri.avrang.network.repositories.favoriteRepo.FavoriteRepository
 import tj.colibri.avrang.network.repositories.products.ProductRepo
+import tj.colibri.avrang.utils.Features
 
 class ProductInfoViewModel(application: Application) : AndroidViewModel(application) {
-    private val repo = FavoriteRepository(application)
+    private val favRepo = FavoriteRepository(application)
     private val productRepo = ProductRepo(application.applicationContext)
     private val cartRepository = CartRepository(application.applicationContext)
-    val checkOut = cartRepository.checkOutList
 
+    val favList = favRepo.favList
+
+    val checkOut = cartRepository.checkOutList
     val cartIndexs = cartRepository.cartIndexes
 
     fun addFavorite(favorite: ProductCard2) = GlobalScope.launch{
-        repo.addFavorite(favorite.id)
+        favRepo.addItemToFavorite(Features().toFavoriteCache(favorite))
     }
     fun deleteFavorite(favorite: ProductCard2) = GlobalScope.launch {
-        repo.deleteFavorite(favorite)
+        favRepo.deleteFavorite(Features().toFavoriteCache(favorite))
     }
 
     fun getProductBySlug(slug : String): LiveData<ProductInfortmation2>{

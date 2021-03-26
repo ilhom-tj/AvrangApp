@@ -7,6 +7,9 @@ import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.widget.Toast
+import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.getColor
+import androidx.core.graphics.drawable.DrawableCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -45,13 +48,14 @@ class ProductInfoFragment : Fragment(), SliderAdapter.ItemClicked,
     private lateinit var optionsAdapter: OptionsAdapter
     private lateinit var specificationsAdapter: SpecificationsAdapter
 
+
     private var productCardAdapter = ProductCardAdapter(this, this)
     private lateinit var productInfo: ProductInfortmation2
     private var banksAdapter = BanksAdapter(this)
 
     private lateinit var binding: ProductInfoFragmentV2Binding
     private val args: ProductInfoFragmentArgs by navArgs()
-
+    private var isFavorite : Boolean = false
 
     //tj.colibri.avrang.data.ApiData.product.ProductInfo.Rating quantity
     private var rFiveQ = 0;
@@ -84,7 +88,7 @@ class ProductInfoFragment : Fragment(), SliderAdapter.ItemClicked,
 
 
         product_name.text = args.product.name
-
+        isFavorite = args.product.isFavorite
 
         //product_price = productInfo.productPrice.toString()
 
@@ -269,6 +273,11 @@ class ProductInfoFragment : Fragment(), SliderAdapter.ItemClicked,
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.product_menu, menu)
+        if (args.product.isFavorite){
+            menu.findItem(R.id.add_to_favorite).setIcon(R.drawable.ic_baseline_favorite_24)
+        }else{
+            menu.findItem(R.id.add_to_favorite).setIcon(R.drawable.ic_baseline_favorite_border_24)
+        }
 //        if (productInfo.product.){
 //     //       holder.product_favorite.setImageResource(R.drawable.ic_baseline_favorite_24)
 //        }else{
@@ -276,9 +285,21 @@ class ProductInfoFragment : Fragment(), SliderAdapter.ItemClicked,
 //        }
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.add_to_favorite) {
 
+            if (isFavorite){
+                Log.e("IsFav",isFavorite.toString())
+                viewModel.deleteFavorite(args.product)
+                item.setIcon(R.drawable.ic_baseline_favorite_border_24)
+            }else{
+                viewModel.addFavorite(args.product)
+                item.setIcon(R.drawable.ic_baseline_favorite_24)
+                isFavorite = true
+
+                Log.e("IsFav",isFavorite.toString())
+            }
         }
         return super.onOptionsItemSelected(item)
     }

@@ -131,9 +131,7 @@ class ProfileInfoFragment : Fragment() {
             val birthdate = edit_birthday.text.toString()
             val email = edit_email.text.toString()
 
-            //Это 2ые кавычки
-            val dm = 34.toChar()
-            val adress = dm+edit_adres.text.toString()+dm
+            val adress = edit_adres.text.toString()
 
             Log.e("additional1",additional_phone)
             viewModel.updateUserPersonalInfo(
@@ -144,7 +142,8 @@ class ProfileInfoFragment : Fragment() {
                 additional_phone,
                 city_id,
                 gender,
-                adress
+                adress,
+                ""
             )
         }
     }

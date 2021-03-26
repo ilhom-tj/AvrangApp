@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -22,6 +23,8 @@ import tj.colibri.avrang.data.ApiData.product.Rating
 import tj.colibri.avrang.data.ApiData.product.Sliders
 import tj.colibri.avrang.data.mock.ProductCard2
 import tj.colibri.avrang.data.slider.SliderItem
+import tj.colibri.avrang.databinding.FragmentHomeBinding
+import tj.colibri.avrang.databinding.ProfileFragmentBinding
 import tj.colibri.avrang.utils.ConnectionLive
 import tj.colibri.avrang.utils.Const
 import tj.colibri.avrang.utils.Features
@@ -31,6 +34,8 @@ class HomeFragment : Fragment(), SliderAdapter.ItemClicked, ProductCardAdapter.I
 
     private lateinit var homeViewModel: HomeViewModel
 
+    private val shimerAdapter = ShimmerProduct(this)
+
     private var productCardAdapter = ProductCardAdapter(this, this)
     private var bestProductCardAdapter = ProductCardAdapter(this,this)
 
@@ -39,16 +44,19 @@ class HomeFragment : Fragment(), SliderAdapter.ItemClicked, ProductCardAdapter.I
 
 
     private lateinit var sliderAdapter: SliderAdapter
+    private lateinit var binding : FragmentHomeBinding
+
     private var promoSliderAdapter = BannerSliderAdapter(this)
     private var partnersAdapter = PartnersAdapter(this)
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_home,container,false)
+        binding.lifecycleOwner = this
+        return binding.getRoot()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -62,6 +70,7 @@ class HomeFragment : Fragment(), SliderAdapter.ItemClicked, ProductCardAdapter.I
         }
       //  sliderAdapter.setData(MockData.listOfSliderImages)
 
+
         imageSlider.setSliderAdapter(sliderAdapter)
         imageSlider.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
         imageSlider.setIndicatorAnimation(IndicatorAnimationType.WORM)
@@ -69,7 +78,15 @@ class HomeFragment : Fragment(), SliderAdapter.ItemClicked, ProductCardAdapter.I
         imageSlider.indicatorUnselectedColor = Color.GRAY
         imageSlider.scrollTimeInSec = 4
         imageSlider.startAutoCycle()
+
         home_new_products_recycler_view.layoutManager = LinearLayoutManager(context,  LinearLayoutManager.HORIZONTAL, false)
+        binding.homeNewProductsRecyclerView.showShimmer()
+        binding.homePromoRecyclerView.showShimmer()
+        binding.homeBestsellersRecyclerView.showShimmer()
+        binding.homeRecommendedRecyclerView.showShimmer()
+        binding.homeSaleRecyclerView.showShimmer()
+        binding.homePromoSecondRecyclerView.showShimmer()
+
 
         ConnectionLive.init(requireActivity().application)
         ConnectionLive.observe(viewLifecycleOwner, Observer {
@@ -98,59 +115,31 @@ class HomeFragment : Fragment(), SliderAdapter.ItemClicked, ProductCardAdapter.I
                         home_news_2.setOnClickListener{openNews(productInformation.news.get(1))}
                         home_news_1.setOnClickListener{openNews(productInformation.news.get(2))}
 
+                        binding.homeNewProductsRecyclerView.hideShimmer()
+                        binding.homeNewProductsRecyclerView.adapter = productCardAdapter
+
+
+                        binding.homePromoRecyclerView.adapter = promoSliderAdapter
+                        binding.homePromoRecyclerView.hideShimmer()
+
+                        binding.homeBestsellersRecyclerView.adapter = bestProductCardAdapter
+                        binding.homeBestsellersRecyclerView.hideShimmer()
+
+                        binding.homeRecommendedRecyclerView.adapter = recomenProductCardAdapter
+                        binding.homeRecommendedRecyclerView.hideShimmer()
+
+                        binding.homeSaleRecyclerView.adapter = productCardAdapter
+                        binding.homeSaleRecyclerView.hideShimmer()
+
+                        binding.homePromoSecondRecyclerView.adapter = promoSliderAdapter
+                        binding.homePromoSecondRecyclerView.hideShimmer()
+
+                        home_partners_recycler_view.adapter = partnersAdapter
+                        home_partners_recycler_view.layoutManager = GridLayoutManager(context, 3,  LinearLayoutManager.VERTICAL, false)
                     }
                 })
             }
         })
-
-
-//        homeViewModel.newProducts.observe(viewLifecycleOwner, Observer {
-//            it.let {
-//                productCardAdapter.setData(it)
-//            }
-//        })
-//        homeViewModel.popularProducts.observe(viewLifecycleOwner, Observer {
-//            it.let {
-//                bestProductCardAdapter.setData(it)
-//            }
-//        })
-//        homeViewModel.recommendedProducts.observe(viewLifecycleOwner, Observer {
-//            it.let {
-//                recomenProductCardAdapter.setData(it)
-//            }
-//        })
-//        homeViewModel.maxDisProducts.observe(viewLifecycleOwner, Observer {
-//            it.let {
-//                promoProductCardAdapter.setData(it)
-//            }
-//        })
-
-        home_new_products_recycler_view.adapter = productCardAdapter
-        //        productCardAdapter.setData(MockData.listOfProducts)
-//
-
-        home_promo_recycler_view.adapter = promoSliderAdapter
-        home_promo_recycler_view.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-
-//
-        home_bestsellers_recycler_view.adapter = bestProductCardAdapter
-        home_bestsellers_recycler_view.layoutManager = LinearLayoutManager(context,  LinearLayoutManager.HORIZONTAL, false)
-//
-        home_recommended_recycler_view.adapter = recomenProductCardAdapter
-        home_recommended_recycler_view.layoutManager = LinearLayoutManager(context,  LinearLayoutManager.HORIZONTAL, false)
-
-//
-        home_promo_second_recycler_view.adapter = promoSliderAdapter
-        home_promo_second_recycler_view.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
- //       promoSliderAdapter.setData(MockData.listOfSliderImages)
-
-        home_sale_recycler_view.adapter = productCardAdapter
-        home_sale_recycler_view.layoutManager = LinearLayoutManager(context,  LinearLayoutManager.HORIZONTAL, false)
-
-
-        home_partners_recycler_view.adapter = partnersAdapter
-        home_partners_recycler_view.layoutManager = GridLayoutManager(context, 3,  LinearLayoutManager.VERTICAL, false)
-     //   partnersAdapter.setData(MockData.listOfSliderImages)
 
     }
 

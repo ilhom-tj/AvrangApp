@@ -16,6 +16,7 @@ import tj.colibri.avrang.data.ApiData.orderDetails.OrderDetails
 import tj.colibri.avrang.data.ApiData.product.ProductInfo.ProductInfortmation2
 import tj.colibri.avrang.data.ApiData.profile.ProfileResponse
 import tj.colibri.avrang.data.feedBack.FeedBack
+import tj.colibri.avrang.data.order.MyOrdersRequest
 import tj.colibri.avrang.data.ragistration.PhoneRegParams
 import tj.colibri.avrang.data.user.User
 
@@ -99,7 +100,8 @@ interface Api {
         @Query("additional_phone") additional_phone: String,
         @Query("city_id") city_id: Int,
         @Query("gender") gender: Int,
-        @Query("addresses") addresses: String?
+        @Query("main_address") main_address : String,
+        @Query("additional_address") addresses: String
     ): Call<User>
 
     @GET("profile")
@@ -148,4 +150,7 @@ interface Api {
 
     @GET("profile/favorites")
     fun getFavorites()  : Call<tj.colibri.avrang.data.ApiData.Favorite.FavoriteRequest>
+
+    @GET("profile/orders")
+    fun getMyOrders() : Call<MyOrdersRequest>
 }

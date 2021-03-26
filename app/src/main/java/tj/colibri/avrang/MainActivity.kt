@@ -47,7 +47,6 @@ class MainActivity : AppCompatActivity() {
         val sessionManager = SessionManager(this)
         if (sessionManager.getToken() != "error") {
             signInInstance = R.id.navigation_profile
-
             RefresToken()
         }
 
@@ -74,30 +73,45 @@ class MainActivity : AppCompatActivity() {
             when (destination.id) {
                 R.id.navigation_home -> {
                     supportActionBar?.elevation = 0f
+                    supportActionBar?.show()
                     logo.isVisible = true
                     title.isVisible = false
                     icon.isVisible = false
                 }
                 R.id.productInfoFragment -> {
                     supportActionBar?.elevation = 0f
+                    supportActionBar?.show()
                     logo.isVisible = false
                     title.isVisible = false
                     icon.isVisible = false
                 }
                 R.id.categoriesFragment -> {
                     supportActionBar?.elevation = 10f
+                    supportActionBar?.show()
                     logo.isVisible = false
                     title.isVisible = true
                     icon.isVisible = false
                 }
                 R.id.productsInCategoriesFragment -> {
                     supportActionBar?.elevation = 0f
+
+                    supportActionBar?.show()
                     logo.isVisible = false
                     title.isVisible = true
                     icon.isVisible = false
                 }
+                R.id.navigation_cart ->{
+                    supportActionBar?.elevation = 0f
+                    supportActionBar?.hide()
+                    logo.isVisible = false
+                    title.isVisible = true
+                    title.text = navController.currentDestination?.label
+                    icon.isVisible = false
+                    navView.isVisible = true
+                }
                 else -> {
                     supportActionBar?.elevation = 0f
+                    supportActionBar?.show()
                     logo.isVisible = false
                     title.isVisible = true
                     title.text = navController.currentDestination?.label
@@ -110,16 +124,16 @@ class MainActivity : AppCompatActivity() {
 
         val cartRepository = CartRepository(this)
 
-//        val favRepository = FavoriteRepository(this.application)
-//        favRepository.getFavorite().observe(this, Observer {
-//            it.let {
-//                if (it.favorites.isNotEmpty()){
-//                    it.favorites.forEach { fav ->
-//                        favRepository.addItemToFavorite(Features().toFavoriteCache(fav))
-//                    }
-//                }
-//            }
-//        })
+        val favRepository = FavoriteRepository(this.application)
+        favRepository.getFavorite().observe(this, Observer {
+            it.let {
+                if (it.favorites.isNotEmpty()){
+                    it.favorites.forEach { fav ->
+                        favRepository.addItemToChache(Features().toFavoriteCache(fav))
+                    }
+                }
+            }
+        })
         cartRepository.checkOutList.observe(this, Observer { items ->
             cartRepository.cartIndexes.observe(this, Observer {
                 it.let {

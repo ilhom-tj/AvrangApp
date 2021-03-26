@@ -5,6 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import tj.colibri.avrang.data.ApiData.Favorite.FavoriteRequest
+import tj.colibri.avrang.data.favorite.FavoriteCard
 import tj.colibri.avrang.data.mock.ProductCard2
 import tj.colibri.avrang.network.repositories.favoriteRepo.FavoriteRepository
 
@@ -12,7 +13,8 @@ class FavoritesViewModel(application: Application) : AndroidViewModel(applicatio
 ) {
 
     private val repo  = FavoriteRepository(application)
-
+    val favList = repo.favList
+    val favCount = repo.favCount
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is notifications Fragment"
@@ -21,7 +23,7 @@ class FavoritesViewModel(application: Application) : AndroidViewModel(applicatio
     fun getFavorites() : LiveData<FavoriteRequest>{
         return  repo.getFavorite()
     }
-    fun deleteFavorite(favorite: ProductCard2) : LiveData<Boolean>{
+    fun deleteFavorite(favorite: FavoriteCard) : LiveData<Boolean>{
         return repo.deleteFavorite(favorite)
     }
 

@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_orders.fragment_order_recyclerview
@@ -32,17 +33,19 @@ class OrdersFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(OrdersViewModel::class.java)
-        // TODO: Use the ViewModel
 
         orderContainerAdapter = OrderContainerAdapter(this)
-        //orderContainerAdapter.setData(MockData.listofOrderContainer)
 
+        viewModel.getMyOrders().observe(viewLifecycleOwner, Observer {
+            it.let {
+                orderContainerAdapter.setData(it.orders)
+            }
+        })
 
         fragment_order_recyclerview.apply {
             layoutManager = GridLayoutManager(requireContext(),1)
             adapter = orderContainerAdapter
         }
-
 
 
 

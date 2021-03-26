@@ -8,4 +8,6 @@
     <dimen name="text_size_normal">18dp</dimen>
     <dimen name="edit_text_padding">15dp</dimen>
     <dimen name="text_top">30dp</dimen>
+    <dimen name="button_height">70dp</dimen>
+    <dimen name="orders_item_digits">17sp</dimen>
 </resources>

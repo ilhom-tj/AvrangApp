@@ -18,15 +18,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
-    <ImageView
-        android:id="@+id/promo_slider_image"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintDimensionRatio="16:9"
-        android:scaleType="fitXY"
-         />
-
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

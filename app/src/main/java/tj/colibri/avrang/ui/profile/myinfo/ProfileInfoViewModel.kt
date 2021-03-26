@@ -23,15 +23,16 @@ class ProfileInfoViewModel(application: Application) : AndroidViewModel(applicat
         birthdate : String,
         phone : String,
         email : String,
-        addional_phone : String,
+        additional_phone : String,
         city_id : Int,
         gender : Int,
-        addresses : String) : LiveData<User>{
-        Log.e("additional1",addional_phone)
-        return userRepository.updatePersonalInfo(name,birthdate,phone,email,addional_phone,city_id,gender,addresses)
+        main_address: String,
+        additional_address : String) : LiveData<User>{
+        return userRepository.updatePersonalInfo(name,birthdate,phone,email,additional_phone,city_id,gender,main_address,additional_address)
     }
 
     fun getCities() : LiveData<List<Cities>>{
+
         return cityRepo.getCities()
     }
 }

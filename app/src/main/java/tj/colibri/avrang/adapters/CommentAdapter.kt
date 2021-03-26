@@ -84,7 +84,7 @@ class CommentAdapter(val context: Fragment) : RecyclerView.Adapter<CommentAdapte
         val comment = comments[position]
         holder.authorName.text = comment.user_id.name
         Glide.with(context).load(Const.image_url + comment.user_id.image).circleCrop().into(holder.authorAvatar)
-
+        val date = SimpleDateFormat("dd-MM-yyyy").parse(comment.created_at)
         holder.commentDate.text = comment.created_at
         holder.commentRatingCount.text = comment.rating.toString()
         holder.commentRatingBar.rating = comment.rating.toFloat()
