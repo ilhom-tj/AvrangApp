@@ -1,12 +1,14 @@
 package tj.colibri.avrang.adapters
 
 import android.annotation.SuppressLint
+import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.IntegerRes
+import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -64,6 +66,7 @@ class CartItemsAdapter(
             itemClick.deleteFromCart(product)
         }
 
+
         holder.minusBtn.setOnClickListener {
             if (holder.quantity.text.toString().toInt() > 0) {
 
@@ -71,7 +74,6 @@ class CartItemsAdapter(
                 var qty = Integer.parseInt(holder.quantity.text.toString())
                 holder.total_price.text =
                     (product.price * holder.quantity.text.toString().toInt()).toString() + " TJS"
-
                 itemClick.onMinusQuantityClick(product,qty)
             }
 
@@ -100,8 +102,8 @@ class CartItemsAdapter(
         var unit_price: TextView = view.findViewById(R.id.unit_price)
         var total_price: TextView = view.findViewById(R.id.total_price)
         var removeBtn: ImageView = view.findViewById(R.id.remove_from_favorite)
-        var minusBtn: MaterialCardView = view.findViewById(R.id.qty_minus)
-        var plusBtn: MaterialCardView = view.findViewById(R.id.qty_plus)
+        var minusBtn: CardView = view.findViewById(R.id.qty_minus)
+        var plusBtn: CardView = view.findViewById(R.id.qty_plus)
         var quantity: TextView = view.findViewById(R.id.qty)
         var bonus : TextView = view.findViewById(R.id.bonuses)
         var image : ImageView = view.findViewById(R.id.product_background)

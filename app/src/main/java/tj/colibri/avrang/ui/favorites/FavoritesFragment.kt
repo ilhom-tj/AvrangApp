@@ -44,7 +44,12 @@ class FavoritesFragment : Fragment(), FavoritesAdapter.RemoveClickListener {
 
         viewModel.favCount.observe(viewLifecycleOwner, Observer {
             it.let {
-                favorites_qty.text = "$it товара"
+                if (it == 1){
+                    favorites_qty.text = "$it товар"
+                }else{
+                    favorites_qty.text = "$it товара"
+                }
+
             }
         })
         viewModel.favList.observe(requireActivity(), Observer {

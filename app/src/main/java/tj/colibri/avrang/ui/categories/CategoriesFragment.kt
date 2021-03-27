@@ -65,8 +65,8 @@ class CategoriesFragment : Fragment(), SubCategoriesAdapter.ItemClicked, Categor
     }
 
     override fun onSubCategoryClicked(item: Children) {
-//        val directions = CategoriesFragmentDirections.actionCategoriesFragmentToProductsInCategoriesFragment(item)
-//        findNavController().navigate(directions)
+        val directions = CategoriesFragmentDirections.actionCategoriesFragmentToProductsInCategoriesFragment2(item)
+        findNavController().navigate(directions)
     }
 
 }

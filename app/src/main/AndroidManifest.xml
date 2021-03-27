@@ -24,6 +24,7 @@
             </intent-filter>
         </activity>
         <activity
+            android:configChanges="orientation|screenSize"
             android:theme="@style/Theme.Avrang"
             android:name=".MainActivity"
             android:label="@string/app_name">

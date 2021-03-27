@@ -37,7 +37,7 @@ class VerifyPhoneFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(VerifyPhoneViewModel::class.java)
-        // TODO: Use the ViewModel
+
       //  confirmCodePin.setText(args.confirmCode.toString())
 //        var counter = object : CountDownTimer(60000,1000){
 //            @SuppressLint("SetTextI18n")

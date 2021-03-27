@@ -6,6 +6,7 @@ import retrofit2.Call
 import retrofit2.http.*
 import tj.colibri.avrang.data.ApiData.Cart.CartIndexResponse
 import tj.colibri.avrang.data.ApiData.Cart.UpdateCart
+import tj.colibri.avrang.data.ApiData.Category.CategoryProductRequest
 import tj.colibri.avrang.data.ApiData.Category.CategoryResponse
 import tj.colibri.avrang.data.ApiData.chekout.forRequest.CheckOutResponse
 import tj.colibri.avrang.data.ApiData.cities.CitiesResponse
@@ -100,7 +101,7 @@ interface Api {
         @Query("additional_phone") additional_phone: String,
         @Query("city_id") city_id: Int,
         @Query("gender") gender: Int,
-        @Query("main_address") main_address : String,
+        @Query("main_address") main_address: String,
         @Query("additional_address") addresses: String
     ): Call<User>
 
@@ -118,39 +119,53 @@ interface Api {
 
     //GetProduct
     @GET("single/{slug}")
-    fun getProduct(@Path("slug") slug: String): Call<ProductInfortmation2>
-
+    fun getProduct(
+        @Path("slug") slug: String
+    ): Call<ProductInfortmation2>
 
 
     //tj.colibri.avrang.data.ApiData.product.ProductInfo.Category
     //Catalog
     @GET("catalog")
-    fun getCategories() : Call<CategoryResponse>
+    fun getCategories(): Call<CategoryResponse>
 
+    @GET("category/{slug}")
+    fun getCategoryProducts(
+        @Path("slug") slug: String,
+        @Query("page") page : Int
+    ): Call<CategoryProductRequest>
 
     //Корзина
     @POST("cart")
     fun updateCart(
-        @Body json : CartIndexResponse
-    ) : Call<UpdateCart>
+        @Body json: CartIndexResponse
+    ): Call<UpdateCart>
 
     @GET("order-details")
-    fun orderDetails() : Call<OrderDetails>
+    fun orderDetails(): Call<OrderDetails>
 
     @POST("checkout")
-    fun checkOut(@Body checkOut : CheckOutResquest) : Call<CheckOutResponse>
+    fun checkOut(@Body checkOut: CheckOutResquest): Call<CheckOutResponse>
 
 
     //Favorites
     @POST("add-to-favorite/{id}")
-    fun addToFavorite(@Path("id")id : Int) : Call<String>
+    fun addToFavorite(
+        @Path("id") id: Int
+    ): Call<String>
 
     @POST("delete-from-favorite/{id}")
-    fun deleteFavorite(@Path("id") id:Int) : Call<String>
+    fun deleteFavorite(
+        @Path("id") id: Int
+    ): Call<String>
 
     @GET("profile/favorites")
-    fun getFavorites()  : Call<tj.colibri.avrang.data.ApiData.Favorite.FavoriteRequest>
+    fun getFavorites(
+
+    ): Call<tj.colibri.avrang.data.ApiData.Favorite.FavoriteRequest>
 
     @GET("profile/orders")
-    fun getMyOrders() : Call<MyOrdersRequest>
+    fun getMyOrders(
+
+    ): Call<MyOrdersRequest>
 }

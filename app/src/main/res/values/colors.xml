@@ -30,4 +30,5 @@
     <color name="line_color">#E1E1E1</color>
     <color name="elipse_gray">#E5E5EA</color>
     <color name="elipse_red">#C44039</color>
+    <color name="placeholder">#E4E4E4</color>
 </resources>

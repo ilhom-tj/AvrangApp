@@ -31,7 +31,7 @@ class ProductCardAdapter(val context : Fragment,
                          private val itemClickListener: ItemClicked
                          ) : RecyclerView.Adapter<ProductCardAdapter.ProductHolder>() {
 
-    private var products = emptyList<ProductCard2>()
+    private var products = mutableListOf<ProductCard2>()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -43,19 +43,27 @@ class ProductCardAdapter(val context : Fragment,
     }
 
     fun setData(items: List<ProductCard2>) {
-        this.products = items
+        this.products = items.toMutableList()
+        notifyDataSetChanged()
+    }
+
+    fun addMoreProducts(items : List<ProductCard2>){
+        this.products.addAll(items)
         notifyDataSetChanged()
     }
 
     override fun getItemCount()=products.size
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ProductCardAdapter.ProductHolder, position: Int) {
         val product = products[position]
         holder.product_title.text = product.name
         if (product.isFavorite){
             holder.product_favorite.setImageResource(R.drawable.ic_baseline_favorite_24)
+            holder.product_favorite.setColorFilter(ContextCompat.getColor(context.requireContext(),R.color.red_primary))
         }else{
             holder.product_favorite.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+            holder.product_favorite.clearColorFilter()
         }
 
          Glide
@@ -86,7 +94,8 @@ class ProductCardAdapter(val context : Fragment,
         holder.product_favorite.setOnClickListener {
             if (product.isFavorite){
                 holder.product_favorite.setImageResource(R.drawable.ic_baseline_favorite_border_24)
-                holder.product_favorite.setColorFilter(ContextCompat.getColor(context.requireContext(),R.color.red_primary))
+                holder.product_favorite.clearColorFilter()
+             //   holder.product_favorite.setColorFilter(ContextCompat.getColor(context.requireContext(),R.color.red_primary))
                 products.get(position).isFavorite = false
                 notifyDataSetChanged()
                 itemClickListener.onRemoveClickListener(product)
@@ -121,54 +130,4 @@ class ProductCardAdapter(val context : Fragment,
         fun onAddProductToFavorite(favorite: ProductCard2)
         fun onRemoveClickListener(favorite: ProductCard2)
     }
-
-
-
-
-//    @SuppressLint("SimpleDateFormat")
-//    fun sortByDate(){
-//        Collections.sort(products, Comparator<ProductCard>{
-//            product1,product2 ->
-////            Log.e("date",product1.labels.)
-////            val Date1 : Date = product1.productDate!!
-////            val Date2 : Date = product2.productDate!!
-////            Date1.time.compareTo(Date2.time)
-////        })
-//        notifyDataSetChanged()
-//    }
-//    fun sortBySaleIndex(){
-//        Collections.sort(
-//            products,
-//            Comparator<ProductCard> { prd1, prd2 -> // -1 - less than, 1 - greater than, 0 - equal, all inversed for descending
-//                if (prd1.productSaleIndex > prd2.productSaleIndex) -1 else if (prd1.productSaleIndex < prd2.productSaleIndex) 1 else 0
-//            })
-//        notifyDataSetChanged()
-//    }
-//    fun sortByRating(){
-//
-//    }
-//    fun sortByLowPrice(){
-//        Collections.sort(
-//            products,
-//            Comparator<ProductCard> { prd1, prd2 -> // -1 - less than, 1 - greater than, 0 - equal, all inversed for descending
-//                if (prd1.productPrice < prd2.productPrice) -1 else if (prd1.productPrice > prd2.productPrice) 1 else 0
-//            })
-//        notifyDataSetChanged()
-//    }
-//    fun sortByHightPrice(){
-//        Collections.sort(
-//            products,
-//            Comparator<ProductCard> { prd1, prd2 -> // -1 - less than, 1 - greater than, 0 - equal, all inversed for descending
-//                if (prd1.productPrice > prd2.productPrice) -1 else if (prd1.productPrice < prd2.productPrice) 1 else 0
-//            })
-//        notifyDataSetChanged()
-//    }
-//    fun sortByDiscount(){
-//        Collections.sort(
-//            products,
-//            Comparator<ProductCard> { prd1, prd2 -> // -1 - less than, 1 - greater than, 0 - equal, all inversed for descending
-//                if (prd1.productDiscount > prd2.productDiscount) -1 else if (prd1.productDiscount < prd2.productDiscount) 1 else 0
-//            })
-//        notifyDataSetChanged()
-//    }
 }

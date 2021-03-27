@@ -1,5 +1,6 @@
 package tj.colibri.avrang.ui.product.categories
 
+import android.annotation.SuppressLint
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,11 +9,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioGroup
 import android.widget.TextView
+import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.products_in_categories_fragment.*
 import kotlinx.android.synthetic.main.profile_fragment.*
 import tj.colibri.avrang.MainActivity
@@ -20,6 +23,7 @@ import tj.colibri.avrang.R
 import tj.colibri.avrang.adapters.ProductCardAdapter
 import tj.colibri.avrang.data.mock.MockData
 import tj.colibri.avrang.data.mock.ProductCard2
+import tj.colibri.avrang.utils.EndlessRecyclerViewScrollListener
 import tj.colibri.avrang.utils.Features
 import tj.colibri.avrang.utils.SubtitleRadioButton
 import kotlinx.android.synthetic.main.products_in_categories_fragment.bottomsheet as bottomsheet1
@@ -30,6 +34,10 @@ class ProductsInCategoriesFragment : Fragment(), ProductCardAdapter.ItemClicked 
     private lateinit var productCardAdapter: ProductCardAdapter
 
     private val args: ProductsInCategoriesFragmentArgs by navArgs()
+
+    var pageIndex = 1;
+    var maxPages = 1;
+    var productsQty = 0;
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,23 +55,38 @@ class ProductsInCategoriesFragment : Fragment(), ProductCardAdapter.ItemClicked 
         val actionBar = (activity as MainActivity).supportActionBar
         val actionBarView = actionBar?.customView
         val title: TextView = actionBarView!!.findViewById(R.id.action_bar_title)
-        title.text = args.subCategory.title
+        title.text = args.child.name
 
         products_in_categorires_recycler_view.adapter = productCardAdapter
         products_in_categorires_recycler_view.layoutManager =
-            GridLayoutManager(context, 2, LinearLayoutManager.HORIZONTAL, false)
-      //  productCardAdapter.setData(MockData.listOfProducts)
+            GridLayoutManager(context, 2)
+        //  productCardAdapter.setData(MockData.listOfProducts)
 
         filters_label.setOnClickListener {
             Navigation.findNavController(requireView())
                 .navigate(R.id.action_productsInCategoriesFragment_to_filterFragment)
         }
 
+        val layoutManager = products_in_categorires_recycler_view.layoutManager
 
+        viewModel.getCategoryProudcts(args.child.slug).observe(viewLifecycleOwner, Observer {
+            it.let {
+                productCardAdapter.setData(it.products.products)
+                SetProductQty(productCardAdapter.itemCount)
+                productsQty = it.products.products.size
+                maxPages = it.products.links.total_pages
+                pageIndex++;
+                products_in_categorires_recycler_view.addOnScrollListener(object : EndlessRecyclerViewScrollListener(layoutManager as GridLayoutManager){
+                    override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView?) {
+                        loadMore()
+                    }
+
+                })
+            }
+        })
         sorting_label.setOnClickListener {
             ShowFilterSheet()
         }
-
 
     }
 
@@ -101,18 +124,39 @@ class ProductsInCategoriesFragment : Fragment(), ProductCardAdapter.ItemClicked 
             bottomsheet.dismissSheet()
         }
 
-}
+    }
 
-override fun onProductItemClicked(product: ProductCard2) {
-    findNavController().navigate(R.id.action_productsInCategoriesFragment_to_productInfoFragment)
-}
+    @SuppressLint("SetTextI18n")
+    fun SetProductQty(size : Int){
+        products_qty.setText("$productsQty товаров")
+    }
 
-override fun onAddProductToFavorite(favorite: ProductCard2) {
-    viewModel.addFavorite(favorite)
-}
+    override fun onProductItemClicked(product: ProductCard2) {
+        val args =
+            ProductsInCategoriesFragmentDirections.actionProductsInCategoriesFragmentToProductInfoFragment(
+                product
+            )
+        findNavController().navigate(args)
+    }
 
-override fun onRemoveClickListener(favorite: ProductCard2) {
-    viewModel.deleteFavorite(favorite)
-}
+    override fun onAddProductToFavorite(favorite: ProductCard2) {
+        viewModel.addFavorite(favorite)
+    }
+
+    override fun onRemoveClickListener(favorite: ProductCard2) {
+        viewModel.deleteFavorite(favorite)
+    }
+
+    fun loadMore(){
+        viewModel.getCategoryProudctsIndex(args.child.slug,pageIndex).observe(viewLifecycleOwner, Observer {
+            it.let {
+                productCardAdapter.addMoreProducts(it.products.products)
+                productsQty += it.products.products.size
+                SetProductQty(productsQty)
+                maxPages = it.products.links.total_pages
+                pageIndex++;
+            }
+        })
+    }
 
 }

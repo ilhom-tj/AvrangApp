@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:padding="5dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+
     android:id="@+id/product_layout">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="wrap_content"
-        android:layout_height="270dp"
+        android:layout_width="match_parent"
+        android:layout_height="210dp"
         app:cardBackgroundColor="@color/card_background"
         app:cardCornerRadius="10dp"
         android:id="@+id/product_card"
@@ -25,7 +27,6 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/product_header"
-                android:visibility="invisible"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -78,15 +79,12 @@
 
             <ImageView
                 android:id="@+id/product_image"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-               android:layout_marginTop="10dp"
-                android:paddingStart="@dimen/activity_horizontal_margin"
-                android:paddingEnd="@dimen/activity_horizontal_margin"
+                android:layout_width="171dp"
+                android:layout_height="156dp"
+                android:layout_marginTop="12dp"
                 android:scaleType="centerInside"
+                android:src="@drawable/avrang_product_sample"
                 app:layout_constraintDimensionRatio="16:9"
-                android:src="@color/placeholder"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/product_header" />
 
@@ -95,25 +93,22 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                android:textSize="12sp"
-                android:background="@color/placeholder"
-                android:text="@string/sample_product_name"
-                android:textColor="@color/placeholder"
-                android:minLines="2"
-                android:maxLines="2"
+                android:layout_marginEnd="10dp"
                 android:ellipsize="end"
+                android:maxLines="2"
+                android:minLines="2"
+                android:text="@string/sample_product_name"
+                android:textColor="@color/black"
+                android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/product_image" />
+                app:layout_constraintStart_toEndOf="@+id/product_image"
+                app:layout_constraintTop_toTopOf="@+id/product_image" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/product_rating"
-                android:textColor="@color/placeholder"
-                android:background="@color/placeholder"
+                android:textColor="@color/red_rating"
                 app:layout_constraintTop_toBottomOf="@+id/product_title"
                 app:layout_constraintStart_toStartOf="@+id/product_title"
                 android:layout_marginTop="8dp"
@@ -124,7 +119,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:id="@+id/product_rating_star"
-                android:src="@color/placeholder"
+                android:src="@drawable/ic_rating_star"
                 app:layout_constraintTop_toTopOf="@+id/product_rating"
                 app:layout_constraintBottom_toBottomOf="@+id/product_rating"
                 app:layout_constraintStart_toEndOf="@+id/product_rating"
@@ -135,10 +130,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/ratings_qty"
-                android:background="@color/placeholder"
                 android:text="0 отзывов"
                 android:textSize="12sp"
-                android:textColor="@color/placeholder"
+                android:textColor="@color/product_secondary"
                 android:layout_marginStart="4dp"
                 app:layout_constraintStart_toEndOf="@+id/product_rating_star"
                 app:layout_constraintTop_toTopOf="@+id/product_rating"
@@ -156,17 +150,18 @@
                 android:layout_marginTop="8dp"/>
 
             <TextView
+                android:id="@+id/product_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/product_price"
+                android:layout_marginStart="4dp"
                 android:text="@string/sample_product_price"
-                android:textStyle="bold"
-                android:textColor="@color/placeholder"
-                android:background="@color/placeholder"
+                android:textColor="@color/black"
                 android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/product_image"
+                app:layout_constraintStart_toStartOf="@+id/product_old_price"
                 app:layout_constraintTop_toBottomOf="@+id/product_old_price"
-                app:layout_constraintStart_toStartOf="@+id/product_old_price"/>
+                app:layout_constraintVertical_bias="0.906" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

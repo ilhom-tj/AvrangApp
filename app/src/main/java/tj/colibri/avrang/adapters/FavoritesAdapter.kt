@@ -1,6 +1,7 @@
 package tj.colibri.avrang.adapters
 
 import android.annotation.SuppressLint
+import android.graphics.Paint
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -39,7 +40,7 @@ class FavoritesAdapter(val context : Fragment,private val removeClick : RemoveCl
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ProductHolder, position: Int) {
         val product = products[position]
-        Log.e("Position",position.toString())
+
         holder.title.text = product.name
         holder.code.text = "Код продукта: ${product.sku}"
 
@@ -50,6 +51,9 @@ class FavoritesAdapter(val context : Fragment,private val removeClick : RemoveCl
             holder.price.text = product.discounted.toString() + " TJS"
             holder.oldPrice.text = product.price.toString() + " TJS"
         }
+
+        holder.oldPrice.setPaintFlags(holder.oldPrice.getPaintFlags() or Paint.STRIKE_THRU_TEXT_FLAG)
+
 
         holder.removeBtn.setOnClickListener {
             removeClick.removeClickListener(product)
@@ -62,7 +66,7 @@ class FavoritesAdapter(val context : Fragment,private val removeClick : RemoveCl
     inner class ProductHolder(view: View) :
         RecyclerView.ViewHolder(view) {
         var title: TextView = view.findViewById(R.id.product_title)
-        var code : TextView = view.findViewById(R.id.product_title)
+        var code : TextView = view.findViewById(R.id.product_code)
         var price : TextView = view.findViewById(R.id.product_price)
         var oldPrice : TextView = view.findViewById(R.id.product_old_price)
         var removeBtn : ImageView = view.findViewById(R.id.remove_from_favorite)

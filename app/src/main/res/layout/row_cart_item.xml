@@ -12,7 +12,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="4dp"
+        app:cardCornerRadius="6dp"
         android:layout_marginTop="10dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -24,11 +24,13 @@
                 android:layout_width="82dp"
                 android:layout_height="82dp"
                 android:layout_margin="14dp"
+                android:layout_marginStart="16dp"
                 android:background="@drawable/image_background"
                 android:src="@drawable/avrang_product_sample"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
                 android:id="@+id/product_title"
@@ -64,7 +66,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/unit_price_layout"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 app:layout_constraintStart_toEndOf="@+id/product_background"
                 app:layout_constraintTop_toBottomOf="@+id/product_title">
 
@@ -138,7 +140,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/bonuses_layout"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="14dp"
                 app:layout_constraintTop_toBottomOf="@+id/unit_price_layout"
                 app:layout_constraintEnd_toStartOf="@+id/product_qty_layout"
                 app:layout_constraintStart_toEndOf="@+id/product_background">
@@ -170,72 +172,79 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
                 android:id="@+id/product_qty_layout"
-                app:layout_constraintTop_toBottomOf="@+id/unit_price_layout"
-                app:layout_constraintStart_toEndOf="@+id/bonuses_layout"
+                android:layout_width="0dp"
+                android:minHeight="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="10dp">
+                app:layout_constraintTop_toTopOf="@+id/bonuses_layout">
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/qty_card"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/qty_card"
+                    app:cardElevation="0dp"
+                    app:cardBackgroundColor="@color/card_background"
                     app:cardCornerRadius="6dp"
-                    app:cardBackgroundColor="@color/card_background">
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginEnd="5dp"
-                        android:padding="2dp">
-                        <com.google.android.material.card.MaterialCardView
+                        >
+
+                        <androidx.cardview.widget.CardView
                             android:id="@+id/qty_minus"
-                            app:cardElevation="0dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
+                            app:cardElevation="0dp"
+                            android:layout_marginStart="4dp"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toStartOf="@+id/qty">
+                            app:layout_constraintEnd_toStartOf="@+id/qty"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
                             <ImageView
-                                android:layout_width="32dp"
-                                android:layout_height="32dp"
-                                android:src="@drawable/ic_avrang_qty_minus"
-                                />
-                        </com.google.android.material.card.MaterialCardView>
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:src="@drawable/ic_avrang_qty_minus" />
+                        </androidx.cardview.widget.CardView>
 
 
                         <TextView
+                            android:id="@+id/qty"
                             android:layout_width="60dp"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/black"
-                            android:id="@+id/qty"
-                            android:textSize="18sp"
                             android:text="100"
                             android:textAlignment="center"
-                            app:layout_constraintTop_toTopOf="parent"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
                             app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/qty_plus"
                             app:layout_constraintStart_toEndOf="@+id/qty_minus"
-                            app:layout_constraintEnd_toStartOf="@id/qty_plus"/>
-                        <com.google.android.material.card.MaterialCardView
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.cardview.widget.CardView
                             android:id="@+id/qty_plus"
                             android:layout_width="wrap_content"
-                            app:cardElevation="0dp"
                             android:layout_height="wrap_content"
-                            app:layout_constraintTop_toTopOf="parent"
+                            app:cardElevation="0dp"
+                            android:layout_marginEnd="4dp"
                             app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@+id/qty"
-                            app:layout_constraintEnd_toEndOf="parent">
+                            app:layout_constraintTop_toTopOf="parent">
+
                             <ImageView
-                                android:layout_width="32dp"
-                                android:layout_height="32dp"
-                                android:src="@drawable/ic_avrang_qty_plus"
-                                />
-                        </com.google.android.material.card.MaterialCardView>
-
-
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:src="@drawable/ic_avrang_qty_plus" />
+                        </androidx.cardview.widget.CardView>
 
 
                     </androidx.constraintlayout.widget.ConstraintLayout>

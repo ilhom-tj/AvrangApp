@@ -97,25 +97,21 @@
         android:name="tj.colibri.avrang.ui.categories.CategoriesFragment"
         android:label="categories_fragment"
         tools:layout="@layout/categories_fragment" >
-        <action
-            android:id="@+id/action_categoriesFragment_to_productsInCategoriesFragment"
-            app:destination="@id/productsInCategoriesFragment"
-            app:enterAnim="@anim/fragment_fade_enter" />
         <argument
             android:name="children"
             app:argType="tj.colibri.avrang.data.ApiData.Category.Children[]" />
         <argument
             android:name="parentTitle"
             app:argType="string" />
+        <action
+            android:id="@+id/action_categoriesFragment_to_productsInCategoriesFragment2"
+            app:destination="@id/productsInCategoriesFragment" />
     </fragment>
     <fragment
         android:id="@+id/productsInCategoriesFragment"
         android:name="tj.colibri.avrang.ui.product.categories.ProductsInCategoriesFragment"
         android:label="products_in_categories_fragment"
         tools:layout="@layout/products_in_categories_fragment" >
-        <argument
-            android:name="subCategory"
-            app:argType="tj.colibri.avrang.data.categories.SubCategory" />
         <action
             android:id="@+id/action_productsInCategoriesFragment_to_productInfoFragment"
             app:destination="@id/productInfoFragment"
@@ -124,6 +120,9 @@
             android:id="@+id/action_productsInCategoriesFragment_to_filterFragment"
             app:destination="@id/filterFragment"
             app:enterAnim="@anim/fragment_fade_enter" />
+        <argument
+            android:name="child"
+            app:argType="tj.colibri.avrang.data.ApiData.Category.Children" />
     </fragment>
     <fragment
         android:id="@+id/profile_myinfo"

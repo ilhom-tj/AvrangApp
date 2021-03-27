@@ -293,11 +293,11 @@ class ProductInfoFragment : Fragment(), SliderAdapter.ItemClicked,
                 Log.e("IsFav",isFavorite.toString())
                 viewModel.deleteFavorite(args.product)
                 item.setIcon(R.drawable.ic_baseline_favorite_border_24)
+                isFavorite = false
             }else{
                 viewModel.addFavorite(args.product)
                 item.setIcon(R.drawable.ic_baseline_favorite_24)
                 isFavorite = true
-
                 Log.e("IsFav",isFavorite.toString())
             }
         }
