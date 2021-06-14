@@ -8,11 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_orders.fragment_order_recyclerview
 import tj.colibri.avrang.R
 import tj.colibri.avrang.adapters.OrderContainerAdapter
-import tj.colibri.avrang.data.mock.MockData
 
 class OrdersFragment : Fragment() {
 
@@ -38,7 +36,9 @@ class OrdersFragment : Fragment() {
 
         viewModel.getMyOrders().observe(viewLifecycleOwner, Observer {
             it.let {
-                orderContainerAdapter.setData(it.orders)
+                orderContainerAdapter.containers.clear()
+                orderContainerAdapter.containers = it.orders.toMutableList()
+                orderContainerAdapter.notifyDataSetChanged()
             }
         })
 

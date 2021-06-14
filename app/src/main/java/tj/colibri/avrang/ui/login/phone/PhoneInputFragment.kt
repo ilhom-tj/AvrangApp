@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.login_phone_input_fragment.*
 import tj.colibri.avrang.R
+import tj.colibri.avrang.utils.Features
 import kotlinx.android.synthetic.main.login_phone_input_fragment.login_phone_inputText as login_phone_inputText1
 
 class PhoneInputFragment : Fragment() {
@@ -33,6 +34,7 @@ class PhoneInputFragment : Fragment() {
             if (login_phone_inputText1.text.toString().isNotEmpty()){
                 viewModel.getVerificationCode(login_phone_inputText1.text.toString()).observe(viewLifecycleOwner, {
                     val destination = PhoneInputFragmentDirections.actionPhoneInputFragmentToVerifyPhoneFragment(phone = login_phone_inputText1.text.toString(), it.confirm_code)
+                    Features().hideKeyboard(requireActivity())
                     findNavController().navigate(destination)
                 })
 

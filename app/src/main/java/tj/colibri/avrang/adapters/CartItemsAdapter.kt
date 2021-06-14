@@ -1,25 +1,18 @@
 package tj.colibri.avrang.adapters
 
 import android.annotation.SuppressLint
-import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.annotation.IntegerRes
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.google.android.material.card.MaterialCardView
 import tj.colibri.avrang.R
-import tj.colibri.avrang.data.ApiData.chekout.CheckOutItem
 import tj.colibri.avrang.data.cart.CartItem
-import tj.colibri.avrang.data.mock.ProductCard2
 import tj.colibri.avrang.utils.Const
-import tj.colibri.avrang.utils.Features
-import java.util.*
 
 class CartItemsAdapter(
     val context: Fragment,
@@ -28,6 +21,7 @@ class CartItemsAdapter(
 
     private var products = mutableListOf<CartItem>()
 
+    @SuppressLint("InflateParams")
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -42,10 +36,6 @@ class CartItemsAdapter(
         notifyDataSetChanged()
     }
 
-    fun removeItem(position: Int) {
-        products.removeAt(position)
-        notifyDataSetChanged()
-    }
 
 
     override fun getItemCount() = products.size
@@ -60,7 +50,7 @@ class CartItemsAdapter(
         holder.unit_price.text = product.price.toString()
         holder.total_price.text = (product.price * product.quantity).toString() + " TJS"
 
-        holder.quantity.setText(product.quantity.toString())
+        holder.quantity.text = product.quantity.toString()
 
         holder.removeBtn.setOnClickListener {
             itemClick.deleteFromCart(product)
@@ -71,7 +61,7 @@ class CartItemsAdapter(
             if (holder.quantity.text.toString().toInt() > 0) {
 
                 holder.quantity.text = (holder.quantity.text.toString().toInt() - 1).toString()
-                var qty = Integer.parseInt(holder.quantity.text.toString())
+                val qty = Integer.parseInt(holder.quantity.text.toString())
                 holder.total_price.text =
                     (product.price * holder.quantity.text.toString().toInt()).toString() + " TJS"
                 itemClick.onMinusQuantityClick(product,qty)
@@ -80,17 +70,19 @@ class CartItemsAdapter(
         }
         holder.plusBtn.setOnClickListener {
             if (holder.quantity.text.toString().toInt() < product.in_stock){
-            holder.quantity.text = (holder.quantity.text.toString().toInt() + 1).toString()
-            var qty = Integer.parseInt(holder.quantity.text.toString())
+                holder.quantity.text = (holder.quantity.text.toString().toInt() + 1).toString()
+                val qty = Integer.parseInt(holder.quantity.text.toString())
 
-            holder.total_price.text =
-                (product.price * holder.quantity.text.toString().toInt()).toString() + " TJS"
-            itemClick.onPlusQuantityClick(product,qty)
+                holder.total_price.text =
+                    (product.price * holder.quantity.text.toString().toInt()).toString() + " TJS"
+                itemClick.onPlusQuantityClick(product, qty)
             }
         }
-        holder.bonus.setText(product.bonus.toString() + " Баллов")
+        holder.bonus.text = product.bonus.toString() + " Баллов"
 
-
+        holder.itemView.setOnClickListener {
+            itemClick.itemClickListener(product)
+        }
         Glide.with(context).load(Const.image_url + product.images).into(holder.image)
 
     }
@@ -110,7 +102,8 @@ class CartItemsAdapter(
     }
 
     interface CartItemCliked {
-        fun onPlusQuantityClick(cartItem: CartItem,quantity : Int)
+        fun itemClickListener(cartItem: CartItem)
+        fun onPlusQuantityClick(cartItem: CartItem, quantity: Int)
         fun onMinusQuantityClick(cartItem: CartItem,quantity : Int)
         fun deleteFromCart(cartItem: CartItem)
     }

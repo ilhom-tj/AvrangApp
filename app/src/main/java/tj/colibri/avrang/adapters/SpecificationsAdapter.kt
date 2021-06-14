@@ -1,16 +1,14 @@
 package tj.colibri.avrang.adapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import tj.colibri.avrang.R
 import tj.colibri.avrang.data.ApiData.product.ProductInfo.Attributes
-import tj.colibri.avrang.data.product.options.ProductOptions
-import tj.colibri.avrang.data.product.specifications.Specification
 
 class SpecificationsAdapter(val fragment: Fragment) : RecyclerView.Adapter<SpecificationsAdapter.SpecificationHolder>() {
 
@@ -18,6 +16,7 @@ class SpecificationsAdapter(val fragment: Fragment) : RecyclerView.Adapter<Speci
 
     override fun getItemCount()=items.size
 
+    @SuppressLint("InflateParams")
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int

@@ -19,7 +19,7 @@ abstract class CartIndexDB : RoomDatabase() {
                         context.applicationContext,
                         CartIndexDB::class.java,
                         "cart_index_data_database",
-                    ).fallbackToDestructiveMigration().build()
+                    ).allowMainThreadQueries().fallbackToDestructiveMigration().build()
                 }
                 return instance
             }

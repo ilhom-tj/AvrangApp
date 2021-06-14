@@ -1,16 +1,16 @@
 package tj.colibri.avrang.adapters
 
+import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import tj.colibri.avrang.R
 import tj.colibri.avrang.data.ApiData.home.Banners
-import tj.colibri.avrang.data.slider.SliderItem
 import tj.colibri.avrang.utils.Const
 
 class BannerSliderAdapter(val context: Fragment) : RecyclerView.Adapter<BannerSliderAdapter.SliderHolder>() {
@@ -19,12 +19,13 @@ class BannerSliderAdapter(val context: Fragment) : RecyclerView.Adapter<BannerSl
 
     override fun getItemCount()=items.size
 
+    @SuppressLint("InflateParams")
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): BannerSliderAdapter.SliderHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val view: View = inflater.inflate(R.layout.promo_slider_layout, null)
+        val view: View = inflater.inflate(R.layout.banner_slider_layout, null)
         return SliderHolder(view)
     }
 
@@ -35,17 +36,13 @@ class BannerSliderAdapter(val context: Fragment) : RecyclerView.Adapter<BannerSl
 
     override fun onBindViewHolder(holder: BannerSliderAdapter.SliderHolder, position: Int) {
         val item = items[position]
-        holder.bind(item)
+        Log.e("dsa", item.mob_image)
+        Glide.with(context).load(Const.image_url + item.mob_image).into(holder.image)
     }
 
     inner class SliderHolder(view: View) :
         RecyclerView.ViewHolder(view) {
-        var image: ImageView = view.findViewById(R.id.promo_slider_image)
-        fun bind(item: Banners) {
-            if (image != null) {
-                Glide.with(context).load(Const.image_url + item.mob_image).into(image)
-            }
-        }
+        var image: ImageView = view.findViewById(R.id.banner_image)
     }
 
 }

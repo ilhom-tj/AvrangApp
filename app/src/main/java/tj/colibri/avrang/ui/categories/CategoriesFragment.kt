@@ -1,13 +1,11 @@
 package tj.colibri.avrang.ui.categories
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.app.ActionBar
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -21,8 +19,9 @@ import tj.colibri.avrang.R
 import tj.colibri.avrang.adapters.CategoriesAdapter
 import tj.colibri.avrang.adapters.SubCategoriesAdapter
 import tj.colibri.avrang.data.ApiData.Category.Children
-import tj.colibri.avrang.data.categories.SubCategory
-import tj.colibri.avrang.data.mock.MockData
+import tj.colibri.avrang.data.ApiData.filter.FilterData
+import tj.colibri.avrang.utils.Features
+import tj.colibri.avrang.utils.Search
 
 
 class CategoriesFragment : Fragment(), SubCategoriesAdapter.ItemClicked, CategoriesAdapter.ItemClicked {
@@ -38,8 +37,8 @@ class CategoriesFragment : Fragment(), SubCategoriesAdapter.ItemClicked, Categor
         return inflater.inflate(R.layout.categories_fragment, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(SubcategoriesViewModel::class.java)
 
         val actionBar = (activity as MainActivity).supportActionBar
@@ -58,15 +57,33 @@ class CategoriesFragment : Fragment(), SubCategoriesAdapter.ItemClicked, Categor
             LinearLayoutManager.VERTICAL,
             false
         )
+
+        search_subcategories.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                Search(this@CategoriesFragment).search(query.toString())
+                Features().hideKeyboard(requireActivity())
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return false
+            }
+
+        })
     }
 
     override fun onParentClicked(item: Children) {
-
+        val bundle  = Bundle()
+        val filterData = FilterData(null,null,null,item.id.toString(),null)
+        bundle.putParcelable("filterData",filterData)
+        findNavController().navigate(R.id.productsInCategoriesFragment,bundle)
     }
 
     override fun onSubCategoryClicked(item: Children) {
-        val directions = CategoriesFragmentDirections.actionCategoriesFragmentToProductsInCategoriesFragment2(item)
-        findNavController().navigate(directions)
+        val bundle  = Bundle()
+        val filterData = FilterData(null,null,null,item.id.toString(),null)
+        bundle.putParcelable("filterData",filterData)
+        findNavController().navigate(R.id.productsInCategoriesFragment,bundle)
     }
 
 }

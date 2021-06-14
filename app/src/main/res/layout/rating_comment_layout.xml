@@ -28,7 +28,8 @@
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:src="@drawable/avrang_product_sample"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:contentDescription="TODO" />
 
             <TextView
                 android:id="@+id/comment_author_name"
@@ -41,15 +42,18 @@
                 android:textStyle="normal"
                 app:layout_constraintStart_toEndOf="@+id/comment_avatar"
                 app:layout_constraintTop_toTopOf="@+id/comment_avatar" />
+
             <TextView
                 android:id="@+id/comment_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="120dp"
                 android:text="31.01.2021 23:30"
                 android:textColor="@color/textcolor"
                 android:textSize="17dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/comment_author_name"
-                app:layout_constraintLeft_toLeftOf="@id/comment_author_name"/>
+                app:layout_constraintLeft_toLeftOf="@id/comment_author_name"
+                app:layout_constraintTop_toBottomOf="@id/comment_author_name" />
 
             <RatingBar
                 style="@style/Base.Widget.AppCompat.RatingBar.Small"
@@ -74,22 +78,78 @@
                 android:textColor="@color/textcolor"
                 android:textSize="17dp"
                 android:layout_marginStart="45dp"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="@id/comment_rating"
                 app:layout_constraintLeft_toRightOf="@id/comment_rating"/>
 
             <TextView
-                android:id="@+id/comment_opinion"
-                android:text="@string/product_opinion"
-                android:textColor="@color/textcolor"
+                android:id="@+id/label_advantages"
+                android:text="@string/advantages"
+                android:textColor="@color/red_dark"
                 android:layout_width="match_parent"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:layout_marginTop="15dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/comment_rating_count"
                 app:layout_constraintLeft_toLeftOf="parent"
-                android:textSize="16dp"/>
+                android:textSize="@dimen/comment_title"/>
+            <TextView
+                android:id="@+id/comment_advantages"
+                android:text="@string/advantages"
+                android:textColor="@color/textcolor"
+                android:layout_width="match_parent"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="15dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/label_advantages"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:textSize="@dimen/comment_title"/>
+            <TextView
+                android:id="@+id/label_disadvantage"
+                android:text="Недостатки:"
+                android:textColor="@color/red_dark"
+                android:layout_width="match_parent"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="15dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/comment_advantages"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:textSize="@dimen/comment_title"/>
+            <TextView
+                android:id="@+id/comment_disadvantages"
+                android:text="Недостатки"
+                android:textColor="@color/textcolor"
+                android:layout_width="match_parent"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="15dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/label_disadvantage"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:textSize="@dimen/comment_title"/>
+            <TextView
+                android:id="@+id/label_review"
+                android:text="Отзыв:"
+                android:textColor="@color/red_dark"
+                android:layout_width="match_parent"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="15dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/comment_disadvantages"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:textSize="@dimen/comment_title"/>
+            <TextView
+                android:id="@+id/comment_review"
+                android:text="Отзыв:"
+                android:textColor="@color/textcolor"
+                android:layout_width="match_parent"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="15dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/label_review"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:textSize="@dimen/comment_title"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 </FrameLayout>

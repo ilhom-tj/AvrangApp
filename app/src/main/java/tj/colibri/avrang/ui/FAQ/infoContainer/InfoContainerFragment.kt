@@ -45,8 +45,8 @@ class InfoContainerFragment : Fragment() {
 
 
 
-        created_at.setText(toDate(formattedDate))
-        web_text.setText(Html.fromHtml(args.description))
+        created_at.text = toDate(formattedDate)
+        web_text.text = Html.fromHtml(args.description)
     }
 
     fun toDate(date : String) : String{

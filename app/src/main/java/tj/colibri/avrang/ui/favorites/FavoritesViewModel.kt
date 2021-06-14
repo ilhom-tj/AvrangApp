@@ -6,7 +6,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import tj.colibri.avrang.data.ApiData.Favorite.FavoriteRequest
 import tj.colibri.avrang.data.favorite.FavoriteCard
-import tj.colibri.avrang.data.mock.ProductCard2
 import tj.colibri.avrang.network.repositories.favoriteRepo.FavoriteRepository
 
 class FavoritesViewModel(application: Application) : AndroidViewModel(application

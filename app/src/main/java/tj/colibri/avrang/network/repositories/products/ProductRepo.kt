@@ -10,12 +10,9 @@ import retrofit2.Response
 import tj.colibri.avrang.data.ApiData.product.ProductInfo.ProductInfortmation2
 import tj.colibri.avrang.network.RetrofitInstance
 
-class ProductRepo(context: Context) {
+class ProductRepo(val context: Context) {
 
-    val context = context
     val api = RetrofitInstance(context).api()
-    //val productDao = ProductDB.getInstance(context).productDao
-
     
     fun getProduct(slug: String) : LiveData<ProductInfortmation2>{
         val liveData = MutableLiveData<ProductInfortmation2>()
@@ -29,7 +26,7 @@ class ProductRepo(context: Context) {
             }
 
             override fun onFailure(call: Call<ProductInfortmation2>, t: Throwable) {
-
+                Log.e("ERRRRR",t.message.toString())
             }
 
         })

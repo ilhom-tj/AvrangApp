@@ -12,19 +12,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import tj.colibri.avrang.R
 import tj.colibri.avrang.data.ApiData.product.Reviews
-import tj.colibri.avrang.data.comments.Comment
 import tj.colibri.avrang.utils.Const
-import java.text.ParseException
+import tj.colibri.avrang.utils.Features
 import java.text.SimpleDateFormat
-import java.util.*
-import kotlin.Comparator
-import kotlin.collections.ArrayList
 
 
+@Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class CommentAdapter(val context: Fragment) : RecyclerView.Adapter<CommentAdapter.CommentHolder>() {
 
     private var comments = arrayOf<Reviews>()
 
+    @SuppressLint("InflateParams")
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -40,7 +38,27 @@ class CommentAdapter(val context: Fragment) : RecyclerView.Adapter<CommentAdapte
     }
 
 
+    fun sortByDateNew() {
+        comments.sortByDescending {
+            it.created_at
+        }
+        notifyDataSetChanged()
+    }
 
+    fun sortByBest() {
+        comments.sortByDescending {
+            it.rating
+        }
+        notifyDataSetChanged()
+    }
+
+    fun sortByWorst() {
+        comments.sortByDescending {
+            it.rating
+        }
+        comments.reverse()
+        notifyDataSetChanged()
+    }
 //    fun sortByRatingFirstNew() {
 //
 //
@@ -72,33 +90,37 @@ class CommentAdapter(val context: Fragment) : RecyclerView.Adapter<CommentAdapte
 //        notifyDataSetChanged()
 //    }
 
-    fun removeItem(position: Int) {
-        notifyDataSetChanged()
-    }
-
-
     override fun getItemCount() = comments.size
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "SimpleDateFormat")
     override fun onBindViewHolder(holder: CommentHolder, position: Int) {
         val comment = comments[position]
-        holder.authorName.text = comment.user_id.name
-        Glide.with(context).load(Const.image_url + comment.user_id.image).circleCrop().into(holder.authorAvatar)
-        val date = SimpleDateFormat("dd-MM-yyyy").parse(comment.created_at)
-        holder.commentDate.text = comment.created_at
+        holder.authorName.text = comment.userName
+        Glide.with(context).load(Const.image_url + comment.userImage).circleCrop()
+            .into(holder.authorAvatar)
+
+        val date = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS")
+        val normalDate = date.parse(comment.created_at)
+
+        holder.commentDate.text = Features().getNormalDate(normalDate)
         holder.commentRatingCount.text = comment.rating.toString()
         holder.commentRatingBar.rating = comment.rating.toFloat()
-        holder.commentOpinion.text = comment.body
+        holder.commentOpinion.text = comment.body[0].comment
+        holder.commentAdvantages.text = comment.body[0].advantages
+        holder.commentDisadvantages.text = comment.body[0].disadvantages
     }
+
 
     inner class CommentHolder(view: View) :
         RecyclerView.ViewHolder(view) {
-        var authorName = view.findViewById<TextView>(R.id.comment_author_name)
-        var authorAvatar = view.findViewById<ImageView>(R.id.comment_avatar)
-        var commentDate = view.findViewById<TextView>(R.id.comment_date)
-        var commentRatingBar = view.findViewById<RatingBar>(R.id.comment_rating)
-        var commentRatingCount = view.findViewById<TextView>(R.id.comment_rating_count)
-        var commentOpinion = view.findViewById<TextView>(R.id.comment_opinion)
+        var authorName: TextView = view.findViewById(R.id.comment_author_name)
+        var authorAvatar: ImageView = view.findViewById(R.id.comment_avatar)
+        var commentDate: TextView = view.findViewById(R.id.comment_date)
+        var commentRatingBar: RatingBar = view.findViewById(R.id.comment_rating)
+        var commentRatingCount: TextView = view.findViewById(R.id.comment_rating_count)!!
+        var commentOpinion: TextView = view.findViewById(R.id.comment_review)
+        var commentAdvantages: TextView = view.findViewById(R.id.comment_advantages)
+        var commentDisadvantages: TextView = view.findViewById(R.id.comment_disadvantages)
     }
 
 

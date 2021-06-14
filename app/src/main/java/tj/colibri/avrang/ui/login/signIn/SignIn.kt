@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.sign_in_fragment.*
 import tj.colibri.avrang.R
+import tj.colibri.avrang.utils.Features
 import tj.colibri.avrang.utils.SessionManager
 
 class SignIn : Fragment() {
@@ -31,6 +32,7 @@ class SignIn : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(SignInViewModel::class.java)
         signIn_signup.setOnClickListener {
+            Features().hideKeyboard(requireActivity())
             findNavController().navigate(R.id.action_signIn_to_phoneInputFragment)
         }
         signIn_enter.setOnClickListener {
@@ -40,9 +42,14 @@ class SignIn : Fragment() {
                 it.let {
                     viewModel.setUser(it.user)
                     SessionManager(requireContext()).setToken(it.access_token)
+                    Features().hideKeyboard(requireActivity())
                     findNavController().navigate(R.id.action_signIn_to_navigation_profile)
                 }
             })
+        }
+        signIn_forgot_password.setOnClickListener {
+
+            findNavController().navigate(R.id.action_signIn_to_resetPassword)
         }
 
     }

@@ -7,8 +7,9 @@ import androidx.lifecycle.MutableLiveData
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import tj.colibri.avrang.data.ApiData.chekout.forRequest.CheckOutBankResponse
 import tj.colibri.avrang.data.ApiData.chekout.forRequest.CheckOutResponse
-import tj.colibri.avrang.data.ApiData.orderDetails.OrderDetails
+import tj.colibri.avrang.data.OrderDetails
 import tj.colibri.avrang.network.RetrofitInstance
 
 class CheckOutRepo(context : Context) {
@@ -16,7 +17,7 @@ class CheckOutRepo(context : Context) {
 
 
     fun GetDetails() : LiveData<OrderDetails>{
-        var liveData = MutableLiveData<OrderDetails>()
+        val liveData = MutableLiveData<OrderDetails>()
         api.orderDetails().enqueue(object : Callback<OrderDetails>{
             override fun onResponse(call: Call<OrderDetails>, response: Response<OrderDetails>) {
                 if (response.isSuccessful){
@@ -33,7 +34,7 @@ class CheckOutRepo(context : Context) {
     }
 
     fun CheckOutCart(checkOutResquest: CheckOutResquest) : LiveData<CheckOutResponse>{
-        var liveData = MutableLiveData<CheckOutResponse>()
+        val liveData = MutableLiveData<CheckOutResponse>()
         api.checkOut(checkOutResquest).enqueue(object : Callback<CheckOutResponse>{
             override fun onResponse(
                 call: Call<CheckOutResponse>,
@@ -46,6 +47,26 @@ class CheckOutRepo(context : Context) {
 
             override fun onFailure(call: Call<CheckOutResponse>, t: Throwable) {
                 TODO("Not yet implemented")
+            }
+
+        })
+        return liveData
+    }
+
+    fun CheckOutCartBank(checkOutResquest: CheckOutResquest) : LiveData<CheckOutBankResponse>{
+        val liveData = MutableLiveData<CheckOutBankResponse>()
+        api.checkOutBank(checkOutResquest).enqueue(object : Callback<CheckOutBankResponse>{
+            override fun onResponse(
+                call: Call<CheckOutBankResponse>,
+                response: Response<CheckOutBankResponse>
+            ) {
+                if (response.isSuccessful){
+                    liveData.value = response.body()
+                }
+            }
+
+            override fun onFailure(call: Call<CheckOutBankResponse>, t: Throwable) {
+
             }
 
         })

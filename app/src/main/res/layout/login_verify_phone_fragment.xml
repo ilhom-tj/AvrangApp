@@ -26,7 +26,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:src="@mipmap/elipspro"
-                    app:tint="@color/elipse_gray" />
+                    app:tint="@color/elipse_gray"
+                    android:contentDescription="TODO" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -42,7 +43,8 @@
                 android:layout_height="2dp"
                 android:layout_gravity="center"
                 android:background="@color/line_color"
-                app:tint="@color/line_color" />
+                app:tint="@color/line_color"
+                android:contentDescription="TODO" />
 
             <FrameLayout
                 android:layout_width="30dp"
@@ -52,7 +54,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:src="@mipmap/elipspro"
-                    app:tint="@color/elipse_red" />
+                    app:tint="@color/elipse_red"
+                    android:contentDescription="TODO" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -67,7 +70,8 @@
                 android:layout_height="2dp"
                 android:layout_gravity="center"
                 android:background="@color/line_color"
-                app:tint="@color/line_color" />
+                app:tint="@color/line_color"
+                android:contentDescription="TODO" />
             <FrameLayout
                 android:layout_width="30dp"
                 android:layout_height="30dp">
@@ -76,7 +80,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:src="@mipmap/elipspro"
-                    app:tint="@color/elipse_gray" />
+                    app:tint="@color/elipse_gray"
+                    android:contentDescription="TODO" />
 
                 <TextView
                     android:layout_width="wrap_content"

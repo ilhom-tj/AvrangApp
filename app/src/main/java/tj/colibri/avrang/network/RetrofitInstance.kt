@@ -1,8 +1,6 @@
 package tj.colibri.avrang.network
 
-import android.app.Application
 import android.content.Context
-import android.util.Log
 import okhttp3.JavaNetCookieJar
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -14,28 +12,27 @@ import java.net.CookieHandler
 import java.net.CookieManager
 
 class RetrofitInstance(context: Context) {
-    var cookieHandler: CookieHandler = CookieManager()
+    private var cookieHandler: CookieHandler = CookieManager()
 
-    val client = OkHttpClient.Builder()
+    private val client = OkHttpClient.Builder()
         .cookieJar(JavaNetCookieJar(cookieHandler))
         .addInterceptor { chain ->
             val original = chain.request()
 
-            var requestBuilderForToken = original.newBuilder()
+            val requestBuilderForToken = original.newBuilder()
                     .addHeader("Authorization","Bearer "+SessionManager(context).getToken())
                     .addHeader("Accept", "application/json")
                     .method(original.method(), original.body())
             val requestToken = requestBuilderForToken.build()
 
 
-            var requestBuilder = original.newBuilder()
+            val requestBuilder = original.newBuilder()
                .addHeader("Accept", "application/json")
                 .method(original.method(), original.body())
 
             val request = requestBuilder.build()
 
             if (SessionManager(context).getToken() != "error"){
-                Log.e("Session", SessionManager(context).getToken().toString())
                 chain.proceed(requestToken)
             }else{
                 chain.proceed(request)

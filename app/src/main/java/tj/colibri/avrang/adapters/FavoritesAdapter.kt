@@ -2,7 +2,6 @@ package tj.colibri.avrang.adapters
 
 import android.annotation.SuppressLint
 import android.graphics.Paint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,13 +12,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import tj.colibri.avrang.R
 import tj.colibri.avrang.data.favorite.FavoriteCard
-import tj.colibri.avrang.data.mock.ProductCard2
 import tj.colibri.avrang.utils.Const
 
-class FavoritesAdapter(val context : Fragment,private val removeClick : RemoveClickListener) : RecyclerView.Adapter<FavoritesAdapter.ProductHolder>() {
+class FavoritesAdapter(val context: Fragment, private val removeClick: ClickListener) :
+    RecyclerView.Adapter<FavoritesAdapter.ProductHolder>() {
 
     private var products = ArrayList<FavoriteCard>()
 
+    @SuppressLint("InflateParams")
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -52,13 +52,19 @@ class FavoritesAdapter(val context : Fragment,private val removeClick : RemoveCl
             holder.oldPrice.text = product.price.toString() + " TJS"
         }
 
-        holder.oldPrice.setPaintFlags(holder.oldPrice.getPaintFlags() or Paint.STRIKE_THRU_TEXT_FLAG)
+        holder.oldPrice.paintFlags = holder.oldPrice.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
 
 
         holder.removeBtn.setOnClickListener {
-            removeClick.removeClickListener(product)
+
             products.removeAt(position)
+            holder.removeBtn.isClickable = false
             notifyDataSetChanged()
+            removeClick.removeClickListener(product)
+
+        }
+        holder.itemView.setOnClickListener {
+            removeClick.itemClickListener(product)
         }
         Glide.with(context).load(Const.image_url + product.image).into(holder.image)
     }
@@ -66,14 +72,15 @@ class FavoritesAdapter(val context : Fragment,private val removeClick : RemoveCl
     inner class ProductHolder(view: View) :
         RecyclerView.ViewHolder(view) {
         var title: TextView = view.findViewById(R.id.product_title)
-        var code : TextView = view.findViewById(R.id.product_code)
-        var price : TextView = view.findViewById(R.id.product_price)
-        var oldPrice : TextView = view.findViewById(R.id.product_old_price)
-        var removeBtn : ImageView = view.findViewById(R.id.remove_from_favorite)
-        var image : ImageView = view.findViewById(R.id.product_background)
+        var code: TextView = view.findViewById(R.id.product_code)
+        var price: TextView = view.findViewById(R.id.product_price)
+        var oldPrice: TextView = view.findViewById(R.id.product_old_price)
+        var removeBtn: ImageView = view.findViewById(R.id.remove_from_favorite)
+        var image: ImageView = view.findViewById(R.id.product_background)
     }
 
-    interface RemoveClickListener {
+    interface ClickListener {
+        fun itemClickListener(favorite: FavoriteCard)
         fun removeClickListener(favorite: FavoriteCard)
     }
 

@@ -1,5 +1,6 @@
 package tj.colibri.avrang.adapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,9 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import tj.colibri.avrang.R
 import tj.colibri.avrang.data.ApiData.Category.Children
-import tj.colibri.avrang.data.categories.SubCategory
-import tj.colibri.avrang.data.product.options.Option
-import tj.colibri.avrang.data.slider.SliderItem
 
 class SubCategoriesAdapter(val fragment: Fragment, private val itemClickListener: ItemClicked) : RecyclerView.Adapter<SubCategoriesAdapter.SubCategoryHolder>() {
 
@@ -19,6 +17,7 @@ class SubCategoriesAdapter(val fragment: Fragment, private val itemClickListener
 
     override fun getItemCount()=items.size
 
+    @SuppressLint("InflateParams")
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int

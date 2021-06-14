@@ -12,13 +12,12 @@ import tj.colibri.avrang.data.ApiData.cities.CitiesResponse
 import tj.colibri.avrang.data.cities.Cities
 import tj.colibri.avrang.network.RetrofitInstance
 
-class CityRepo(context: Context) {
+class CityRepo(val context: Context) {
 
-    val context = context
     val api = RetrofitInstance(context).api()
 
     fun getCities() : LiveData<List<Cities>>{
-        var cities = MutableLiveData<List<Cities>>()
+        val cities = MutableLiveData<List<Cities>>()
         api.getCitiesList().enqueue(object : Callback<CitiesResponse>{
             override fun onResponse(
                 call: Call<CitiesResponse>,

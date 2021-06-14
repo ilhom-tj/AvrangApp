@@ -4,10 +4,10 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
+import android.widget.GridLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import tj.colibri.avrang.R
 import tj.colibri.avrang.data.order.OrderContainer
@@ -20,8 +20,9 @@ import java.text.SimpleDateFormat
 class OrderContainerAdapter(val context: Fragment) :
     RecyclerView.Adapter<OrderContainerAdapter.ProductHolder>() {
 
-    private var containers = emptyList<OrderContainer>()
+    var containers = mutableListOf<OrderContainer>()
 
+    @SuppressLint("InflateParams")
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -31,10 +32,6 @@ class OrderContainerAdapter(val context: Fragment) :
         return ProductHolder(view)
     }
 
-    fun setData(items: List<OrderContainer>) {
-        this.containers = items
-        notifyDataSetChanged()
-    }
 
     override fun getItemCount() = containers.size
 
@@ -47,10 +44,8 @@ class OrderContainerAdapter(val context: Fragment) :
             SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS")
                 .parse(product.created_at)
         )
-
-        var quantity: Int = 0;
-        var totalPrice: Double = 0.0;
-        var bonus: Int = 0;
+        var totalPrice = 0.0
+        var bonus = 0
 
 
         product.products.forEach {
@@ -64,27 +59,36 @@ class OrderContainerAdapter(val context: Fragment) :
         holder.allBonuses.text = "$bonus балов"
 
 
-        var orderItemAdapter = OrderItemAdapter(context)
+        val orderItemAdapter = OrderItemAdapter(context)
         holder.orderItem.adapter = orderItemAdapter
-        holder.orderItem.layoutManager = LinearLayoutManager(context.requireContext())
+        holder.orderItem.layoutManager = GridLayoutManager(context.requireContext(), 1)
+        holder.orderItem.setHasFixedSize(true)
         orderItemAdapter.setData(product.products)
 
-        holder.expand.setOnClickListener {
-            ExpandMethods().expand(holder.orderItem, 500, holder.expand)
+
+        holder.header.setOnClickListener {
+            if (product.isExpanded == true) {
+                ExpandMethods().collapse(holder.orderItem)
+                product.isExpanded = false
+            } else {
+                ExpandMethods().expand(holder.orderItem)
+                product.isExpanded = true
+            }
+
         }
     }
 
     inner class ProductHolder(view: View) :
         RecyclerView.ViewHolder(view) {
+
+        var header: GridLayout = view.findViewById(R.id.header)
         var orderNumber: TextView = view.findViewById(R.id.order_number)
         var date: TextView = view.findViewById(R.id.order_day)
         var orderQuantity: TextView = view.findViewById(R.id.fragment_order_recyclerview)
         var allBonuses: TextView = view.findViewById(R.id.all_bonuses)
         var totalPrice: TextView = view.findViewById(R.id.all_total_price)
         var status: TextView = view.findViewById(R.id.status)
-
         var orderItem: RecyclerView = view.findViewById(R.id.my_orders_cart)
-        var expand: ImageView = view.findViewById(R.id.expandButton)
 
 
     }

@@ -1,5 +1,6 @@
 package tj.colibri.avrang.adapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +16,7 @@ class OptionsChildAdapter(val fragment: Fragment) : RecyclerView.Adapter<Options
 
     override fun getItemCount()=items.size
 
+    @SuppressLint("InflateParams")
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int

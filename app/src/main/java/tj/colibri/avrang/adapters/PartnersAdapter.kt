@@ -1,9 +1,7 @@
 package tj.colibri.avrang.adapters
 
 import android.annotation.SuppressLint
-import android.graphics.drawable.PictureDrawable
 import android.net.Uri
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,20 +12,19 @@ import coil.Coil
 import coil.ImageLoader
 import coil.decode.SvgDecoder
 import coil.load
-import com.bumptech.glide.Glide
 import tj.colibri.avrang.R
 import tj.colibri.avrang.data.ApiData.home.Partners
 import tj.colibri.avrang.utils.Const
-import java.net.URL
 
 
-class PartnersAdapter(val context: Fragment) :
+class PartnersAdapter(val context: Fragment, private val itemClick: ItemClick) :
     RecyclerView.Adapter<PartnersAdapter.SliderHolder>() {
 
     private var items = emptyList<Partners>()
 
     override fun getItemCount() = items.size
 
+    @SuppressLint("InflateParams")
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -45,6 +42,9 @@ class PartnersAdapter(val context: Fragment) :
     override fun onBindViewHolder(holder: PartnersAdapter.SliderHolder, position: Int) {
         val item = items[position]
         holder.bind(item)
+        holder.itemView.setOnClickListener {
+            itemClick.PartnersClick(item)
+        }
     }
 
     inner class SliderHolder(view: View) :
@@ -64,9 +64,12 @@ class PartnersAdapter(val context: Fragment) :
 
             image.load(url)
             image.scaleType = ImageView.ScaleType.FIT_CENTER
-            //      GlideToVectorYou.init().with(context.requireActivity()).load(url , image)
-            //     Glide.with(context).load(Const.image_url + item.image).into(image)
         }
+    }
+
+
+    interface ItemClick {
+        fun PartnersClick(partners: Partners)
     }
 
 }

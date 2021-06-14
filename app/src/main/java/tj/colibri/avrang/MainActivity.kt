@@ -7,27 +7,17 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
-import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.gson.JsonArray
-import com.google.gson.JsonObject
-import org.json.JSONArray
-import org.json.JSONObject
-import tj.colibri.avrang.data.ApiData.Cart.CartIndexResponse
-import tj.colibri.avrang.data.cart.CartItemResponse
+import kotlinx.android.synthetic.main.activity_main.*
 import tj.colibri.avrang.network.repositories.cartRepo.CartRepository
 import tj.colibri.avrang.network.repositories.favoriteRepo.FavoriteRepository
 import tj.colibri.avrang.network.repositories.registrationRepo.RegistrationRepo
-import tj.colibri.avrang.network.repositories.userRepo.UserRepository
-import tj.colibri.avrang.utils.Features
-import tj.colibri.avrang.utils.RefresToken
-import tj.colibri.avrang.utils.SessionManager
-import java.util.*
+import tj.colibri.avrang.utils.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -50,9 +40,6 @@ class MainActivity : AppCompatActivity() {
             RefresToken()
         }
 
-        navView.setOnNavigationItemReselectedListener {
-
-        }
 
         val appBarConfiguration = AppBarConfiguration(
             setOf(
@@ -63,7 +50,9 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_cart
             )
         )
+
         setupActionBarWithNavController(navController, appBarConfiguration)
+
         navView.setupWithNavController(navController)
         navController.addOnDestinationChangedListener { _, destination, _ ->
             actionBar?.title = navController.currentDestination?.label
@@ -74,23 +63,23 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_home -> {
                     supportActionBar?.elevation = 0f
                     supportActionBar?.show()
-                    logo.isVisible = true
-                    title.isVisible = false
-                    icon.isVisible = false
+                    logo.visibility = View.VISIBLE
+                    title.visibility = View.GONE
+                    icon.visibility = View.GONE
                 }
                 R.id.productInfoFragment -> {
                     supportActionBar?.elevation = 0f
                     supportActionBar?.show()
-                    logo.isVisible = false
+                    logo.visibility = View.GONE
                     title.isVisible = false
-                    icon.isVisible = false
+                    icon.visibility = View.GONE
                 }
                 R.id.categoriesFragment -> {
                     supportActionBar?.elevation = 10f
                     supportActionBar?.show()
-                    logo.isVisible = false
+                    logo.visibility = View.GONE
                     title.isVisible = true
-                    icon.isVisible = false
+                    icon.visibility = View.GONE
                 }
                 R.id.productsInCategoriesFragment -> {
                     supportActionBar?.elevation = 0f
@@ -102,7 +91,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.navigation_cart ->{
                     supportActionBar?.elevation = 0f
-                    supportActionBar?.hide()
+
                     logo.isVisible = false
                     title.isVisible = true
                     title.text = navController.currentDestination?.label
@@ -121,11 +110,10 @@ class MainActivity : AppCompatActivity() {
 
             }
         }
-
         val cartRepository = CartRepository(this)
 
         val favRepository = FavoriteRepository(this.application)
-        favRepository.getFavorite().observe(this, Observer {
+        favRepository.getFavorite().observe(this,  {
             it.let {
                 if (it.favorites.isNotEmpty()){
                     it.favorites.forEach { fav ->
@@ -134,14 +122,31 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
-        cartRepository.checkOutList.observe(this, Observer { items ->
-            cartRepository.cartIndexes.observe(this, Observer {
+        cartRepository.checkOutList.observe(this,  { items ->
+            cartRepository.cartIndexes.observe(this,  {
                 it.let {
-                    Log.e("mass", Arrays.toString(it.toIntArray()))
+                    if(it.isEmpty()){
+                        navView.removeBadge(R.id.navigation_cart)
+                    }else{
+                        navView.getOrCreateBadge(R.id.navigation_cart).number = it.size
+
+                    }
                     cartRepository.updateCart(it,items)
                 }
             })
         })
+
+        NetworkStatus(this).startNetworkCallback()
+        NetworkStatus.NetworkStatus.isConnected.observe(this,  {
+            if(it ){
+                noInternet.visibility = View.GONE
+                container.visibility = View.VISIBLE
+            }else{
+                noInternet.visibility = View.VISIBLE
+                container.visibility = View.GONE
+            }
+        })
+
 
     }
 
@@ -156,11 +161,11 @@ class MainActivity : AppCompatActivity() {
         return super.onSupportNavigateUp()
     }
 
-    fun RefresToken() {
+    private fun RefresToken() {
         val oldToken = SessionManager(this).getToken()
         val phone = SessionManager(this).getPhone()
         val password = SessionManager(this).getPassword()
-        RegistrationRepo(this).login(phone!!, password!!).observe(this, Observer {
+        RegistrationRepo(this).login(phone!!, password!!).observe(this,  {
             it.let {
                 Log.e("oldToken", oldToken.toString())
                 Log.e("newToken", it.access_token)

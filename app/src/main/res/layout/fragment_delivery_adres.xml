@@ -28,13 +28,14 @@
 
             <EditText
                 android:id="@+id/edit_adres1"
+                android:singleLine="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:background="@drawable/edittext_corner"
                 android:padding="12dp"
                 android:text=""
-                android:textColor="@color/product_secondary"
+                android:textColor="@color/textcolor"
                 android:textSize="18sp" />
             <TextView
                 android:id="@+id/adres2"
@@ -47,13 +48,14 @@
 
             <EditText
                 android:id="@+id/edit_adres2"
+                android:singleLine="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:background="@drawable/edittext_corner"
                 android:padding="12dp"
                 android:text=""
-                android:textColor="@color/product_secondary"
+                android:textColor="@color/textcolor"
                 android:textSize="18sp" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
@@ -63,14 +65,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="7sp"
+
+        android:background="@color/red_primary"
+        android:backgroundTint="@color/red_primary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#D8D8D8"
+            android:layout_gravity="center"
             android:padding="16dp"
             android:text="Сохранить изменения"
             android:textAlignment="center"

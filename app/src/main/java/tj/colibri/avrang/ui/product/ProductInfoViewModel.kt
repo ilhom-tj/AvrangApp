@@ -8,7 +8,7 @@ import kotlinx.coroutines.launch
 import tj.colibri.avrang.data.ApiData.chekout.CheckOutItem
 import tj.colibri.avrang.data.ApiData.product.ProductInfo.ProductInfortmation2
 import tj.colibri.avrang.data.cart.CartItem
-import tj.colibri.avrang.data.mock.ProductCard2
+import tj.colibri.avrang.data.ApiData.product.ProductCard2
 import tj.colibri.avrang.network.repositories.cartRepo.CartRepository
 import tj.colibri.avrang.network.repositories.favoriteRepo.FavoriteRepository
 import tj.colibri.avrang.network.repositories.products.ProductRepo
@@ -17,7 +17,8 @@ import tj.colibri.avrang.utils.Features
 class ProductInfoViewModel(application: Application) : AndroidViewModel(application) {
     private val favRepo = FavoriteRepository(application)
     private val productRepo = ProductRepo(application.applicationContext)
-    private val cartRepository = CartRepository(application.applicationContext)
+    val cartRepository = CartRepository(application.applicationContext)
+    val products = cartRepository.getCart()
 
     val favList = favRepo.favList
 

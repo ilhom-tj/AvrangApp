@@ -14,7 +14,10 @@
         android:layout_height="match_parent">
 
 
+
         <androidx.core.widget.NestedScrollView
+            android:id="@+id/content"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="70dp"
@@ -22,9 +25,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-
             app:layout_constraintVertical_bias="0.0">
-
             <LinearLayout
                 android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
@@ -36,6 +37,22 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:context=".ui.profile.myinfo.ProfileInfoFragment">
+                <FrameLayout
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/avatar"
+                        android:src="@mipmap/avatar"
+                        android:layout_width="130dp"
+                        android:layout_height="130dp"/>
+                    <ProgressBar
+                        android:id="@+id/avatar_progress"
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_height="match_parent"/>
+                </FrameLayout>
 
                 <TextView
                     android:id="@+id/info_name"
@@ -50,6 +67,7 @@
                     android:id="@+id/edit_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:singleLine="true"
                     android:layout_marginTop="6dp"
                     android:background="@drawable/edittext_corner"
                     android:padding="12dp"
@@ -69,6 +87,7 @@
                 <EditText
                     android:id="@+id/edit_phone"
                     android:editable="false"
+                    android:singleLine="true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
@@ -90,6 +109,8 @@
 
                 <EditText
                     android:id="@+id/edit_extra_phone"
+                    android:inputType="phone"
+                    android:singleLine="true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
@@ -135,6 +156,8 @@
                     android:background="@drawable/edittext_corner"
                     android:focusable="false"
                     android:padding="12dp"
+
+                    android:singleLine="true"
                     android:text="@{viewmodel.user.birthdate}"
                     android:textColor="@color/textcolor"
                     android:textSize="18sp" />
@@ -151,6 +174,8 @@
                 <EditText
                     android:id="@+id/edit_email"
                     android:layout_width="match_parent"
+
+                    android:singleLine="true"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
                     android:background="@drawable/edittext_corner"
@@ -191,6 +216,8 @@
                     android:id="@+id/edit_adres"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+
+                    android:singleLine="true"
                     android:layout_marginTop="6dp"
                     android:background="@drawable/edittext_corner"
                     android:padding="12dp"
@@ -202,6 +229,14 @@
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintBottom_toTopOf="@+id/frameCard"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
         <androidx.cardview.widget.CardView
             android:id="@+id/frameCard"
             app:layout_constraintBottom_toBottomOf="parent"

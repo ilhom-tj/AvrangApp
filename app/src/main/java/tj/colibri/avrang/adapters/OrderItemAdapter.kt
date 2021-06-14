@@ -4,17 +4,20 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import tj.colibri.avrang.R
-import tj.colibri.avrang.data.order.OrderItem
 import tj.colibri.avrang.data.order.Products
+import tj.colibri.avrang.utils.Const
 
 class OrderItemAdapter(val context : Fragment) : RecyclerView.Adapter<OrderItemAdapter.ProductHolder>() {
 
     private var products = emptyList<Products>()
 
+    @SuppressLint("InflateParams")
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -31,7 +34,7 @@ class OrderItemAdapter(val context : Fragment) : RecyclerView.Adapter<OrderItemA
 
     override fun getItemCount()=products.size
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "CheckResult")
     override fun onBindViewHolder(holder: ProductHolder, position: Int) {
         val product = products[position]
         holder.title.text = product.name
@@ -47,6 +50,7 @@ class OrderItemAdapter(val context : Fragment) : RecyclerView.Adapter<OrderItemA
 
         holder.total_price.text = (product.pivot.quantity * product.pivot.price).toString() + " TJS"
 
+        Glide.with(context).load(Const.image_url + product.images[0]).into(holder.image)
     }
 
     inner class ProductHolder(view: View) :
@@ -55,16 +59,10 @@ class OrderItemAdapter(val context : Fragment) : RecyclerView.Adapter<OrderItemA
         var code : TextView = view.findViewById(R.id.product_code)
         var unit_price : TextView = view.findViewById(R.id.unit_price)
         var total_price : TextView = view.findViewById(R.id.total_price)
-
-//        var removeBtn : ImageView = view.findViewById(R.id.remove_from_favorite)
-
         var bonus : TextView = view.findViewById(R.id.item_bonus)
-        var quantity : TextView = view.findViewById(R.id.item_quantity)
-
+        var quantity: TextView = view.findViewById(R.id.item_quantity)
+        var image: ImageView = view.findViewById(R.id.product_image)
     }
 
-//    interface ItemClicked {
-//        fun onItemClicked(item: CartItem)
-//    }
 
 }

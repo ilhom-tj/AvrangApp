@@ -5,21 +5,17 @@ import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.liveData
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import tj.colibri.avrang.data.ApiData.registration.ConfirmCode
 import tj.colibri.avrang.data.ApiData.registration.RegistrationCallBack
-import tj.colibri.avrang.data.ragistration.RegistrationParams
 import tj.colibri.avrang.network.RetrofitInstance
 import tj.colibri.avrang.network.repositories.userRepo.UserRepository
 import tj.colibri.avrang.utils.SessionManager
-import kotlin.coroutines.coroutineContext
 
-class RegistrationRepo(context: Context) {
+class RegistrationRepo(val context: Context) {
 
-    val context = context
     val api = RetrofitInstance(context).api()
     val errorMessage = MutableLiveData<String>()
     val userRepository = UserRepository(context)
@@ -100,7 +96,7 @@ class RegistrationRepo(context: Context) {
     }
 
     fun login(phone: String,password: String) : LiveData<RegistrationCallBack> {
-        var liveData = MutableLiveData<RegistrationCallBack>()
+        val liveData = MutableLiveData<RegistrationCallBack>()
         api.login(phone,password).enqueue(object : Callback<RegistrationCallBack>{
             override fun onResponse(
                 call: Call<RegistrationCallBack>,
@@ -125,6 +121,54 @@ class RegistrationRepo(context: Context) {
 
             override fun onFailure(call: Call<RegistrationCallBack>, t: Throwable) {
                 errorMessage.value = t.message
+            }
+
+        })
+        return liveData
+    }
+
+    fun resetPassword(phone: String) : LiveData<ConfirmCode>{
+        val liveData =  MutableLiveData<ConfirmCode>()
+        api.resetPassword(phone).enqueue(object : Callback<ConfirmCode>{
+            override fun onResponse(call: Call<ConfirmCode>, response: Response<ConfirmCode>) {
+                if (response.isSuccessful){
+                    liveData.value = response.body()
+                }
+            }
+
+            override fun onFailure(call: Call<ConfirmCode>, t: Throwable) {
+
+            }
+
+        })
+        return liveData
+    }
+    fun resetPassword(phone: String ,code: String) : LiveData<ConfirmCode>{
+        val liveData =  MutableLiveData<ConfirmCode>()
+        api.resetPassword(phone,code).enqueue(object : Callback<ConfirmCode>{
+            override fun onResponse(call: Call<ConfirmCode>, response: Response<ConfirmCode>) {
+                if (response.isSuccessful){
+                    liveData.value = response.body()
+                }
+            }
+
+            override fun onFailure(call: Call<ConfirmCode>, t: Throwable) {
+
+            }
+
+        })
+        return liveData
+    }
+    fun changePassword(phone: String,password: String,password_confirm : String) : LiveData<ConfirmCode>{
+        val liveData =  MutableLiveData<ConfirmCode>()
+        api.changePassword(phone,password,password_confirm).enqueue(object : Callback<ConfirmCode>{
+            override fun onResponse(call: Call<ConfirmCode>, response: Response<ConfirmCode>) {
+                if (response.isSuccessful){
+                    liveData.value = response.body()
+                }
+            }
+
+            override fun onFailure(call: Call<ConfirmCode>, t: Throwable) {
             }
 
         })

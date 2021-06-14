@@ -7,9 +7,7 @@ import androidx.room.RoomDatabase
 
 @Database(entities = [User::class], version = 4)
 abstract class UserDataBase : RoomDatabase() {
-
     abstract val userDao: UserDao
-
     companion object {
         @Volatile
         private var INSTANCE: UserDataBase? = null
@@ -20,7 +18,7 @@ abstract class UserDataBase : RoomDatabase() {
                     instance = Room.databaseBuilder(
                         context.applicationContext,
                         UserDataBase::class.java,
-                        "users_data_database"
+                        "user_data_database"
                     ).build()
                 }
                 return instance

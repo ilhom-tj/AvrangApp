@@ -17,38 +17,31 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import kotlinx.android.synthetic.main.check_out_bank_transaction.*
 import kotlinx.android.synthetic.main.check_out_fragment.*
-import kotlinx.android.synthetic.main.check_out_installation.*
 import tj.colibri.avrang.R
-import tj.colibri.avrang.adapters.BankSelectorAdapter
-import tj.colibri.avrang.adapters.DeadlineSelectorAdapter
 import tj.colibri.avrang.data.ApiData.chekout.CheckOutItem
-import tj.colibri.avrang.data.mock.MockData
 import tj.colibri.avrang.databinding.CheckOutFragmentBinding
+import tj.colibri.avrang.ui.cart.CartViewModel
+import tj.colibri.avrang.utils.Features
 import java.text.SimpleDateFormat
 import java.util.*
 
 class CheckOutFragment : Fragment() {
 
-    var myCalendar = Calendar.getInstance();
+    var myCalendar: Calendar = Calendar.getInstance()
     private lateinit var viewModel: CheckOutViewModel
-    private lateinit var bankSelectAdapter: BankSelectorAdapter
-    private lateinit var dedlineSelectorAdapter: DeadlineSelectorAdapter
-    private lateinit var checkOutItemList : List<CheckOutItem>
 
-    private val args : CheckOutFragmentArgs by navArgs()
-
+    private var totalPrice = 0.0
+    private var delivery = 1
+    private var pay_method = 1
+    private var checkOutItems = listOf<CheckOutItem>()
     private lateinit var binding: CheckOutFragmentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
-        binding = DataBindingUtil.inflate(inflater,R.layout.check_out_fragment,container,false)
+    ): View {
+        binding = DataBindingUtil.inflate(inflater, R.layout.check_out_fragment, container, false)
         binding.lifecycleOwner = requireActivity()
-        return binding.getRoot()
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -56,28 +49,30 @@ class CheckOutFragment : Fragment() {
 
         SetUpUI()
         viewModel = ViewModelProvider(this).get(CheckOutViewModel::class.java)
+        val cartViewModel = ViewModelProvider(this).get(CartViewModel::class.java)
+
+        cartViewModel.totalPrice.observe(viewLifecycleOwner, Observer {
+            it.let {
+                totalPrice = it
+            }
+        })
+
+        cartViewModel.indexes.observe(viewLifecycleOwner, Observer {
+            it.let {
+                checkOutItems = it
+            }
+        })
+
+
         binding.viewmodel = viewModel
 
-        Log.e("ITEMS",Arrays.toString(args.chekOutItemList))
-        bankSelectAdapter = BankSelectorAdapter(
-            requireActivity(),
-            R.layout.bank_select_spinner_layout,
-            R.id.txt,
-            MockData.listofBanks
-        )
 
-        dedlineSelectorAdapter = DeadlineSelectorAdapter(
-            requireActivity(),
-            R.layout.dedline_select_spinner_layout,
-            R.id.txt,
-            MockData.listofDedlineSelect
-        )
-        check_out_bank_select_spiner.adapter = bankSelectAdapter
-        check_out_deadline_select_spiner.adapter = dedlineSelectorAdapter
 
         checkout_card_push.setOnClickListener {
-            Navigation.findNavController(requireView()).navigate(R.id.action_checkOutFragment_to_checkOutReadyFragment)
+            Navigation.findNavController(requireView())
+                .navigate(R.id.action_checkOutFragment_to_checkOutReadyFragment)
         }
+
         viewModel.data.observe(viewLifecycleOwner, Observer {
             it.let {
                 it.user.city_id?.let { it1 -> SetCity(it1) }
@@ -85,14 +80,14 @@ class CheckOutFragment : Fragment() {
         })
 
         val Bdate =
-            DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+            DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
                 myCalendar[Calendar.YEAR] = year
                 myCalendar[Calendar.MONTH] = monthOfYear
                 myCalendar[Calendar.DAY_OF_MONTH] = dayOfMonth
                 updateLabel()
             }
 
-        checkout_time.setOnClickListener{
+        checkout_time.setOnClickListener {
             DatePickerDialog(
                 requireContext(), R.style.MyTimePickerDialogTheme, Bdate, myCalendar[Calendar.YEAR],
                 myCalendar[Calendar.MONTH],
@@ -106,33 +101,25 @@ class CheckOutFragment : Fragment() {
 
     }
 
-    private fun SetCity(id : Int){
+    private fun SetCity(id: Int) {
         viewModel.cities.observe(viewLifecycleOwner, Observer {
             it.let {
                 it.forEach { city ->
-                    if (city.id == id){
+                    if (city.id == id) {
                         checkout_city.setText(city.name)
                     }
                 }
             }
         })
     }
+
+
     private fun SetUpUI() {
         self_method.setOnClickListener {
             onRadioButtonClicked(self_method)
         }
         delivery_method.setOnClickListener {
             onRadioButtonClicked(delivery_method)
-        }
-
-        payment_cash.setOnClickListener {
-            onPayMethodRadioButtonClick(payment_cash)
-        }
-        payment_bank_transaction.setOnClickListener {
-            onPayMethodRadioButtonClick(payment_bank_transaction)
-        }
-        payment_installment.setOnClickListener {
-            onPayMethodRadioButtonClick(payment_installment)
         }
 
         dont_use_bonus_and_promo.setOnClickListener {
@@ -142,15 +129,43 @@ class CheckOutFragment : Fragment() {
             onBonusAndPromoButtonClick(use_bonus)
         }
         use_promo.setOnClickListener {
-            onBonusAndPromoButtonClick(use_promo) }
+            onBonusAndPromoButtonClick(use_promo)
+        }
+        checkout_fragment_delivery_method.setOnCheckedChangeListener { _, checkedId ->
+
+            when (checkedId) {
+                R.id.basic_method -> {
+                    delivery = 1
+                }
+                R.id.fast_method -> {
+                    delivery = 2
+                }
+            }
+        }
+
+        radioGroup_pay_method.setOnCheckedChangeListener { _, checkedId ->
+            when (checkedId) {
+                R.id.payment_cash -> {
+                    pay_method = 1
+                    Log.e("ID", checkedId.toString())
+                    onPayMethodRadioButtonClick(payment_cash)
+                }
+                R.id.payment_bank_transaction -> {
+                    pay_method = 2
+                    Log.e("ID", checkedId.toString())
+                    onPayMethodRadioButtonClick(payment_bank_transaction)
+                }
+            }
+
+        }
+
 
     }
 
+
     private fun onRadioButtonClicked(view: RadioButton) {
         val checked = view.isChecked
-
-        // Check which radio button was clicked
-        when (view.getId()) {
+        when (view.id) {
             R.id.self_method ->
                 if (checked) {
                     method_self.visibility = View.VISIBLE
@@ -164,38 +179,35 @@ class CheckOutFragment : Fragment() {
         }
 
     }
+
     private fun updateLabel() {
         val myFormat = "dd-MM-yy" //In which you need put here
         val sdf = SimpleDateFormat(myFormat, Locale.US)
-        checkout_time.setText(sdf.format(myCalendar.getTime()))
+        checkout_time.setText(sdf.format(myCalendar.time))
     }
+
     private fun onPayMethodRadioButtonClick(view: RadioButton) {
         val checked = view.isChecked
 
         // Check which radio button was clicked
-        when (view.getId()) {
+        when (view.id) {
             R.id.payment_cash ->
                 if (checked) {
                     check_out_container_bank_transaction.visibility = View.GONE
-                    check_out_container_installation.visibility = View.GONE
+
                 }
             R.id.payment_bank_transaction ->
                 if (checked) {
                     check_out_container_bank_transaction.visibility = View.VISIBLE
-                    check_out_container_installation.visibility = View.GONE
-                }
-            R.id.payment_installment ->
-                if (checked) {
-                    check_out_container_bank_transaction.visibility = View.GONE
-                    check_out_container_installation.visibility = View.VISIBLE
 
                 }
         }
     }
+
     private fun onBonusAndPromoButtonClick(view: RadioButton) {
         val checked = view.isChecked
         // Check which radio button was clicked
-        when (view.getId()) {
+        when (view.id) {
             R.id.dont_use_bonus_and_promo ->
                 if (checked) {
                     check_out_container_use_bonus.visibility = View.GONE
@@ -214,21 +226,23 @@ class CheckOutFragment : Fragment() {
         }
     }
 
-    private fun PushCheckOut(){
-        var checkOutResquest = CheckOutResquest(
-            args.chekOutItemList,
-            args.totalPrice.toDouble(),
+    private fun PushCheckOut() {
+        val checkOutResquest = CheckOutResquest(
+            checkOutItems.toTypedArray(),
+            totalPrice,
             "Test comment",
             1,
-            1,
+            pay_method,
             checkout_city.text.toString(),
             checkout_adres.text.toString(),
             checkout_time.text.toString(),
             checkout_directions.text.toString(),
-            0
+            0,
+            delivery
         )
         val action = CheckOutFragmentDirections
             .actionCheckOutFragmentToCheckOutReadyFragment(checkOutResquest)
+        Features().hideKeyboard(requireActivity())
         findNavController().navigate(action)
     }
 }

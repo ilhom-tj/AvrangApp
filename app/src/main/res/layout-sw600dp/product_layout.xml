@@ -73,7 +73,8 @@
                     android:scaleType="fitCenter"
                     android:src="@drawable/ic_baseline_favorite_border_24"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:contentDescription="TODO" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -86,7 +87,8 @@
                 android:src="@drawable/avrang_product_sample"
                 app:layout_constraintDimensionRatio="16:9"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/product_header" />
+                app:layout_constraintTop_toBottomOf="@+id/product_header"
+                android:contentDescription="TODO" />
 
             <TextView
                 android:id="@+id/product_title"
@@ -124,7 +126,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/product_rating"
                 app:layout_constraintStart_toEndOf="@+id/product_rating"
                 android:layout_marginStart="4dp"
-                />
+                android:contentDescription="TODO" />
 
             <TextView
                 android:layout_width="wrap_content"

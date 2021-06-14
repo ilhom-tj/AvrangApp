@@ -12,8 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import kotlinx.android.synthetic.main.login_password_fragment.*
 import tj.colibri.avrang.R
-import tj.colibri.avrang.data.mock.MockData
-import tj.colibri.avrang.data.user.User
+import tj.colibri.avrang.utils.Features
 import tj.colibri.avrang.utils.SessionManager
 
 class PasswordFragment : Fragment() {
@@ -49,6 +48,7 @@ class PasswordFragment : Fragment() {
                     it.let {
                         viewModel.setUser(it.user)
                         SessionManager(requireContext()).setToken(it.access_token)
+                        Features().hideKeyboard(requireActivity())
                         findNavController().navigate(R.id.action_passwordFragment_to_navigation_profile)
                     }
                 }

@@ -1,5 +1,6 @@
 package tj.colibri.avrang.adapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,10 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import tj.colibri.avrang.R
 import tj.colibri.avrang.data.ApiData.Category.Children
-import tj.colibri.avrang.data.categories.Category
-import tj.colibri.avrang.data.categories.SubCategory
-import tj.colibri.avrang.data.product.options.ProductOptions
 
+@Suppress("DEPRECATION")
 class CategoriesAdapter(val fragment: Fragment, private val itemClickListener : ItemClicked) : RecyclerView.Adapter<CategoriesAdapter.CategoryHolder>(), SubCategoriesAdapter.ItemClicked {
 
     private var items = emptyList<Children>()
@@ -24,6 +23,7 @@ class CategoriesAdapter(val fragment: Fragment, private val itemClickListener : 
 
     override fun getItemCount()=items.size
 
+    @SuppressLint("InflateParams")
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -39,6 +39,7 @@ class CategoriesAdapter(val fragment: Fragment, private val itemClickListener : 
         notifyDataSetChanged()
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     override fun onBindViewHolder(holder: CategoriesAdapter.CategoryHolder, position: Int) {
         val item = items[position]
         holder.title.text = item.name
@@ -59,8 +60,10 @@ class CategoriesAdapter(val fragment: Fragment, private val itemClickListener : 
             layoutManager = linearLayoutManager
             adapter = subCategoriesAdapter
         }
-        if (item.children.isEmpty()){
-            itemClickListener.onParentClicked(item)
+        if (item.children.isEmpty()) {
+            holder.layout.setOnClickListener {
+                itemClickListener.onParentClicked(item)
+            }
         }
         subCategoriesAdapter.setData(item.children)
     }
@@ -73,7 +76,6 @@ class CategoriesAdapter(val fragment: Fragment, private val itemClickListener : 
         var arrow : ImageView = view.findViewById(R.id.category_arrow)
         var rv: RecyclerView = view.findViewById(R.id.category_recycler_view)
     }
-
 
 
     override fun onSubCategoryClicked(item: Children) {

@@ -1,106 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_marginTop="24dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:layout_marginStart="14dp"
+    android:layout_marginTop="24dp"
     android:layout_marginEnd="14dp"
     android:layout_marginBottom="14dp"
-    tools:context=".ui.checkout.CheckOutFragment"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:orientation="vertical"
+    tools:context=".ui.checkout.CheckOutFragment">
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="6dp"
         android:text="@string/choose_card_type"
         android:textColor="@color/textcolor"
-        android:textSize="14dp"/>
+        android:textSize="14dp" />
+
     <GridLayout
-        android:rowCount="2"
-        android:columnCount="2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:columnCount="2"
+        android:rowCount="2">
+
         <androidx.cardview.widget.CardView
             android:id="@+id/card_national"
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
             android:layout_marginEnd="15dp"
+            app:cardBackgroundColor="@color/card_background"
+            android:foreground="?android:attr/selectableItemBackground"
             app:cardCornerRadius="7dp"
-            app:cardElevation="0dp"
-            android:layout_width="0dp"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1"
-            android:backgroundTint="@color/card_background"
-            android:layout_height="100dp">
-            <ImageView
-                android:padding="20dp"
-                android:src="@mipmap/nationalcard"
+            app:cardElevation="0dp">
+
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
+                app:cardElevation="0dp"
+                android:background="@color/card_background"
+                android:backgroundTint="@color/card_background"
+                app:cardCornerRadius="7dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="20dp"
+                    android:src="@mipmap/nationalcard"
+                    android:contentDescription="TODO" />
+            </androidx.cardview.widget.CardView>
+
         </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
-            android:layout_marginEnd="10dp"
-            app:cardCornerRadius="7dp"
-            android:layout_width="0dp"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1"
-            app:cardElevation="0dp"
-            android:backgroundTint="@color/card_background"
-            android:layout_height="100dp">
-            <ImageView
-                android:padding="20dp"
-                android:src="@mipmap/unionpay"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
-        </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
-            android:layout_marginTop="9dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginBottom="3dp"
-            app:cardCornerRadius="7dp"
-            app:cardElevation="0dp"
-            android:layout_width="0dp"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1"
-            android:backgroundTint="@color/card_background"
-            android:layout_height="100dp">
-            <ImageView
-                android:padding="30dp"
-                android:src="@mipmap/mastercard"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
-        </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
-            android:layout_marginTop="9dp"
-            android:layout_marginEnd="10dp"
-            app:cardCornerRadius="7dp"
-            app:cardElevation="0dp"
-            android:layout_marginBottom="3dp"
-            android:layout_width="0dp"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1"
-            android:backgroundTint="@color/card_background"
-            android:layout_height="100dp">
-            <ImageView
-                android:padding="30dp"
-                android:src="@mipmap/visa"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
-        </androidx.cardview.widget.CardView>
+
     </GridLayout>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="14dp"
         android:layout_marginTop="38dp"
+        android:layout_marginBottom="14dp"
         android:text="@string/bonuses_and_promocodes"
         android:textColor="@color/textcolor"
         android:textSize="19dp"
         android:textStyle="bold" />
+
     <RadioGroup
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
         <RadioButton
             android:id="@+id/dont_use_bonus_and_promo"
             android:layout_width="wrap_content"
@@ -110,6 +82,7 @@
             android:text="@string/dontuse"
             android:textColorLink="@color/red_primary"
             android:textSize="@dimen/RadioButton" />
+
         <RadioButton
             android:id="@+id/use_bonus"
             android:layout_width="wrap_content"
@@ -119,6 +92,7 @@
             android:text="@string/Bonuses"
             android:textColorLink="@color/red_primary"
             android:textSize="@dimen/RadioButton" />
+
         <RadioButton
             android:id="@+id/use_promo"
             android:layout_width="wrap_content"
@@ -130,13 +104,14 @@
             android:textSize="@dimen/RadioButton" />
 
     </RadioGroup>
-    <include
-        android:visibility="gone"
-        android:id="@+id/check_out_container_use_bonus"
-        layout="@layout/check_out_use_bonus"/>
 
     <include
-        android:visibility="gone"
+        android:id="@+id/check_out_container_use_bonus"
+        layout="@layout/check_out_use_bonus"
+        android:visibility="gone" />
+
+    <include
         android:id="@+id/check_out_container_promo"
-        layout="@layout/check_out_use_promo" />
+        layout="@layout/check_out_use_promo"
+        android:visibility="gone" />
 </LinearLayout>

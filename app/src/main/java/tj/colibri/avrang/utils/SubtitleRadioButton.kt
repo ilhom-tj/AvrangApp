@@ -4,7 +4,6 @@ import android.content.Context
 import android.text.SpannableString
 import android.text.style.TextAppearanceSpan
 import android.util.AttributeSet
-import android.widget.RadioButton
 import tj.colibri.avrang.R
 
 class SubtitleRadioButton @JvmOverloads constructor(

@@ -11,5 +11,6 @@ data class Children (
 	@SerializedName("icon") val icon: String,
 	@SerializedName("slug") val slug: String,
 	@SerializedName("parent_id") val parent_id: Int,
-	@SerializedName("children") val children: List<Children>
+	@SerializedName("children") val children: List<Children>,
+	var isChecked : Boolean
 ) : Parcelable

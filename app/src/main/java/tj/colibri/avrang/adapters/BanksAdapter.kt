@@ -1,7 +1,7 @@
 package tj.colibri.avrang.adapters
 
 import android.annotation.SuppressLint
-import android.media.Image
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,18 +9,20 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.google.android.material.card.MaterialCardView
-import io.github.serpro69.kfaker.provider.Bank
+import coil.Coil
+import coil.ImageLoader
+import coil.decode.SvgDecoder
+import coil.load
 import tj.colibri.avrang.R
 import tj.colibri.avrang.data.ApiData.product.Banks
-import tj.colibri.avrang.data.cart.CartItem
 import tj.colibri.avrang.utils.Const
 
-class BanksAdapter(val context : Fragment) : RecyclerView.Adapter<BanksAdapter.BanksHolder>() {
+class BanksAdapter(val context: Fragment, private val itemClicked: ItemClicked) :
+    RecyclerView.Adapter<BanksAdapter.BanksHolder>() {
 
     private var products = emptyList<Banks>()
 
+    @SuppressLint("InflateParams")
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -41,18 +43,36 @@ class BanksAdapter(val context : Fragment) : RecyclerView.Adapter<BanksAdapter.B
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: BanksHolder, position: Int) {
         val product = products[position]
-        holder.title.setText(product.name)
-        Glide.with(context).load(Const.image_url + product.image).into(holder.img)
+        holder.title.text = product.name
+
+        val url = Uri.parse(Const.image_url + product.image)
+        val imageLoader = ImageLoader.Builder(context.requireContext())
+            .componentRegistry {
+                add(SvgDecoder(context.requireContext()))
+            }
+            .build()
+        Coil.setImageLoader(imageLoader)
+
+        holder.img.load(url)
+        holder.itemView.setOnClickListener {
+            itemClicked.bankClick(product)
+        }
+        //   Glide.with(context).load(Const.image_url + product.image).into(holder.img)
 
     }
 
     inner class BanksHolder(view: View) :
         RecyclerView.ViewHolder(view) {
-        var img : ImageView = view.findViewById(R.id.img)
+        var img: ImageView = view.findViewById(R.id.img)
         var title: TextView = view.findViewById(R.id.txt)
 
     }
 
 
+    interface ItemClicked {
+
+        fun bankClick(bank: Banks)
+
+    }
 
 }

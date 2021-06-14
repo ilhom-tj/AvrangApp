@@ -6,7 +6,7 @@ import androidx.lifecycle.LiveData
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import tj.colibri.avrang.data.ApiData.home.HomeResponse
-import tj.colibri.avrang.data.mock.ProductCard2
+import tj.colibri.avrang.data.ApiData.product.ProductCard2
 import tj.colibri.avrang.network.repositories.favoriteRepo.FavoriteRepository
 import tj.colibri.avrang.network.repositories.homeRepo.HomeRepo
 import tj.colibri.avrang.utils.Features

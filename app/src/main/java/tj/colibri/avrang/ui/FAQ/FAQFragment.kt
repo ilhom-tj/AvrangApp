@@ -6,9 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.faq_fragment.*
 import tj.colibri.avrang.R
+import tj.colibri.avrang.adapters.FAQAdapter
 
 class FAQFragment : Fragment() {
 
@@ -28,9 +32,22 @@ class FAQFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(FAQViewModel::class.java)
-        faq_payment_delivery.setOnClickListener{
-            Navigation.findNavController(requireView()).navigate(R.id.action_FAQFragment_to_infoContainerFragment)
-        }
+
+        val faqAdapter = FAQAdapter(this)
+
+        faq_recyclerview.layoutManager = GridLayoutManager(requireContext(),1)
+
+        faq_recyclerview.adapter = faqAdapter
+
+        viewModel.getAllFAQs()
+
+        viewModel.FAQList.observe(viewLifecycleOwner, Observer {
+            it.let {
+                faqAdapter.setData(it)
+            }
+        })
+
+
     }
 
 }

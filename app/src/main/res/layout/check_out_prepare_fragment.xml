@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
             name="viewmodel"
@@ -7,9 +9,6 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:backgroundTint="@color/card_background"
@@ -19,7 +18,7 @@
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_marginBottom="60dp"
+            android:layout_marginBottom="70dp"
             android:layout_marginStart="15dp"
             android:layout_marginEnd="15dp"
             android:layout_marginTop="10dp"
@@ -53,7 +52,8 @@
                                 android:padding="10dp"
                                 android:src="@mipmap/ok"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"/>
+                                android:layout_height="match_parent"
+                                android:contentDescription="TODO" />
                         </FrameLayout>
                         <TextView
                             android:text="@string/accept_order"
@@ -67,17 +67,23 @@
                     <ImageView
                         android:src="#E9E9E9"
                         android:layout_width="match_parent"
-                        android:layout_height="1.5dp"/>
-                    <FrameLayout
+                        android:layout_height="1.5dp"
+                        android:contentDescription="TODO" />
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
-
                         <ImageView
+                            android:padding="10dp"
                             android:layout_width="match_parent"
-                            android:layout_height="220dp"
-                            android:layout_marginTop="27dp"
-                            android:src="@mipmap/elipsewithcart" />
-                    </FrameLayout>
+                            android:layout_height="0dp"
+                            android:src="@mipmap/elipsewithcart"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="18:9"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:contentDescription="TODO" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <TextView
                         android:id="@+id/check_out_prepare_goods_sum"
@@ -150,29 +156,39 @@
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
         </androidx.core.widget.NestedScrollView>
-
         <androidx.cardview.widget.CardView
-            android:id="@+id/checkout_card_push"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:elevation="10dp"
+            android:id="@+id/frameCard"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <Button
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+            <androidx.cardview.widget.CardView
                 android:id="@+id/cart_check_out"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="12dp"
-                android:layout_marginBottom="8dp"
+                app:cardCornerRadius="7dp"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@color/red_primary"
                 android:backgroundTint="@color/red_primary"
-                android:text="@string/check_out_accept_order"
-                android:textAllCaps="false" />
-
-
+                android:foreground="?android:attr/selectableItemBackground"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+                <LinearLayout
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/add_cart_label"
+                        android:textSize="18sp"
+                        android:text="@string/check_out_accept_order"
+                        android:textColor="@color/white"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />                </LinearLayout>
+            </androidx.cardview.widget.CardView>
         </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -3,7 +3,6 @@ package tj.colibri.avrang.data.ApiData.product
 import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import io.github.serpro69.kfaker.provider.Measurement
 import java.lang.reflect.Type
 
 

@@ -19,11 +19,10 @@
         tools:ignore="MissingConstraints" />
     <com.google.android.material.slider.RangeSlider
         android:id="@+id/filter_price_slider"
-        android:valueFrom="0.0"
-        android:valueTo="100.0"
         style="@style/ThemeOverlay.App.Slider"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
+
         android:scrollbarAlwaysDrawVerticalTrack="true"
         app:values="@array/initial_slider_values"
         android:layout_width="match_parent"
@@ -38,12 +37,14 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_columnWeight="1">
+
             <EditText
+                android:id="@+id/priceFrom"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/edittext_corner_filter"
                 android:hint="00"
-                android:padding="14dp"
-                android:background="@drawable/edittext_corner_filter" />
+                android:padding="14dp" />
             <TextView
                 android:text="@string/min"
                 android:textSize="18dp"
@@ -61,12 +62,13 @@
             android:layout_marginBottom="20dp"
             android:padding="10dp"
             android:layout_width="20dp"
-            android:background="#E5E5EA"/>
+            android:background="#E5E5EA"
+            android:contentDescription="TODO" />
         <LinearLayout
             android:orientation="vertical"
             android:layout_columnWeight="1">
             <EditText
-                android:id="@+id/edit_minVal"
+                android:id="@+id/priceTo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="00"

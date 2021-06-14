@@ -1,12 +1,10 @@
-package tj.colibri.avrang.data.mock
+package tj.colibri.avrang.data.ApiData.product
 
 import android.os.Parcelable
 import androidx.room.*
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 import tj.colibri.avrang.data.ApiData.home.Labels
-import tj.colibri.avrang.data.ApiData.home.Rating
-import java.util.*
 
 @Parcelize
 data class ProductCard2(

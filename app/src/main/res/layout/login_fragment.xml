@@ -84,7 +84,8 @@
                 android:scaleType="centerCrop"
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"/>
+                android:layout_height="200dp"
+                android:contentDescription="TODO" />
         </LinearLayout>
 
     </com.google.android.material.card.MaterialCardView>

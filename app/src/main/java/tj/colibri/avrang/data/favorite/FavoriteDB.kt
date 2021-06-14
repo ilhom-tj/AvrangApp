@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import tj.colibri.avrang.data.mock.ProductCard2
 
 @Database(entities = [FavoriteCard::class], version = 4)
 abstract class FavoriteDB : RoomDatabase() {

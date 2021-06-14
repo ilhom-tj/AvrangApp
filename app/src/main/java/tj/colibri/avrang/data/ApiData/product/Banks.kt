@@ -15,7 +15,6 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 
 
 data class Banks (
-
 	@SerializedName("id") val id : Int,
 	@SerializedName("name") val name : String,
 	@SerializedName("image") val image : String,

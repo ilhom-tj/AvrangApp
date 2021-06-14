@@ -13,4 +13,7 @@ class VerifyPhoneViewModel(application: Application) : AndroidViewModel(applicat
     fun getVerificationSubmit(phone : String,code: Int) : LiveData<ConfirmCode>{
         return repo.getVerificationSubmit(phone,code.toString())
     }
+    fun getVerificationCode(phone : String) : LiveData<ConfirmCode> {
+        return repo.getVerificationCode(phone)
+    }
 }

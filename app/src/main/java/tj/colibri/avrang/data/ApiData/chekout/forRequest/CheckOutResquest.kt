@@ -16,5 +16,6 @@ data class CheckOutResquest(
     @SerializedName("address") val address: String,
     @SerializedName("right_time") val right_time: String,
     @SerializedName("landmark") val landmark: String,
-    @SerializedName("bonuses") val bonuses: Int
+    @SerializedName("bonuses") val bonuses: Int,
+    @SerializedName("delivery") val delivery : Int
 ) : Parcelable

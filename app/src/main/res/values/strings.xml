@@ -193,4 +193,13 @@
     <string name="confirm_password">Повторите пароль</string>
     <string name="save_changes">Сохранить изменения</string>
     <string name="_0">0 товаров</string>
+    <string name="no_internetcon">Нет подключения к интернету</string>
+    <string name="buy_installation">Купить в рассрочку</string>
+    <string name="fast">Быстрая</string>
+    <string name="basic">Обычная</string>
+    <string name="install">Оформить раcсрочку</string>
+    <string name="advantages">Достоинства:</string>
+    <string name="no_internet_connection_make_sure_wi_fi_or_cellular_data_is_turned_on_then_try_again">No internet connection. Make sure WI-FI or cellular data is turned on, then try again</string>
+    <string name="Show_goods">Показать товары</string>
+    <string name="lable_phone">Телефон :</string>
 </resources>

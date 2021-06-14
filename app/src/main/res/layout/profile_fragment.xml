@@ -38,17 +38,18 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
-                        <ImageView
+                        <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/user_avatar"
                             android:layout_width="72dp"
                             android:layout_height="72dp"
                             android:layout_marginStart="20dp"
                             android:layout_marginTop="20dp"
                             android:layout_marginBottom="20dp"
-                            android:src="@drawable/avrang_product_sample"
+                            android:src="@mipmap/avatar"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:contentDescription="TODO" />
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/user_name_layout"
@@ -63,7 +64,7 @@
                                 android:id="@+id/user_name"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@{ViewModel.profile.name}"
+                                android:text=""
                                 android:textColor="@color/black"
                                 android:textSize="18sp"
                                 android:textStyle="bold"
@@ -115,7 +116,8 @@
                             android:src="@drawable/ic_user_icn"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:contentDescription="TODO" />
 
                         <TextView
                             android:id="@+id/personal_info_label"
@@ -138,7 +140,8 @@
                             android:src="@drawable/ic_avrang_more"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:contentDescription="TODO" />
 
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -173,7 +176,8 @@
                             android:src="@drawable/ic_delivery_address"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:contentDescription="TODO" />
 
                         <TextView
                             android:id="@+id/delivery_address_label"
@@ -196,7 +200,8 @@
                             android:src="@drawable/ic_avrang_more"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:contentDescription="TODO" />
 
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -231,7 +236,8 @@
                             android:src="@drawable/ic_avrang_my_orders"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:contentDescription="TODO" />
 
                         <TextView
                             android:id="@+id/my_orders_label"
@@ -254,7 +260,8 @@
                             android:src="@drawable/ic_avrang_more"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:contentDescription="TODO" />
 
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -297,7 +304,8 @@
                             android:backgroundTint="#D8D8D8"
                             android:layout_width="match_parent"
                             android:layout_marginBottom="13dp"
-                            android:layout_height="1dp"/>
+                            android:layout_height="1dp"
+                            android:contentDescription="TODO" />
                         <LinearLayout
                             android:orientation="horizontal"
                             android:layout_width="match_parent"
@@ -367,7 +375,8 @@
                             android:layout_marginTop="@dimen/activity_vertical_margin"
                             android:layout_width="match_parent"
                             android:layout_marginBottom="10dp"
-                            android:layout_height="200dp"/>
+                            android:layout_height="200dp"
+                            android:contentDescription="TODO" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
                 <androidx.cardview.widget.CardView
@@ -379,32 +388,6 @@
                     app:cardCornerRadius="6dp"
                     android:layout_marginBottom="12dp"
                     android:background="@color/white">
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-                        <TextView
-                            android:text="Рекомендуем Вам"
-                            android:layout_marginStart="@dimen/activity_horizontal_margin"
-                            android:layout_marginTop="13dp"
-                            android:textSize="16dp"
-                            android:textColor="@color/textcolor"
-                            android:textStyle="bold"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/users_also_buy_recycler_view"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:layout_marginTop="24dp"
-                            android:layout_marginEnd="8dp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/users_also_buy_label"
-                            tools:itemCount="1"
-                            tools:listitem="@layout/product_layout" />
-                    </LinearLayout>
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>

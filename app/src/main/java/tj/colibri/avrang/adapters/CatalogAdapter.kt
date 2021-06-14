@@ -13,7 +13,6 @@ import coil.Coil
 import coil.ImageLoader
 import coil.decode.SvgDecoder
 import coil.load
-import com.bumptech.glide.Glide
 import tj.colibri.avrang.R
 import tj.colibri.avrang.data.ApiData.Category.Children
 import tj.colibri.avrang.utils.Const
@@ -22,6 +21,7 @@ class CatalogAdapter(val context : Fragment, private val itemClickListener: Item
 
     private var items = emptyList<Children>()
 
+    @SuppressLint("InflateParams")
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -62,7 +62,7 @@ class CatalogAdapter(val context : Fragment, private val itemClickListener: Item
         var layout : ConstraintLayout = view.findViewById(R.id.catalog_layout)
         var image : ImageView = view.findViewById(R.id.catalog_image)
         var title: TextView = view.findViewById(R.id.catalog_title)
-        var more : ImageView = view.findViewById(R.id.catalog_more)
+
 
     }
 

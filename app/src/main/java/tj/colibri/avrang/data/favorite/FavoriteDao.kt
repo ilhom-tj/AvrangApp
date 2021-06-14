@@ -2,7 +2,6 @@ package tj.colibri.avrang.data.favorite
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import tj.colibri.avrang.data.mock.ProductCard2
 
 @Dao
 interface FavoriteDao {

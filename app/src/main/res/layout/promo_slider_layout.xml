@@ -4,24 +4,22 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/slider_card"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="match_parent"
         app:cardCornerRadius="12dp"
         app:cardElevation="0dp"
-        android:layout_marginStart="8dp"
         android:background="@color/card_background"
         android:backgroundTint="@color/card_background"
-        android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
     <ImageView
         android:id="@+id/promo_slider_image"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
+        android:src="@color/placeholder"
         android:layout_height="match_parent"
-        app:layout_constraintDimensionRatio="16:8"
         android:scaleType="fitXY"
-         />
+        android:contentDescription="TODO" />
 
     </androidx.cardview.widget.CardView>

@@ -9,5 +9,6 @@ data class OrderContainer(
     @SerializedName("comments") val comments : String,
     @SerializedName("status") val status : Status,
     @SerializedName("created_at") val created_at : String,
-    @SerializedName("products") val products : List<Products>
+    @SerializedName("products") val products : List<Products>,
+    var isExpanded : Boolean? = false
 )

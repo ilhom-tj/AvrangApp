@@ -7,12 +7,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
-import kotlinx.android.synthetic.main.fragment_delivery_adres.*
-import kotlinx.android.synthetic.main.product_info_fragment.*
 import kotlinx.android.synthetic.main.product_info_fragment_v2.*
 import kotlinx.android.synthetic.main.rating_with_comment_fragment.*
 import kotlinx.android.synthetic.main.rating_with_comment_fragment.product_rating_five_count
@@ -22,25 +21,19 @@ import kotlinx.android.synthetic.main.rating_with_comment_fragment.product_ratin
 import kotlinx.android.synthetic.main.rating_with_comment_fragment.product_rating_two_count
 import tj.colibri.avrang.R
 import tj.colibri.avrang.adapters.CommentAdapter
-import tj.colibri.avrang.data.mock.MockData
-import kotlinx.android.synthetic.main.product_info_fragment.product_rating_2nd as product_rating_2nd1
-import kotlinx.android.synthetic.main.product_info_fragment.product_rating_qty as product_rating_qty1
-import kotlinx.android.synthetic.main.product_info_fragment.product_rating_three_progress as product_rating_three_progress1
-import kotlinx.android.synthetic.main.product_info_fragment.rating_bar as rating_bar1
-import kotlinx.android.synthetic.main.rating_with_comment_fragment.product_rating_2nd as product_rating_2nd1
-import kotlinx.android.synthetic.main.rating_with_comment_fragment.product_rating_qty as product_rating_qty1
-import kotlinx.android.synthetic.main.rating_with_comment_fragment.rating_bar as rating_bar1
+import tj.colibri.avrang.databinding.RatingWithCommentFragmentBinding
 
 class RatingWithCommentFragment : Fragment() {
 
     private lateinit var commentsAdapter: CommentAdapter
-    private val args : RatingWithCommentFragmentArgs by navArgs()
+    private val args: RatingWithCommentFragmentArgs by navArgs()
+    private lateinit var binding: RatingWithCommentFragmentBinding
 
-    var rOneQ = 0;
-    var rTwoQ = 0;
-    var rThreeQ = 0;
-    var rFourQ = 0;
-    var rFiveQ = 0;
+    var rOneQ = 0
+    var rTwoQ = 0
+    var rThreeQ = 0
+    var rFourQ = 0
+    var rFiveQ = 0
 
     companion object {
         fun newInstance() = RatingWithCommentFragment()
@@ -52,7 +45,13 @@ class RatingWithCommentFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.rating_with_comment_fragment, container, false)
+        binding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.rating_with_comment_fragment,
+            container,
+            false
+        )
+        return binding.root
     }
 
     @SuppressLint("SetTextI18n")
@@ -61,109 +60,126 @@ class RatingWithCommentFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(RatingWithCommentViewModel::class.java)
 
-        comment_recyclerview.layoutManager = GridLayoutManager(requireContext(), 1)
+        binding.commentRecyclerview.layoutManager = GridLayoutManager(requireContext(), 1)
 
         commentsAdapter = CommentAdapter(this)
         commentsAdapter.setData(args.reviews)
 
-        comment_recyclerview.adapter = commentsAdapter
+        binding.commentRecyclerview.adapter = commentsAdapter
 
-        card_new_comments.setOnClickListener {
-        //    CommentsFilterChangeColor(card_new_comments)
-        //    commentsAdapter.sortByRatingFirstNew()
-            card_new_comments.backgroundTintList = ColorStateList.valueOf(
+        binding.cardNewComments.setOnClickListener {
+            //    CommentsFilterChangeColor(card_new_comments)
+            //    commentsAdapter.sortByRatingFirstNew()
+            commentsAdapter.sortByDateNew()
+            binding.cardNewComments.backgroundTintList = ColorStateList.valueOf(
                 requireContext().getColor(
                     R.color.textwarning
                 )
             )
-            card_best_comments.backgroundTintList = ColorStateList.valueOf(Color.WHITE)
-            card_worst_comments.backgroundTintList = ColorStateList.valueOf(Color.WHITE)
-
+            binding.cardBestComments.backgroundTintList = ColorStateList.valueOf(Color.WHITE)
+            binding.cardWorstComments.backgroundTintList = ColorStateList.valueOf(Color.WHITE)
 
 
         }
-        card_best_comments.setOnClickListener {
-     //       CommentsFilterChangeColor(card_best_comments)
-      //     commentsAdapter.sortByRatingFirstBest()
-            card_best_comments.backgroundTintList = ColorStateList.valueOf(
+
+        binding.cardBestComments.setOnClickListener {
+            //       CommentsFilterChangeColor(card_best_comments)
+            //     commentsAdapter.sortByRatingFirstBest()
+            commentsAdapter.sortByBest()
+            binding.cardBestComments.backgroundTintList = ColorStateList.valueOf(
                 requireContext().getColor(
                     R.color.textwarning
                 )
             )
-            card_new_comments.backgroundTintList = ColorStateList.valueOf(Color.WHITE)
-            card_worst_comments.backgroundTintList = ColorStateList.valueOf(Color.WHITE)
+            binding.cardNewComments.backgroundTintList = ColorStateList.valueOf(Color.WHITE)
+            binding.cardWorstComments.backgroundTintList = ColorStateList.valueOf(Color.WHITE)
         }
-        card_worst_comments.setOnClickListener {
-      //      CommentsFilterChangeColor(card_worst_comments)
-     //       commentsAdapter.sortByRatingFirstWorst()
-            card_worst_comments.backgroundTintList = ColorStateList.valueOf(
+
+        binding.cardWorstComments.setOnClickListener {
+            //      CommentsFilterChangeColor(card_worst_comments)
+            //       commentsAdapter.sortByRatingFirstWorst()
+            commentsAdapter.sortByWorst()
+            binding.cardWorstComments.backgroundTintList = ColorStateList.valueOf(
                 requireContext().getColor(
                     R.color.textwarning
                 )
             )
-            card_best_comments.backgroundTintList = ColorStateList.valueOf(Color.WHITE)
-            card_new_comments.backgroundTintList = ColorStateList.valueOf(Color.WHITE)
+            binding.cardBestComments.backgroundTintList = ColorStateList.valueOf(Color.WHITE)
+            binding.cardNewComments.backgroundTintList = ColorStateList.valueOf(Color.WHITE)
         }
 
-       SetupRating()
+        SetupRating()
 
     }
 
-    fun SetupRating(){
-         lable_review_count.setText("Отзывы ${args.ratings.quantity}")
+    @SuppressLint("SetTextI18n")
+    fun SetupRating() {
+        lable_review_count.text = "Отзывы ${args.ratings.quantity}"
 
         args.reviews.forEach { reviews ->
-            if (reviews.rating == 1) rOneQ++;
-            if (reviews.rating == 2) rTwoQ++;
-            if (reviews.rating == 3) rThreeQ++;
-            if (reviews.rating == 4) rFourQ++;
-            if (reviews.rating == 5) rFiveQ++;
+            if (reviews.rating == 1) {
+                rOneQ++
+            }
+            if (reviews.rating == 2) {
+                rTwoQ++
+            }
+            if (reviews.rating == 3) {
+                rThreeQ++
+            }
+            if (reviews.rating == 4) {
+                rFourQ++
+            }
+            if (reviews.rating == 5) {
+                rFiveQ++
+            }
         }
+
         //product_rating_five_progress =
-        product_rating_five_count.text = rFiveQ.toString()
+        binding.productRatingFiveCount.text = rFiveQ.toString()
 
-        product_rating_four_count.text = rFourQ.toString()
+        binding.productRatingFourCount.text = rFourQ.toString()
 
-        product_rating_three_count.text = rThreeQ.toString()
+        binding.productRatingThreeCount.text = rThreeQ.toString()
 
-        product_rating_two_count.text = rTwoQ.toString()
+        binding.productRatingTwoCount.text = rTwoQ.toString()
 
-        product_rating_one_count.text = rOneQ.toString()
+        binding.productRatingOneCount.text = rOneQ.toString()
 
-        rating_bar.rating = args.ratings.rating.toFloat()
+        binding.ratingBar.rating = args.ratings.rating.toFloat()
 
-        product_rating_2nd.setText(args.ratings.rating.toString())
+        binding.productRating2nd.text = args.ratings.rating.toString()
 
-        product_rating_qty.setText(args.ratings.quantity.toString() + " отзыва")
+        binding.productRatingQty.text = args.ratings.quantity.toString() + " отзыва"
 
         SetUpProgress()
     }
-    fun SetUpProgress(){
 
-        rating_bar.rating = args.ratings.rating.toFloat()
-        product_rating_2nd.setText(args.ratings.rating.toString())
+    @SuppressLint("SetTextI18n")
+    fun SetUpProgress() {
 
-        product_rating_qty.setText(args.ratings.quantity.toString() + " Отзывов" )
+        binding.ratingBar.rating = args.ratings.rating.toFloat()
+        binding.productRating2nd.text = args.ratings.rating.toString()
+        binding.productRatingQty.text = args.ratings.quantity.toString() + " Отзывов"
+
         //Set up value and max value
         val max = args.ratings.rating
 
-        rp5.max = max
-        rp5.setProgress(rFiveQ)
+        binding.rp5.max = max
+        binding.rp5.progress = rFiveQ
 
-        rp4.max = max
-        rp4.setProgress(rFourQ)
+        binding.rp4.max = max
+        binding.rp4.progress = rFourQ
 
-        rp3.max = max
-        rp3.setProgress(rThreeQ)
+        binding.rp3.max = max
+        binding.rp3.progress = rThreeQ
 
-        rp2.max = max
-        rp2.setProgress(rTwoQ)
+        binding.rp2.max = max
+        binding.rp2.progress = rTwoQ
 
-        rp1.max = max
-        rp1.setProgress(rOneQ)
+        binding.rp1.max = max
+        binding.rp1.progress = rOneQ
 
     }
-
 
 
 }

@@ -29,7 +29,8 @@
             app:layout_constraintDimensionRatio="16:9"
             android:layout_gravity="center"
             android:scaleType="fitCenter"
-            tools:srcCompat="@tools:sample/avatars" />
+            tools:srcCompat="@tools:sample/avatars"
+            android:contentDescription="TODO" />
 
     </androidx.cardview.widget.CardView>
 

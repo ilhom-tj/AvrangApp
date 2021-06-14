@@ -21,7 +21,8 @@
                 android:layout_height="30dp"
                 android:src="@mipmap/exit"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:contentDescription="TODO" />
 
             <TextView
                 android:gravity="center"
@@ -39,7 +40,8 @@
             android:background="@color/separator"
             android:backgroundTint="@color/separator"
             android:layout_width="match_parent"
-            android:layout_height="1dp"/>
+            android:layout_height="1dp"
+            android:contentDescription="TODO" />
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/profile_more_contacts"
             android:padding="@dimen/more_option_item"
@@ -54,7 +56,8 @@
                 android:src="@mipmap/phone"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:tint="@color/red_primary" />
+                app:tint="@color/red_primary"
+                android:contentDescription="TODO" />
 
             <TextView
                 android:gravity="center"
@@ -72,7 +75,8 @@
             android:background="@color/separator"
             android:backgroundTint="@color/separator"
             android:layout_width="match_parent"
-            android:layout_height="1dp"/>
+            android:layout_height="1dp"
+            android:contentDescription="TODO" />
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/profile_more_faq"
             android:padding="@dimen/more_option_item"
@@ -86,7 +90,8 @@
                 android:layout_height="30dp"
                 android:src="@mipmap/faq"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:contentDescription="TODO" />
 
             <TextView
                 android:gravity="center"
@@ -104,7 +109,8 @@
             android:background="@color/separator"
             android:backgroundTint="@color/separator"
             android:layout_width="match_parent"
-            android:layout_height="1dp"/>
+            android:layout_height="1dp"
+            android:contentDescription="TODO" />
         <androidx.constraintlayout.widget.ConstraintLayout
 
             android:padding="@dimen/more_option_item"
@@ -120,7 +126,7 @@
                 android:src="@mipmap/info_outline"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-              />
+                android:contentDescription="TODO" />
 
             <TextView
                 android:gravity="center"

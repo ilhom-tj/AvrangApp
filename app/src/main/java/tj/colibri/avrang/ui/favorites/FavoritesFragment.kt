@@ -8,16 +8,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_favorites.*
 import tj.colibri.avrang.R
-import tj.colibri.avrang.data.mock.MockData
 import tj.colibri.avrang.adapters.FavoritesAdapter
 import tj.colibri.avrang.data.favorite.FavoriteCard
-import tj.colibri.avrang.data.mock.ProductCard2
 
-class FavoritesFragment : Fragment(), FavoritesAdapter.RemoveClickListener {
+class FavoritesFragment : Fragment(), FavoritesAdapter.ClickListener {
 
     private lateinit var viewModel: FavoritesViewModel
     private lateinit var favoritesAdapter: FavoritesAdapter
@@ -58,6 +57,11 @@ class FavoritesFragment : Fragment(), FavoritesAdapter.RemoveClickListener {
                 favoritesAdapter.setData(list)
             }
         })
+    }
+
+    override fun itemClickListener(favorite: FavoriteCard) {
+        val action = FavoritesFragmentDirections.actionNavigationFavoriteToProductInfoFragment(favorite.slug)
+        findNavController().navigate(action)
     }
 
     override fun removeClickListener(favorite: FavoriteCard) {

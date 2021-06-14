@@ -3,28 +3,21 @@ package tj.colibri.avrang.ui.cart
 import android.annotation.SuppressLint
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
-import androidx.navigation.Navigation
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.cart_fragment.*
 import tj.colibri.avrang.R
 import tj.colibri.avrang.adapters.CartItemsAdapter
-import tj.colibri.avrang.adapters.CommentAdapter
-import tj.colibri.avrang.data.ApiData.chekout.CheckOutItem
 import tj.colibri.avrang.data.cart.CartItem
-import tj.colibri.avrang.data.mock.MockData
-import tj.colibri.avrang.data.order.OrderItem
 import tj.colibri.avrang.utils.SessionManager
 import java.text.DecimalFormat
-import java.util.*
-import kotlin.collections.ArrayList
 
 class CartFragment : Fragment(), CartItemsAdapter.CartItemCliked {
 
@@ -39,12 +32,11 @@ class CartFragment : Fragment(), CartItemsAdapter.CartItemCliked {
         return inflater.inflate(R.layout.cart_fragment, container, false)
     }
 
+
     @SuppressLint("SetTextI18n")
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(CartViewModel::class.java)
-
-
 
         cartItemsAdapter = CartItemsAdapter(this, this)
 
@@ -53,81 +45,87 @@ class CartFragment : Fragment(), CartItemsAdapter.CartItemCliked {
             GridLayoutManager(context, 1, LinearLayoutManager.VERTICAL, false)
 
 
-        var cartItems = viewModel.getCartItems.value
 
-        var checkOutItems = listOf<CheckOutItem>()
-        viewModel.indexes.observe(viewLifecycleOwner, Observer {
+
+       // var checkOutItems = listOf<CheckOutItem>()
+        viewModel.indexes.observe(viewLifecycleOwner,  {
             it.let {
-                checkOutItems = it
+       //         checkOutItems = it
                 it.forEach { items ->
                     viewModel.updateCartItemQunatity(items)
                 }
             }
         })
 
-        viewModel.getCartItems.observe(viewLifecycleOwner, Observer {
+
+        val bottomnav = requireActivity().findViewById<BottomNavigationView>(R.id.nav_view)
+        viewModel.getCartItems.observe(viewLifecycleOwner,  {
             it.let {
                 cartItemsAdapter.setData(it)
+                if (it.size == 0){
+                    bottomnav.removeBadge(R.id.navigation_cart)
+                }else{
+                    bottomnav.getOrCreateBadge(R.id.navigation_cart).number = it.size
+                }
             }
         })
 
-        var totalPrice = 0.0
 
-        viewModel.totalPrice.observe(viewLifecycleOwner, Observer {
+        viewModel.totalPrice.observe(viewLifecycleOwner,  {
             it.let {
                 if (it != null) {
-                    cart_total.setText(DecimalFormat("##.##").format(it) + " TJS")
-                    totalPrice = it
+                    cart_total.text = DecimalFormat("##.##").format(it) + " TJS"
+                 //  totalPrice = it
                 } else {
-                    cart_total.setText("0 TJS")
+                    cart_total.text = "0 TJS"
                 }
             }
 
         })
 
-        var totalBonuses = 0
-
-
-        viewModel.totalBonuses.observe(viewLifecycleOwner, Observer {
+        viewModel.totalBonuses.observe(viewLifecycleOwner,  {
             it.let {
-                if (it != null){
-                    totalBonuses = it
-                }else{
-                    totalBonuses = 0
-                }
-
+                //totalBonuses = it ?: 0
             }
         })
 
         cart_check_out.setOnClickListener {
             if (SessionManager(requireContext()).getToken() != "error") {
-                val action = CartFragmentDirections.actionCartFragmentToCheckOutFragment(
-                    (totalPrice).toString(),
-                    totalBonuses,
-                    checkOutItems.toTypedArray()
-                )
-                findNavController().navigate(action)
+                if (!cart_total.text.equals("0 TJS")) {
+                    findNavController().navigate(R.id.action_cartFragment_to_checkOutFragment)
+                } else {
+                    Toast.makeText(requireContext(), "Нет товаров в корзине", Toast.LENGTH_SHORT)
+                        .show()
+                }
             } else {
                 findNavController().navigate(R.id.loginFragment)
             }
 
         }
+        cart_check_installation.setOnClickListener {
+            if (!cart_total.text.equals("0 TJS")) {
+                findNavController().navigate(R.id.instalationFragment)
+            } else {
+                Toast.makeText(requireContext(), "Нет товаров в корзине", Toast.LENGTH_SHORT).show()
+            }
 
-
+        }
+    }
+    override fun itemClickListener(cartItem: CartItem) {
+        val action = CartFragmentDirections.actionNavigationCartToProductInfoFragment(cartItem.slug)
+        findNavController().navigate(action)
     }
 
     override fun onPlusQuantityClick(cartItem: CartItem, quantity: Int) {
-        var cartItemUpdate = cartItem
-        cartItemUpdate.quantity = quantity
+        cartItem.quantity = quantity
         viewModel.cartRepo.addToCheckOut(cartItem.id, cartItem.quantity)
-        viewModel.cartRepo.addToCart(cartItemUpdate)
+        viewModel.cartRepo.addToCart(cartItem)
     }
 
     override fun onMinusQuantityClick(cartItem: CartItem, quantity: Int) {
-        var cartItemUpdate = cartItem
-        cartItemUpdate.quantity = quantity
+        cartItem.quantity = quantity
         viewModel.cartRepo.addToCheckOut(cartItem.id, cartItem.quantity)
-        viewModel.cartRepo.addToCart(cartItemUpdate)
+        viewModel.cartRepo.addToCart(cartItem)
     }
 
     override fun deleteFromCart(cartItem: CartItem) {

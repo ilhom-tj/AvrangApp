@@ -1,6 +1,6 @@
 package tj.colibri.avrang.network.repositories.userRepo
 
-import android.app.Application
+import tj.colibri.avrang.data.user.User
 import android.content.Context
 import android.util.Log
 import android.widget.Toast
@@ -8,16 +8,16 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import okhttp3.MultipartBody
 import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.Response
+import tj.colibri.avrang.data.ApiData.profile.Image.ImageResponse
 import tj.colibri.avrang.data.ApiData.profile.ProfileResponse
 import tj.colibri.avrang.data.order.MyOrdersRequest
-import tj.colibri.avrang.data.user.User
 import tj.colibri.avrang.data.user.UserDao
 import tj.colibri.avrang.data.user.UserDataBase
 import tj.colibri.avrang.network.RetrofitInstance
-import java.util.*
-import javax.security.auth.callback.Callback
 
 class UserRepository(val context: Context) {
 
@@ -28,6 +28,20 @@ class UserRepository(val context: Context) {
 
     fun updateUser(user: User) = GlobalScope.launch {
         userDao.addUser(user)
+    }
+    fun updateUserImage(image : MultipartBody.Part) :LiveData<Boolean>{
+        val liveData = MutableLiveData<Boolean>()
+        api.updateProfileImage(image).enqueue(object : Callback<ImageResponse>{
+            override fun onResponse(call: Call<ImageResponse>, response: Response<ImageResponse>) {
+                liveData.value = response.isSuccessful
+            }
+
+            override fun onFailure(call: Call<ImageResponse>, t: Throwable) {
+
+            }
+
+        })
+        return liveData
     }
 
     fun updatePersonalInfo(
@@ -116,5 +130,20 @@ class UserRepository(val context: Context) {
 
         })
         return livedata
+    }
+
+    fun updateAdresses(main_address: String , additional_adress: String) : LiveData<Boolean>{
+        val liveData = MutableLiveData<Boolean>()
+        api.updateUserAdress(main_address,additional_adress).enqueue(object  : Callback<User>{
+            override fun onResponse(call: Call<User>, response: Response<User>) {
+                liveData.value = response.isSuccessful
+            }
+
+            override fun onFailure(call: Call<User>, t: Throwable) {
+
+            }
+
+        })
+        return liveData
     }
 }

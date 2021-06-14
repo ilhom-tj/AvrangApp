@@ -7,12 +7,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import tj.colibri.avrang.data.ApiData.chekout.forRequest.CheckOutBankResponse
 import tj.colibri.avrang.data.ApiData.chekout.forRequest.CheckOutResponse
 import tj.colibri.avrang.network.repositories.cartRepo.CartRepository
 import tj.colibri.avrang.network.repositories.checkout.CheckOutRepo
 
 class CheckOutPrepareViewModel(application: Application) : AndroidViewModel(application) {
-    val checkOutRepo = CheckOutRepo(application.applicationContext)
+    private val checkOutRepo = CheckOutRepo(application.applicationContext)
     val cartRepo = CartRepository(application.applicationContext)
 
     var checkOutResquest = MutableLiveData<CheckOutResquest>()
@@ -23,5 +24,9 @@ class CheckOutPrepareViewModel(application: Application) : AndroidViewModel(appl
 
     fun clearCart() = GlobalScope.launch{
         cartRepo.remoeFromAll()
+    }
+
+    fun checkOutBank(checkOutResquest: CheckOutResquest) : LiveData<CheckOutBankResponse>{
+        return checkOutRepo.CheckOutCartBank(checkOutResquest)
     }
 }

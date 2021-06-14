@@ -11,9 +11,7 @@ import retrofit2.Response
 import tj.colibri.avrang.data.ApiData.Favorite.FavoriteRequest
 import tj.colibri.avrang.data.favorite.FavoriteCard
 import tj.colibri.avrang.data.favorite.FavoriteDB
-import tj.colibri.avrang.data.mock.ProductCard2
 import tj.colibri.avrang.network.RetrofitInstance
-import tj.colibri.avrang.utils.Features
 
 class FavoriteRepository(application: Application) {
 
@@ -25,7 +23,7 @@ class FavoriteRepository(application: Application) {
     var favCount = favoriteDao.getFavCount()
 
     fun getFavorite() : LiveData<FavoriteRequest>{
-        var liveData = MutableLiveData<FavoriteRequest>()
+        val liveData = MutableLiveData<FavoriteRequest>()
         api.getFavorites().enqueue(object : Callback<FavoriteRequest>{
             override fun onResponse(
                 call: Call<FavoriteRequest>,
@@ -43,23 +41,10 @@ class FavoriteRepository(application: Application) {
         })
         return liveData
     }
-    fun addFavorite(id : Int) : LiveData<Boolean>{
-        var isCreated = MutableLiveData<Boolean>()
-        api.addToFavorite(id).enqueue(object : Callback<String>{
-            override fun onResponse(call: Call<String>, response: Response<String>) {
-                isCreated.value = response.code() == 201
-            }
 
-            override fun onFailure(call: Call<String>, t: Throwable) {
-
-            }
-
-        })
-        return isCreated
-    }
 
     fun addItemToFavorite(favorite: FavoriteCard) : LiveData<Boolean>{
-        var isCreated = MutableLiveData<Boolean>()
+        val isCreated = MutableLiveData<Boolean>()
         addItemToChache(favorite)
         api.addToFavorite(favorite.id).enqueue(object : Callback<String>{
             override fun onResponse(call: Call<String>, response: Response<String>) {
@@ -91,7 +76,7 @@ class FavoriteRepository(application: Application) {
     fun addItemToChache(favoriteCard: FavoriteCard) = GlobalScope.launch {
         favoriteDao.insert(favoriteCard)
     }
-    fun deleteFromChache(favoriteCard: FavoriteCard) = GlobalScope.launch {
+    private fun deleteFromChache(favoriteCard: FavoriteCard) = GlobalScope.launch {
         favoriteDao.deleteFavorite(favoriteCard)
     }
 }

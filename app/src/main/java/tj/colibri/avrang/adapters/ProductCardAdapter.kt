@@ -1,10 +1,7 @@
 package tj.colibri.avrang.adapters
 
 import android.annotation.SuppressLint
-import android.content.res.ColorStateList
-import android.graphics.Color
 import android.graphics.Paint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,27 +9,27 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.product_info_fragment_v2.*
 import tj.colibri.avrang.R
-import tj.colibri.avrang.data.comments.Comment
-import tj.colibri.avrang.data.mock.ProductCard2
+import tj.colibri.avrang.data.ApiData.product.ProductCard2
 import tj.colibri.avrang.utils.Const
-import tj.colibri.avrang.utils.Features
-import java.text.SimpleDateFormat
-import java.util.*
-import kotlin.Comparator
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class ProductCardAdapter(val context : Fragment,
                          private val itemClickListener: ItemClicked
                          ) : RecyclerView.Adapter<ProductCardAdapter.ProductHolder>() {
 
-    private var products = mutableListOf<ProductCard2>()
+    var products = mutableListOf<ProductCard2>()
 
+
+    fun removeAll() {
+        products.clear()
+        notifyDataSetChanged()
+    }
+
+    @SuppressLint("InflateParams")
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -58,6 +55,7 @@ class ProductCardAdapter(val context : Fragment,
     override fun onBindViewHolder(holder: ProductCardAdapter.ProductHolder, position: Int) {
         val product = products[position]
         holder.product_title.text = product.name
+
         if (product.isFavorite){
             holder.product_favorite.setImageResource(R.drawable.ic_baseline_favorite_24)
             holder.product_favorite.setColorFilter(ContextCompat.getColor(context.requireContext(),R.color.red_primary))
@@ -66,9 +64,9 @@ class ProductCardAdapter(val context : Fragment,
             holder.product_favorite.clearColorFilter()
         }
 
-         Glide
+        Glide
             .with(context)
-            .load(Const.image_url + product.images.get(0))
+            .load(Const.image_url + product.images[0])
             .fitCenter()
             .into(holder.product_image)
 //        holder.bestseller.isVisible = product.labels.is_hit
@@ -76,14 +74,21 @@ class ProductCardAdapter(val context : Fragment,
         holder.ratings_qty.text = "${product.rating.quantity} отзывов"
 
 
-        if(product.newPrice.equals(0.0)){
+        if (product.newPrice.equals(0.0)) {
             holder.product_old_price.visibility = View.INVISIBLE
             holder.product_price.text = "${product.productPrice}  TJS"
-        }else{
+        } else {
             holder.product_old_price.visibility = View.VISIBLE
             holder.product_old_price.text = "${product.productPrice}"
             holder.product_price.text = "${product.newPrice}  TJS"
-            holder.product_old_price.setPaintFlags(holder.product_old_price.getPaintFlags() or Paint.STRIKE_THRU_TEXT_FLAG)
+            holder.product_old_price.paintFlags =
+                holder.product_old_price.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+        }
+        if (product.labels.is_promotion) {
+            holder.sale.visibility = View.VISIBLE
+        }
+        if (product.labels.is_hit) {
+            holder.bestseller.visibility = View.VISIBLE
         }
 
 
@@ -91,18 +96,19 @@ class ProductCardAdapter(val context : Fragment,
         holder.product_card.setOnClickListener {
             itemClickListener.onProductItemClicked(product)
         }
+
         holder.product_favorite.setOnClickListener {
-            if (product.isFavorite){
+            if (product.isFavorite) {
                 holder.product_favorite.setImageResource(R.drawable.ic_baseline_favorite_border_24)
                 holder.product_favorite.clearColorFilter()
              //   holder.product_favorite.setColorFilter(ContextCompat.getColor(context.requireContext(),R.color.red_primary))
-                products.get(position).isFavorite = false
+                products[position].isFavorite = false
                 notifyDataSetChanged()
                 itemClickListener.onRemoveClickListener(product)
             }else{
                 holder.product_favorite.setImageResource(R.drawable.ic_baseline_favorite_24)
                 holder.product_favorite.setColorFilter(ContextCompat.getColor(context.requireContext(),R.color.red_primary))
-                products.get(position).isFavorite = true
+                products[position].isFavorite = true
                 notifyDataSetChanged()
                 itemClickListener.onAddProductToFavorite(product)
             }

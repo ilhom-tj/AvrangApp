@@ -1,7 +1,15 @@
 package tj.colibri.avrang.ui.profile.delivery
 
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import tj.colibri.avrang.data.user.User
+import tj.colibri.avrang.network.repositories.userRepo.UserRepository
 
-class DeliveryAdresViewModel : ViewModel() {
-    //TODO make a viewmodel
+class DeliveryAdresViewModel(application: Application) : AndroidViewModel(application){
+    private val userRepository = UserRepository(application)
+
+    fun updateAdress(main_adres : String,additional : String) : LiveData<Boolean>{
+        return userRepository.updateAdresses(main_adres,additional)
+    }
 }

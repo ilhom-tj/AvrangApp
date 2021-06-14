@@ -11,10 +11,11 @@
         android:text="dasdasdsa"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#959595"
+        android:textColor="@color/textcolor"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
