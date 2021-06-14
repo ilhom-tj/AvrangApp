@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: io.github.serpro69:kotlin-faker:1.4.1@jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.github.serpro69/kotlin-faker/1.4.1/3b47dd6e4bfa70d7495eebf3d043c11df0de8cda/kotlin-faker-1.4.1.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.github.serpro69/kotlin-faker/1.4.1/dcaffd2078eb8c5403b458eea067c40f02f119/kotlin-faker-1.4.1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.github.serpro69/kotlin-faker/1.4.1/dee766909ad8783cb832847a4b0854f4642b3371/kotlin-faker-1.4.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
