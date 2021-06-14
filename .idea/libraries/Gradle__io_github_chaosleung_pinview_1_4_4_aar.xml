@@ -3,6 +3,9 @@
     <CLASSES>
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/fd6478b63de876f3305ce7d52b15458b/transformed/jetified-pinview-1.4.4/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/fd6478b63de876f3305ce7d52b15458b/transformed/jetified-pinview-1.4.4/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/4af2084913dbde7d60b1a25cd98a3d89/transformed/jetified-pinview-1.4.4/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/4af2084913dbde7d60b1a25cd98a3d89/transformed/jetified-pinview-1.4.4/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/4af2084913dbde7d60b1a25cd98a3d89/transformed/jetified-pinview-1.4.4/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.github.chaosleung/pinview/1.4.4/87f73ac2bed8b01c2d4876b4fa5398811c5941d0/pinview-1.4.4-javadoc.jar!/" />

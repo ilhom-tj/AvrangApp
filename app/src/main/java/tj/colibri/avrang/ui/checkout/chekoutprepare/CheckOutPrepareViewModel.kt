@@ -1,14 +1,14 @@
 package tj.colibri.avrang.ui.checkout.chekoutprepare
 
-import tj.colibri.avrang.data.ApiData.chekout.forRequest.CheckOutResquest
+import tj.colibri.avrang.models.Chekout.forRequest.CheckOutResquest
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import tj.colibri.avrang.data.ApiData.chekout.forRequest.CheckOutBankResponse
-import tj.colibri.avrang.data.ApiData.chekout.forRequest.CheckOutResponse
+import tj.colibri.avrang.models.Chekout.forRequest.CheckOutBankResponse
+import tj.colibri.avrang.models.Chekout.forRequest.CheckOutResponse
 import tj.colibri.avrang.network.repositories.cartRepo.CartRepository
 import tj.colibri.avrang.network.repositories.checkout.CheckOutRepo
 

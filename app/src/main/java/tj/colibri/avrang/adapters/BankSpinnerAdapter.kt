@@ -11,8 +11,8 @@ import android.widget.TextView
 import coil.Coil
 import coil.load
 import tj.colibri.avrang.R
-import tj.colibri.avrang.data.ApiData.Installment.Banks
-import tj.colibri.avrang.data.ApiData.Installment.Installment
+import tj.colibri.avrang.models.Installment.Banks
+import tj.colibri.avrang.models.Installment.Installment
 import tj.colibri.avrang.utils.Const
 import tj.colibri.avrang.utils.ImageLoader
 

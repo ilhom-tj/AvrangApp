@@ -13,13 +13,12 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.categories_fragment.*
-import kotlinx.android.synthetic.main.fragment_catalog.*
 import tj.colibri.avrang.MainActivity
 import tj.colibri.avrang.R
 import tj.colibri.avrang.adapters.CategoriesAdapter
 import tj.colibri.avrang.adapters.SubCategoriesAdapter
-import tj.colibri.avrang.data.ApiData.Category.Children
-import tj.colibri.avrang.data.ApiData.filter.FilterData
+import tj.colibri.avrang.models.Category.Children
+import tj.colibri.avrang.models.Filter.FilterData
 import tj.colibri.avrang.utils.Features
 import tj.colibri.avrang.utils.Search
 

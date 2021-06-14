@@ -8,16 +8,16 @@ import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import tj.colibri.avrang.data.ApiData.Favorite.FavoriteRequest
-import tj.colibri.avrang.data.favorite.FavoriteCard
-import tj.colibri.avrang.data.favorite.FavoriteDB
+import tj.colibri.avrang.DataBase.DB.DataBase
+import tj.colibri.avrang.models.Favorite.FavoriteRequest
+import tj.colibri.avrang.data.Favorite.FavoriteCard
 import tj.colibri.avrang.network.RetrofitInstance
 
 class FavoriteRepository(application: Application) {
 
     private val api = RetrofitInstance(application.applicationContext).api()
 
-    private val favoriteDao = FavoriteDB.getInstance(application.applicationContext).favorite
+    private val favoriteDao = DataBase.getInstance(application.applicationContext).favorite
     //Favorite Live Data
     var favList = favoriteDao.getAllFavorites()
     var favCount = favoriteDao.getFavCount()

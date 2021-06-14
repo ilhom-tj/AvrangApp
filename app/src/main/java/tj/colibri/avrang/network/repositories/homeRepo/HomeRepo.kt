@@ -8,12 +8,10 @@ import androidx.lifecycle.MutableLiveData
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import tj.colibri.avrang.data.ApiData.home.HomeResponse
+import tj.colibri.avrang.models.Home.HomeResponse
 import tj.colibri.avrang.network.RetrofitInstance
 class HomeRepo(val context: Context) {
     val api = RetrofitInstance(context).api()
-
-
 
     fun getHome(): LiveData<HomeResponse> {
         val home = MutableLiveData<HomeResponse>()

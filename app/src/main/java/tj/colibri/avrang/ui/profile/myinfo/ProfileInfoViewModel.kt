@@ -6,8 +6,8 @@ import androidx.lifecycle.LiveData
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import tj.colibri.avrang.data.cities.Cities
-import tj.colibri.avrang.data.user.User
+import tj.colibri.avrang.data.Cities.Cities
+import tj.colibri.avrang.data.User.User
 import tj.colibri.avrang.network.repositories.cities.CityRepo
 import tj.colibri.avrang.network.repositories.userRepo.UserRepository
 import java.io.InputStream

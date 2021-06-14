@@ -3,8 +3,7 @@ package tj.colibri.avrang.ui.login.resetPassword
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import tj.colibri.avrang.data.ApiData.registration.ConfirmCode
+import tj.colibri.avrang.models.Registration.ConfirmCode
 import tj.colibri.avrang.network.repositories.registrationRepo.RegistrationRepo
 
 class ResetPasswordViewModel(application: Application) : AndroidViewModel(application) {

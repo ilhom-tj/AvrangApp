@@ -13,7 +13,7 @@ import coil.ImageLoader
 import coil.decode.SvgDecoder
 import coil.load
 import tj.colibri.avrang.R
-import tj.colibri.avrang.data.ApiData.home.Partners
+import tj.colibri.avrang.models.Home.Partners
 import tj.colibri.avrang.utils.Const
 
 

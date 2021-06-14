@@ -14,7 +14,7 @@ import coil.ImageLoader
 import coil.decode.SvgDecoder
 import coil.load
 import tj.colibri.avrang.R
-import tj.colibri.avrang.data.ApiData.product.Banks
+import tj.colibri.avrang.models.Product.Banks
 import tj.colibri.avrang.utils.Const
 
 class BanksAdapter(val context: Fragment, private val itemClicked: ItemClicked) :

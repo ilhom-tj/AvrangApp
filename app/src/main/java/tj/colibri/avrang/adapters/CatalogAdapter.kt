@@ -14,7 +14,7 @@ import coil.ImageLoader
 import coil.decode.SvgDecoder
 import coil.load
 import tj.colibri.avrang.R
-import tj.colibri.avrang.data.ApiData.Category.Children
+import tj.colibri.avrang.models.Category.Children
 import tj.colibri.avrang.utils.Const
 
 class CatalogAdapter(val context : Fragment, private val itemClickListener: ItemClicked) : RecyclerView.Adapter<CatalogAdapter.CatalogHolder>() {

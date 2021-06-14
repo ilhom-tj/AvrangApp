@@ -1,6 +1,6 @@
 package tj.colibri.avrang.ui.checkout
 
-import tj.colibri.avrang.data.ApiData.chekout.forRequest.CheckOutResquest
+import tj.colibri.avrang.models.Chekout.forRequest.CheckOutResquest
 import android.app.DatePickerDialog
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -14,11 +14,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import kotlinx.android.synthetic.main.check_out_bank_transaction.*
 import kotlinx.android.synthetic.main.check_out_fragment.*
 import tj.colibri.avrang.R
-import tj.colibri.avrang.data.ApiData.chekout.CheckOutItem
+import tj.colibri.avrang.models.Chekout.CheckOutItem
 import tj.colibri.avrang.databinding.CheckOutFragmentBinding
 import tj.colibri.avrang.ui.cart.CartViewModel
 import tj.colibri.avrang.utils.Features

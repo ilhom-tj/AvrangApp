@@ -15,7 +15,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.cart_fragment.*
 import tj.colibri.avrang.R
 import tj.colibri.avrang.adapters.CartItemsAdapter
-import tj.colibri.avrang.data.cart.CartItem
+import tj.colibri.avrang.data.Cart.CartItem
 import tj.colibri.avrang.utils.SessionManager
 import java.text.DecimalFormat
 

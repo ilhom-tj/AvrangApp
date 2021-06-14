@@ -9,7 +9,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import tj.colibri.avrang.R
-import tj.colibri.avrang.data.ApiData.Category.Children
+import tj.colibri.avrang.models.Category.Children
 
 class SubCategoriesAdapter(val fragment: Fragment, private val itemClickListener: ItemClicked) : RecyclerView.Adapter<SubCategoriesAdapter.SubCategoryHolder>() {
 

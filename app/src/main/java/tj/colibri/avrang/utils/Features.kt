@@ -5,11 +5,11 @@ import android.app.Activity
 import android.content.Context
 import android.util.Log
 import android.view.inputmethod.InputMethodManager
-import tj.colibri.avrang.data.ApiData.product.Sliders
-import tj.colibri.avrang.data.cart.CartItem
-import tj.colibri.avrang.data.cart.CartItemResponse
-import tj.colibri.avrang.data.favorite.FavoriteCard
-import tj.colibri.avrang.data.ApiData.product.ProductCard2
+import tj.colibri.avrang.models.Product.Sliders
+import tj.colibri.avrang.data.Cart.CartItem
+import tj.colibri.avrang.data.Cart.CartItemResponse
+import tj.colibri.avrang.data.Favorite.FavoriteCard
+import tj.colibri.avrang.models.Product.ProductCard2
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList

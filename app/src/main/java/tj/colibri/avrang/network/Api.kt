@@ -1,30 +1,29 @@
 package tj.colibri.avrang.network
 
-import android.net.Network
 import okhttp3.MultipartBody
-import tj.colibri.avrang.data.ApiData.chekout.forRequest.CheckOutResquest
+import tj.colibri.avrang.models.Chekout.forRequest.CheckOutResquest
 import retrofit2.Call
 import retrofit2.http.*
-import tj.colibri.avrang.data.ApiData.Cart.CartIndexResponse
-import tj.colibri.avrang.data.ApiData.Cart.UpdateCart
-import tj.colibri.avrang.data.ApiData.Category.CategoryProductRequest
-import tj.colibri.avrang.data.ApiData.Category.CategoryResponse
-import tj.colibri.avrang.data.ApiData.Contact.ContactResponse
-import tj.colibri.avrang.data.ApiData.FAQ.FAQRequest
-import tj.colibri.avrang.data.ApiData.Installment.InstallmentBanks
-import tj.colibri.avrang.data.ApiData.Installment.PayClass
-import tj.colibri.avrang.data.ApiData.chekout.forRequest.CheckOutBankResponse
-import tj.colibri.avrang.data.ApiData.chekout.forRequest.CheckOutResponse
-import tj.colibri.avrang.data.ApiData.cities.CitiesResponse
-import tj.colibri.avrang.data.ApiData.registration.ConfirmCode
-import tj.colibri.avrang.data.ApiData.registration.RegistrationCallBack
-import tj.colibri.avrang.data.ApiData.home.HomeResponse
-import tj.colibri.avrang.data.ApiData.product.ProductInfo.ProductInfortmation2
-import tj.colibri.avrang.data.ApiData.profile.Image.ImageResponse
-import tj.colibri.avrang.data.ApiData.profile.ProfileResponse
+import tj.colibri.avrang.models.Cart.CartIndexResponse
+import tj.colibri.avrang.models.Cart.UpdateCart
+import tj.colibri.avrang.models.Category.CategoryProductRequest
+import tj.colibri.avrang.models.Category.CategoryResponse
+import tj.colibri.avrang.models.Contact.ContactResponse
+import tj.colibri.avrang.models.FAQ.FAQRequest
+import tj.colibri.avrang.models.Installment.InstallmentBanks
+import tj.colibri.avrang.models.Installment.PayClass
+import tj.colibri.avrang.models.Chekout.forRequest.CheckOutBankResponse
+import tj.colibri.avrang.models.Chekout.forRequest.CheckOutResponse
+import tj.colibri.avrang.models.Cities.CitiesResponse
+import tj.colibri.avrang.models.Registration.ConfirmCode
+import tj.colibri.avrang.models.Registration.RegistrationCallBack
+import tj.colibri.avrang.models.Home.HomeResponse
+import tj.colibri.avrang.models.Product.ProductInfo.ProductInfortmation2
+import tj.colibri.avrang.models.Profile.Image.ImageResponse
+import tj.colibri.avrang.models.Profile.ProfileResponse
 import tj.colibri.avrang.data.OrderDetails
-import tj.colibri.avrang.data.order.MyOrdersRequest
-import tj.colibri.avrang.data.user.User
+import tj.colibri.avrang.data.Order.MyOrdersRequest
+import tj.colibri.avrang.data.User.User
 
 interface Api {
 
@@ -77,7 +76,7 @@ interface Api {
     ): Call<RegistrationCallBack>
 
 
-    //tj.colibri.avrang.data.ApiData.orderDetails.tj.colibri.avrang.data.user.User settings
+    //tj.colibri.avrang.models.orderDetails.tj.colibri.avrang.data.user.User settings
     @POST("updatePersonalInfo")
     fun updatePersonalInfo(
         @Query("name") name: String,
@@ -126,7 +125,7 @@ interface Api {
 
 
 
-    //tj.colibri.avrang.data.ApiData.product.ProductInfo.Category
+    //tj.colibri.avrang.models.product.ProductInfo.Category
     //Catalog
     @GET("catalog")
     fun getCategories(): Call<CategoryResponse>
@@ -187,7 +186,7 @@ interface Api {
     @GET("profile/favorites")
     fun getFavorites(
 
-    ): Call<tj.colibri.avrang.data.ApiData.Favorite.FavoriteRequest>
+    ): Call<tj.colibri.avrang.models.Favorite.FavoriteRequest>
 
     @GET("profile/orders")
     fun getMyOrders(

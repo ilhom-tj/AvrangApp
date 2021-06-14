@@ -5,9 +5,9 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import tj.colibri.avrang.data.ApiData.Category.CategoryProductRequest
-import tj.colibri.avrang.data.ApiData.filter.FilterData
-import tj.colibri.avrang.data.ApiData.product.ProductCard2
+import tj.colibri.avrang.models.Category.CategoryProductRequest
+import tj.colibri.avrang.models.Filter.FilterData
+import tj.colibri.avrang.models.Product.ProductCard2
 import tj.colibri.avrang.network.repositories.catalogRepo.CatalogRepo
 import tj.colibri.avrang.network.repositories.favoriteRepo.FavoriteRepository
 import tj.colibri.avrang.utils.Features

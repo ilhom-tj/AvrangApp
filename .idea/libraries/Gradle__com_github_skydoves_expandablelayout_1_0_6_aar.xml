@@ -3,6 +3,9 @@
     <CLASSES>
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/e014dea498f84a5a78a42a6693613806/transformed/jetified-expandablelayout-1.0.6/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/e014dea498f84a5a78a42a6693613806/transformed/jetified-expandablelayout-1.0.6/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/8dcdebcc8b3b24cfabfd1ee3d1bd1fd8/transformed/jetified-expandablelayout-1.0.6/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/8dcdebcc8b3b24cfabfd1ee3d1bd1fd8/transformed/jetified-expandablelayout-1.0.6/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/8dcdebcc8b3b24cfabfd1ee3d1bd1fd8/transformed/jetified-expandablelayout-1.0.6/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.skydoves/expandablelayout/1.0.6/33688ecb2867b04708878c70e5a3311040b788ba/expandablelayout-1.0.6-javadoc.jar!/" />

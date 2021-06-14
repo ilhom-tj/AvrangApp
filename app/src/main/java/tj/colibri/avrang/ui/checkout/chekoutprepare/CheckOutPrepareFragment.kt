@@ -2,7 +2,6 @@ package tj.colibri.avrang.ui.checkout.chekoutprepare
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -18,7 +17,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.check_out_prepare_fragment.*
 import tj.colibri.avrang.R
 import tj.colibri.avrang.WebActivity
-import tj.colibri.avrang.data.ApiData.chekout.forRequest.CheckOutResquest
+import tj.colibri.avrang.models.Chekout.forRequest.CheckOutResquest
 
 
 class CheckOutPrepareFragment : Fragment() {

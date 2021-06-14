@@ -8,7 +8,7 @@ import android.widget.CheckBox
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import tj.colibri.avrang.R
-import tj.colibri.avrang.data.ApiData.Category.Attribute_values
+import tj.colibri.avrang.models.Category.Attribute_values
 
 class FilterAttributeCheckBoxAdapter(val context: Fragment, private val itemClick: CategoryClick) :
     RecyclerView.Adapter<FilterAttributeCheckBoxAdapter.ProductHolder>() {

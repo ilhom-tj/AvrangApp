@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 
 import tj.colibri.avrang.R
-import tj.colibri.avrang.data.ApiData.FAQ.FAQs
+import tj.colibri.avrang.models.FAQ.FAQs
 import tj.colibri.avrang.utils.ExpandMethods
 
 class FAQAdapter(val context: Fragment) : RecyclerView.Adapter<FAQAdapter.FAQHolder>() {

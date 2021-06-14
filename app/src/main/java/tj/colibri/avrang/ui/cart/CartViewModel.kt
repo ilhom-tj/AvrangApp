@@ -4,8 +4,8 @@ import android.app.Application
 import androidx.lifecycle.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import tj.colibri.avrang.data.ApiData.chekout.CheckOutItem
-import tj.colibri.avrang.data.cart.CartItem
+import tj.colibri.avrang.models.Chekout.CheckOutItem
+import tj.colibri.avrang.data.Cart.CartItem
 import tj.colibri.avrang.network.repositories.cartRepo.CartRepository
 class CartViewModel(application: Application) : AndroidViewModel(application) {
     val context = application

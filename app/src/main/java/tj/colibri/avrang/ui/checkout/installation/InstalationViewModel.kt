@@ -3,11 +3,9 @@ package tj.colibri.avrang.ui.checkout.installation
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import tj.colibri.avrang.data.ApiData.Installment.InstallmentBanks
-import tj.colibri.avrang.data.ApiData.Installment.PayClass
-import tj.colibri.avrang.data.ApiData.chekout.CheckOutItem
-import tj.colibri.avrang.data.user.User
+import tj.colibri.avrang.models.Installment.InstallmentBanks
+import tj.colibri.avrang.models.Installment.PayClass
+import tj.colibri.avrang.data.User.User
 import tj.colibri.avrang.network.repositories.banksRepo.BanksRepository
 import tj.colibri.avrang.network.repositories.cartRepo.CartRepository
 import tj.colibri.avrang.network.repositories.userRepo.UserRepository

@@ -7,7 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import tj.colibri.avrang.data.ApiData.product.ProductInfo.ProductInfortmation2
+import tj.colibri.avrang.models.Product.ProductInfo.ProductInfortmation2
 import tj.colibri.avrang.network.RetrofitInstance
 
 class ProductRepo(val context: Context) {

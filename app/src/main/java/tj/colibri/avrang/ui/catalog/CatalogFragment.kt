@@ -11,10 +11,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_catalog.*
-import kotlinx.android.synthetic.main.fragment_home.*
 import tj.colibri.avrang.R
 import tj.colibri.avrang.adapters.CatalogAdapter
-import tj.colibri.avrang.data.ApiData.Category.Children
+import tj.colibri.avrang.models.Category.Children
 import tj.colibri.avrang.utils.Features
 import tj.colibri.avrang.utils.Search
 

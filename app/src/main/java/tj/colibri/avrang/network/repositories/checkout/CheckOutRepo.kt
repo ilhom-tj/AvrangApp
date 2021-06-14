@@ -1,14 +1,14 @@
 package tj.colibri.avrang.network.repositories.checkout
 
-import tj.colibri.avrang.data.ApiData.chekout.forRequest.CheckOutResquest
+import tj.colibri.avrang.models.Chekout.forRequest.CheckOutResquest
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import tj.colibri.avrang.data.ApiData.chekout.forRequest.CheckOutBankResponse
-import tj.colibri.avrang.data.ApiData.chekout.forRequest.CheckOutResponse
+import tj.colibri.avrang.models.Chekout.forRequest.CheckOutBankResponse
+import tj.colibri.avrang.models.Chekout.forRequest.CheckOutResponse
 import tj.colibri.avrang.data.OrderDetails
 import tj.colibri.avrang.network.RetrofitInstance
 

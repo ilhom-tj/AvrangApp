@@ -6,9 +6,9 @@ import androidx.lifecycle.MutableLiveData
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import tj.colibri.avrang.data.ApiData.Category.CategoryProductRequest
-import tj.colibri.avrang.data.ApiData.Category.CategoryResponse
-import tj.colibri.avrang.data.ApiData.filter.FilterData
+import tj.colibri.avrang.models.Category.CategoryProductRequest
+import tj.colibri.avrang.models.Category.CategoryResponse
+import tj.colibri.avrang.models.Filter.FilterData
 import tj.colibri.avrang.network.RetrofitInstance
 
 class CatalogRepo(context: Context) {

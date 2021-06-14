@@ -3,7 +3,6 @@ package tj.colibri.avrang.ui.profile.delivery
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import tj.colibri.avrang.data.user.User
 import tj.colibri.avrang.network.repositories.userRepo.UserRepository
 
 class DeliveryAdresViewModel(application: Application) : AndroidViewModel(application){

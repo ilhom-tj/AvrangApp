@@ -8,8 +8,8 @@ import androidx.lifecycle.MutableLiveData
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import tj.colibri.avrang.data.ApiData.cities.CitiesResponse
-import tj.colibri.avrang.data.cities.Cities
+import tj.colibri.avrang.models.Cities.CitiesResponse
+import tj.colibri.avrang.data.Cities.Cities
 import tj.colibri.avrang.network.RetrofitInstance
 
 class CityRepo(val context: Context) {

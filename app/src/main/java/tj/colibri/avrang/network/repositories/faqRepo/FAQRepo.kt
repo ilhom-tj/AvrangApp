@@ -6,15 +6,15 @@ import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import tj.colibri.avrang.data.ApiData.FAQ.FAQRequest
-import tj.colibri.avrang.data.ApiData.FAQ.FAQs
-import tj.colibri.avrang.data.ApiData.FAQ.FAQsDB
+import tj.colibri.avrang.DataBase.DB.DataBase
+import tj.colibri.avrang.models.FAQ.FAQRequest
+import tj.colibri.avrang.models.FAQ.FAQs
 import tj.colibri.avrang.network.RetrofitInstance
 
 class FAQRepo(context: Context) {
 
     private val api = RetrofitInstance(context).api()
-    private val faqDao = FAQsDB.getInstance(context).faqDao
+    private val faqDao = DataBase.getInstance(context).faqDao
     val faqs = faqDao.getAllFAQs()
 
     fun getAllFAQs(){

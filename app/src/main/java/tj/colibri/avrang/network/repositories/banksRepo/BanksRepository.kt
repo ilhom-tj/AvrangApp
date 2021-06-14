@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import tj.colibri.avrang.data.ApiData.Installment.InstallmentBanks
+import tj.colibri.avrang.models.Installment.InstallmentBanks
 import tj.colibri.avrang.network.RetrofitInstance
 
 class BanksRepository(context: Context){

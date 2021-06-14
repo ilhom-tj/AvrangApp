@@ -9,21 +9,20 @@ import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import tj.colibri.avrang.data.ApiData.Cart.*
-import tj.colibri.avrang.data.ApiData.Installment.PayClass
-import tj.colibri.avrang.data.ApiData.chekout.CheckOutDB
-import tj.colibri.avrang.data.ApiData.chekout.CheckOutItem
-import tj.colibri.avrang.data.cart.CartDB
-import tj.colibri.avrang.data.cart.CartItem
-import tj.colibri.avrang.data.cart.CartItemResponse
+import tj.colibri.avrang.models.Cart.*
+import tj.colibri.avrang.DataBase.DB.DataBase
+import tj.colibri.avrang.models.Installment.PayClass
+import tj.colibri.avrang.models.Chekout.CheckOutItem
+import tj.colibri.avrang.data.Cart.CartItem
+import tj.colibri.avrang.data.Cart.CartItemResponse
 import tj.colibri.avrang.network.RetrofitInstance
 import tj.colibri.avrang.utils.Features
 
 class CartRepository(context: Context) {
 
-    private val cartDao = CartDB.getInstance(context).cartDao
-    private val cartIndexDao = CartIndexDB.getInstance(context).cartIndexDao
-    private val checkOutDao = CheckOutDB.getInstance(context).checkOutDaoDao
+    private val cartDao = DataBase.getInstance(context).cartDao
+    private val cartIndexDao = DataBase.getInstance(context).cartIndexDao
+    private val checkOutDao = DataBase.getInstance(context).checkOutDaoDao
 
     var cartIndexes = cartIndexDao.getCartIndexes()
     val api = RetrofitInstance(context).api()

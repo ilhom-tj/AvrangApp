@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import tj.colibri.avrang.R
-import tj.colibri.avrang.data.order.OrderContainer
+import tj.colibri.avrang.data.Order.OrderContainer
 import tj.colibri.avrang.utils.ExpandMethods
 import tj.colibri.avrang.utils.Features
 import java.text.DecimalFormat

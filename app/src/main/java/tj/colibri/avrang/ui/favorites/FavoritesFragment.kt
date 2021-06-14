@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_favorites.*
 import tj.colibri.avrang.R
 import tj.colibri.avrang.adapters.FavoritesAdapter
-import tj.colibri.avrang.data.favorite.FavoriteCard
+import tj.colibri.avrang.data.Favorite.FavoriteCard
 
 class FavoritesFragment : Fragment(), FavoritesAdapter.ClickListener {
 

@@ -14,8 +14,8 @@ import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.profile_fragment.*
 import tj.colibri.avrang.R
 import tj.colibri.avrang.adapters.ProductCardAdapter
-import tj.colibri.avrang.data.ApiData.product.ProductCard2
-import tj.colibri.avrang.data.user.User
+import tj.colibri.avrang.models.Product.ProductCard2
+import tj.colibri.avrang.data.User.User
 import tj.colibri.avrang.databinding.ProfileFragmentBinding
 import tj.colibri.avrang.utils.Const
 import tj.colibri.avrang.utils.SessionManager

@@ -105,7 +105,7 @@
         tools:layout="@layout/categories_fragment" >
         <argument
             android:name="children"
-            app:argType="tj.colibri.avrang.data.ApiData.Category.Children[]" />
+            app:argType="tj.colibri.avrang.models.Category.Children[]" />
         <argument
             android:name="parentTitle"
             app:argType="string" />
@@ -137,7 +137,7 @@
         tools:layout="@layout/fragment_delivery_adres" >
         <argument
             android:name="user"
-            app:argType="tj.colibri.avrang.data.user.User" />
+            app:argType="tj.colibri.avrang.data.User.User" />
     </fragment>
     <fragment
         android:id="@+id/myOrders"
@@ -161,7 +161,7 @@
         tools:layout="@layout/check_out_prepare_fragment" >
         <argument
             android:name="chekOutRequest"
-            app:argType="tj.colibri.avrang.data.ApiData.chekout.forRequest.CheckOutResquest" />
+            app:argType="tj.colibri.avrang.models.Chekout.forRequest.CheckOutResquest" />
     </fragment>
     <fragment
         android:id="@+id/filterFragment"
@@ -170,10 +170,10 @@
         tools:layout="@layout/filter_fragment" >
         <argument
             android:name="filterData"
-            app:argType="tj.colibri.avrang.data.ApiData.filter.FilterData" />
+            app:argType="tj.colibri.avrang.models.Filter.FilterData" />
         <argument
             android:name="category"
-            app:argType="tj.colibri.avrang.data.ApiData.Category.CategoryProductRequest" />
+            app:argType="tj.colibri.avrang.models.Category.CategoryProductRequest" />
     </fragment>
     <fragment
         android:id="@+id/FAQFragment"
@@ -251,10 +251,10 @@
         tools:layout="@layout/rating_with_comment_fragment" >
         <argument
             android:name="ratings"
-            app:argType="tj.colibri.avrang.data.ApiData.product.Rating" />
+            app:argType="tj.colibri.avrang.models.Product.Rating" />
         <argument
             android:name="reviews"
-            app:argType="tj.colibri.avrang.data.ApiData.product.Reviews[]" />
+            app:argType="tj.colibri.avrang.models.Product.Reviews[]" />
     </fragment>
     <activity
         android:id="@+id/splashScreen"

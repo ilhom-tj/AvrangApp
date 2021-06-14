@@ -20,15 +20,14 @@ import com.smarteist.autoimageslider.SliderAnimations
 import kotlinx.android.synthetic.main.fragment_home.*
 import tj.colibri.avrang.R
 import tj.colibri.avrang.adapters.*
-import tj.colibri.avrang.data.ApiData.home.News
-import tj.colibri.avrang.data.ApiData.home.Partners
-import tj.colibri.avrang.data.ApiData.product.Sliders
-import tj.colibri.avrang.data.ApiData.product.ProductCard2
+import tj.colibri.avrang.models.Home.News
+import tj.colibri.avrang.models.Home.Partners
+import tj.colibri.avrang.models.Product.Sliders
+import tj.colibri.avrang.models.Product.ProductCard2
 import tj.colibri.avrang.databinding.FragmentHomeBinding
 import tj.colibri.avrang.utils.Const
 import tj.colibri.avrang.utils.Features
 import tj.colibri.avrang.utils.Search
-import java.util.*
 
 
 @Suppress("DEPRECATION")

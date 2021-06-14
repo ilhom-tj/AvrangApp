@@ -1,6 +1,6 @@
 package tj.colibri.avrang.network.repositories.userRepo
 
-import tj.colibri.avrang.data.user.User
+import tj.colibri.avrang.data.User.User
 import android.content.Context
 import android.util.Log
 import android.widget.Toast
@@ -12,17 +12,17 @@ import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import tj.colibri.avrang.data.ApiData.profile.Image.ImageResponse
-import tj.colibri.avrang.data.ApiData.profile.ProfileResponse
-import tj.colibri.avrang.data.order.MyOrdersRequest
-import tj.colibri.avrang.data.user.UserDao
-import tj.colibri.avrang.data.user.UserDataBase
+import tj.colibri.avrang.DataBase.DB.DataBase
+import tj.colibri.avrang.models.Profile.Image.ImageResponse
+import tj.colibri.avrang.models.Profile.ProfileResponse
+import tj.colibri.avrang.data.Order.MyOrdersRequest
+import tj.colibri.avrang.DataBase.DB.UserDao
 import tj.colibri.avrang.network.RetrofitInstance
 
 class UserRepository(val context: Context) {
 
     val api = RetrofitInstance(context.applicationContext).api()
-    private var userDao: UserDao = UserDataBase.getInstance(context.applicationContext).userDao
+    private var userDao: UserDao = DataBase.getInstance(context.applicationContext).userDao
 
     val getUser = userDao.getUser()
 

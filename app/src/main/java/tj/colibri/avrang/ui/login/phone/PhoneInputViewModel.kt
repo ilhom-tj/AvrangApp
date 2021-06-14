@@ -2,8 +2,7 @@ package tj.colibri.avrang.ui.login.phone
 
 import android.app.Application
 import androidx.lifecycle.*
-import kotlinx.coroutines.runBlocking
-import tj.colibri.avrang.data.ApiData.registration.ConfirmCode
+import tj.colibri.avrang.models.Registration.ConfirmCode
 import tj.colibri.avrang.network.repositories.registrationRepo.RegistrationRepo
 
 class PhoneInputViewModel(application: Application) : AndroidViewModel(application) {

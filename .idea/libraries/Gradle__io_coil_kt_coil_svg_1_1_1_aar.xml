@@ -3,6 +3,9 @@
     <CLASSES>
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/2630d52138e552fb216d37e98ab8f14a/transformed/jetified-coil-svg-1.1.1/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/2630d52138e552fb216d37e98ab8f14a/transformed/jetified-coil-svg-1.1.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/6205f84c57f8476d0318479b0354ac0c/transformed/jetified-coil-svg-1.1.1/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/6205f84c57f8476d0318479b0354ac0c/transformed/jetified-coil-svg-1.1.1/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/6205f84c57f8476d0318479b0354ac0c/transformed/jetified-coil-svg-1.1.1/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.coil-kt/coil-svg/1.1.1/a825e307dedaa385104b4a8266e9c1023d380fcf/coil-svg-1.1.1-javadoc.jar!/" />

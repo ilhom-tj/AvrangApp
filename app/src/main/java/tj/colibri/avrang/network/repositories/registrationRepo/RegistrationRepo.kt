@@ -8,8 +8,8 @@ import androidx.lifecycle.MutableLiveData
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import tj.colibri.avrang.data.ApiData.registration.ConfirmCode
-import tj.colibri.avrang.data.ApiData.registration.RegistrationCallBack
+import tj.colibri.avrang.models.Registration.ConfirmCode
+import tj.colibri.avrang.models.Registration.RegistrationCallBack
 import tj.colibri.avrang.network.RetrofitInstance
 import tj.colibri.avrang.network.repositories.userRepo.UserRepository
 import tj.colibri.avrang.utils.SessionManager

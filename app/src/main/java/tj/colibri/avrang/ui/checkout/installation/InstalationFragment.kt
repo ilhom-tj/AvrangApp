@@ -12,7 +12,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavOptions
-import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -20,9 +19,8 @@ import kotlinx.android.synthetic.main.check_out_installation.*
 import kotlinx.android.synthetic.main.instalation_fragment.*
 import tj.colibri.avrang.R
 import tj.colibri.avrang.adapters.*
-import tj.colibri.avrang.data.ApiData.Installment.PayClass
-import tj.colibri.avrang.data.ApiData.chekout.CheckOutItem
-import java.util.*
+import tj.colibri.avrang.models.Installment.PayClass
+import tj.colibri.avrang.models.Chekout.CheckOutItem
 
 
 class InstalationFragment : Fragment() {

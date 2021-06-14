@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import tj.colibri.avrang.R
-import tj.colibri.avrang.data.cart.CartItem
+import tj.colibri.avrang.data.Cart.CartItem
 import tj.colibri.avrang.utils.Const
 
 class CartItemsAdapter(

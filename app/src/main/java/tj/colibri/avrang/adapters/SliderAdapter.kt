@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.smarteist.autoimageslider.SliderViewAdapter
 import tj.colibri.avrang.R
-import tj.colibri.avrang.data.ApiData.product.Sliders
+import tj.colibri.avrang.models.Product.Sliders
 import tj.colibri.avrang.utils.Const
 
 

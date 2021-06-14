@@ -3,8 +3,8 @@ package tj.colibri.avrang.ui.filter
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import tj.colibri.avrang.data.ApiData.Category.CategoryProductRequest
-import tj.colibri.avrang.data.ApiData.filter.FilterData
+import tj.colibri.avrang.models.Category.CategoryProductRequest
+import tj.colibri.avrang.models.Filter.FilterData
 import tj.colibri.avrang.network.repositories.catalogRepo.CatalogRepo
 
 class FilterViewModel(application: Application) : AndroidViewModel(application) {

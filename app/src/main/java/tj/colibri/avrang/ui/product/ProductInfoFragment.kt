@@ -22,13 +22,12 @@ import kotlinx.android.synthetic.main.product_info_fragment_v2.*
 import tj.colibri.avrang.MainActivity
 import tj.colibri.avrang.R
 import tj.colibri.avrang.adapters.*
-import tj.colibri.avrang.data.ApiData.product.Banks
-import tj.colibri.avrang.data.ApiData.product.ProductInfo.ProductInfortmation2
-import tj.colibri.avrang.data.ApiData.product.Reviews
-import tj.colibri.avrang.data.ApiData.product.Sliders
-import tj.colibri.avrang.data.cart.CartItem
-import tj.colibri.avrang.data.ApiData.product.ProductCard2
-import tj.colibri.avrang.data.mock.MockData
+import tj.colibri.avrang.models.Product.Banks
+import tj.colibri.avrang.models.Product.ProductInfo.ProductInfortmation2
+import tj.colibri.avrang.models.Product.Reviews
+import tj.colibri.avrang.models.Product.Sliders
+import tj.colibri.avrang.data.Cart.CartItem
+import tj.colibri.avrang.models.Product.ProductCard2
 import tj.colibri.avrang.databinding.ProductInfoFragmentV2Binding
 import tj.colibri.avrang.utils.Animator
 import tj.colibri.avrang.utils.Features
@@ -51,7 +50,7 @@ class ProductInfoFragment : Fragment(), SliderAdapter.ItemClicked,
     private val args: ProductInfoFragmentArgs by navArgs()
     private var isFavorite: Boolean = false
 
-    //tj.colibri.avrang.data.ApiData.product.ProductInfo.Rating quantity
+    //tj.colibri.avrang.models.product.ProductInfo.Rating quantity
     private var rFiveQ = 0
     private var rFourQ = 0
     private var rThreeQ = 0

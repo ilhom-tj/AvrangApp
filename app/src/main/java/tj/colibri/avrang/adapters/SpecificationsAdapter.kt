@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import tj.colibri.avrang.R
-import tj.colibri.avrang.data.ApiData.product.ProductInfo.Attributes
+import tj.colibri.avrang.models.Product.ProductInfo.Attributes
 
 class SpecificationsAdapter(val fragment: Fragment) : RecyclerView.Adapter<SpecificationsAdapter.SpecificationHolder>() {
 

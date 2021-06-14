@@ -3,9 +3,8 @@ package tj.colibri.avrang.ui.login.password
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import tj.colibri.avrang.data.ApiData.registration.RegistrationCallBack
-import tj.colibri.avrang.data.user.User
+import tj.colibri.avrang.models.Registration.RegistrationCallBack
+import tj.colibri.avrang.data.User.User
 import tj.colibri.avrang.network.repositories.registrationRepo.RegistrationRepo
 import tj.colibri.avrang.network.repositories.userRepo.UserRepository
 

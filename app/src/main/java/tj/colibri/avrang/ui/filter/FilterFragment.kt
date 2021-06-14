@@ -1,6 +1,5 @@
 package tj.colibri.avrang.ui.filter
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -9,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.setFragmentResult
 import androidx.lifecycle.*
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
@@ -20,11 +18,10 @@ import kotlinx.android.synthetic.main.filter_value_selector.*
 import tj.colibri.avrang.R
 import tj.colibri.avrang.adapters.FilterAttributeContainerAdapter
 import tj.colibri.avrang.adapters.FilterCheckBoxAdapter
-import tj.colibri.avrang.data.ApiData.Category.Attribute_values
-import tj.colibri.avrang.data.ApiData.Category.Children
-import tj.colibri.avrang.data.ApiData.filter.FilterData
+import tj.colibri.avrang.models.Category.Attribute_values
+import tj.colibri.avrang.models.Category.Children
+import tj.colibri.avrang.models.Filter.FilterData
 import tj.colibri.avrang.utils.Features
-import java.util.*
 import kotlin.collections.ArrayList
 
 class FilterFragment : Fragment(), RangeSlider.OnChangeListener, RangeSlider.OnSliderTouchListener,

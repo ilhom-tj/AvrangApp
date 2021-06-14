@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import tj.colibri.avrang.R
-import tj.colibri.avrang.data.ApiData.Category.Children
+import tj.colibri.avrang.models.Category.Children
 
 @Suppress("DEPRECATION")
 class CategoriesAdapter(val fragment: Fragment, private val itemClickListener : ItemClicked) : RecyclerView.Adapter<CategoriesAdapter.CategoryHolder>(), SubCategoriesAdapter.ItemClicked {

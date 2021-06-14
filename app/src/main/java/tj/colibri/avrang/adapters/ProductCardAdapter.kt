@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import tj.colibri.avrang.R
-import tj.colibri.avrang.data.ApiData.product.ProductCard2
+import tj.colibri.avrang.models.Product.ProductCard2
 import tj.colibri.avrang.utils.Const
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")

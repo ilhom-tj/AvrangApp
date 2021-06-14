@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import tj.colibri.avrang.data.ApiData.product.ProductCard2
+import tj.colibri.avrang.models.Product.ProductCard2
 import tj.colibri.avrang.network.repositories.userRepo.UserRepository
 import tj.colibri.avrang.network.repositories.favoriteRepo.FavoriteRepository
 import tj.colibri.avrang.utils.Features

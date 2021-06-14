@@ -5,10 +5,10 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import tj.colibri.avrang.data.ApiData.chekout.CheckOutItem
-import tj.colibri.avrang.data.ApiData.product.ProductInfo.ProductInfortmation2
-import tj.colibri.avrang.data.cart.CartItem
-import tj.colibri.avrang.data.ApiData.product.ProductCard2
+import tj.colibri.avrang.models.Chekout.CheckOutItem
+import tj.colibri.avrang.models.Product.ProductInfo.ProductInfortmation2
+import tj.colibri.avrang.data.Cart.CartItem
+import tj.colibri.avrang.models.Product.ProductCard2
 import tj.colibri.avrang.network.repositories.cartRepo.CartRepository
 import tj.colibri.avrang.network.repositories.favoriteRepo.FavoriteRepository
 import tj.colibri.avrang.network.repositories.products.ProductRepo

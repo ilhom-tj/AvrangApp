@@ -4,8 +4,8 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import tj.colibri.avrang.R
-import tj.colibri.avrang.data.ApiData.filter.FilterData
-import tj.colibri.avrang.data.ApiData.home.Partners
+import tj.colibri.avrang.models.Filter.FilterData
+import tj.colibri.avrang.models.Home.Partners
 
 class Search(val context: Fragment) {
     fun search(string: String){

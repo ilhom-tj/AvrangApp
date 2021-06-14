@@ -18,9 +18,9 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.products_in_categories_fragment.*
 import tj.colibri.avrang.R
 import tj.colibri.avrang.adapters.ProductCardAdapter
-import tj.colibri.avrang.data.ApiData.filter.FilterData
-import tj.colibri.avrang.data.mock.MockData
-import tj.colibri.avrang.data.ApiData.product.ProductCard2
+import tj.colibri.avrang.models.Filter.FilterData
+import tj.colibri.avrang.data.Mock.MockData
+import tj.colibri.avrang.models.Product.ProductCard2
 import tj.colibri.avrang.ui.filter.FilterFragment
 import tj.colibri.avrang.utils.SubtitleRadioButton
 

@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import tj.colibri.avrang.R
-import tj.colibri.avrang.data.product.options.Option
+import tj.colibri.avrang.data.Product.options.Option
 
 class OptionsChildAdapter(val fragment: Fragment) : RecyclerView.Adapter<OptionsChildAdapter.OptionHolder>() {
 

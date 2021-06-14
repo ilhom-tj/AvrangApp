@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 import tj.colibri.avrang.R
-import tj.colibri.avrang.data.ApiData.Installment.Installment
+import tj.colibri.avrang.models.Installment.Installment
 import java.text.DecimalFormat
 
 class InstDurationAdapter(val context: Context) : BaseAdapter() {

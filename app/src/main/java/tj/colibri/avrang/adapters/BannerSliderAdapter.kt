@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import tj.colibri.avrang.R
-import tj.colibri.avrang.data.ApiData.home.Banners
+import tj.colibri.avrang.models.Home.Banners
 import tj.colibri.avrang.utils.Const
 
 class BannerSliderAdapter(val context: Fragment) : RecyclerView.Adapter<BannerSliderAdapter.SliderHolder>() {

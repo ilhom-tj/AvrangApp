@@ -3,6 +3,9 @@
     <CLASSES>
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/a63264d03cc32d5205265d577bd10a5c/transformed/jetified-rangeseekbar-1.1.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/a63264d03cc32d5205265d577bd10a5c/transformed/jetified-rangeseekbar-1.1.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/e199ee46cc1136de9457042a4b2c1480/transformed/jetified-rangeseekbar-1.1.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/e199ee46cc1136de9457042a4b2c1480/transformed/jetified-rangeseekbar-1.1.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/e199ee46cc1136de9457042a4b2c1480/transformed/jetified-rangeseekbar-1.1.0/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
